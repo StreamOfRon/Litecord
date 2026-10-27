@@ -23,85 +23,37 @@ edit the script and re-run. Checked rows belong to a tracking task in
 | [ ] | ui/appwindow.slint:280 | tr_replying_to |
 | [ ] | ui/appwindow.slint:281 | tr_chat_placeholder_prefix |
 | [ ] | ui/appwindow.slint:282 | tr_send |
-| [ ] | ui/appwindow.slint:283 | tr_settings_title |
-| [ ] | ui/appwindow.slint:284 | tr_settings_language_label |
-| [ ] | ui/appwindow.slint:285 | tr_settings_input_device |
-| [ ] | ui/appwindow.slint:286 | tr_settings_output_device |
-| [ ] | ui/appwindow.slint:287 | tr_settings_threshold |
-| [ ] | ui/appwindow.slint:288 | tr_settings_mic_level |
-| [ ] | ui/appwindow.slint:289 | tr_settings_btn_test_start |
-| [ ] | ui/appwindow.slint:290 | tr_settings_btn_test_stop |
-| [ ] | ui/appwindow.slint:291 | tr_settings_done |
-| [ ] | ui/appwindow.slint:292 | tr_logout_title |
-| [ ] | ui/appwindow.slint:293 | tr_logout_confirm_prefix |
-| [ ] | ui/appwindow.slint:294 | tr_cancel |
-| [ ] | ui/appwindow.slint:295 | tr_confirm_logout |
-| [ ] | ui/appwindow.slint:296 | tr_voice_connecting |
-| [ ] | ui/appwindow.slint:297 | tr_voice_connecting_title |
-| [ ] | ui/appwindow.slint:298 | tr_voice_connecting_desc |
-| [ ] | ui/appwindow.slint:299 | tr_voice_connected |
-| [ ] | ui/appwindow.slint:300 | tr_qr_title |
-| [ ] | ui/appwindow.slint:301 | tr_qr_desc |
-| [ ] | ui/appwindow.slint:302 | tr_qr_confirm |
-| [ ] | ui/appwindow.slint:303 | tr_settings_tab_voice |
-| [ ] | ui/appwindow.slint:304 | tr_settings_tab_language |
-| [ ] | ui/appwindow.slint:305 | tr_settings_tab_keybinds |
-| [ ] | ui/appwindow.slint:306 | tr_settings_tab_video_interface |
-| [ ] | ui/appwindow.slint:307 | tr_settings_tab_security |
-| [ ] | ui/appwindow.slint:308 | tr_settings_tab_network_proxy |
-| [ ] | ui/appwindow.slint:309 | tr_settings_tab_updates |
-| [ ] | ui/appwindow.slint:310 | tr_keybind_mute_title |
-| [ ] | ui/appwindow.slint:311 | tr_keybind_mute_desc |
-| [ ] | ui/appwindow.slint:312 | tr_keybind_deafen_title |
-| [ ] | ui/appwindow.slint:313 | tr_keybind_deafen_desc |
-| [ ] | ui/appwindow.slint:314 | tr_keybind_recording_prompt |
-| [ ] | ui/appwindow.slint:315 | tr_keybind_btn_record |
-| [ ] | ui/appwindow.slint:316 | tr_keybind_btn_clear |
-| [ ] | ui/appwindow.slint:317 | tr_keybind_guide_title |
-| [ ] | ui/appwindow.slint:318 | tr_keybind_guide_desc |
-| [ ] | ui/appwindow.slint:479 | tr_start_screen_share |
-| [ ] | ui/appwindow.slint:480 | tr_stop_screen_share |
-| [ ] | ui/appwindow.slint:481 | tr_watching_stream |
-| [ ] | ui/appwindow.slint:482 | tr_live_badge |
-| [ ] | ui/appwindow.slint:483 | tr_stream_quality |
+| [ ] | ui/appwindow.slint:283 | tr_settings_language_label |
+| [ ] | ui/appwindow.slint:284 | tr_logout_title |
+| [ ] | ui/appwindow.slint:285 | tr_logout_confirm_prefix |
+| [ ] | ui/appwindow.slint:286 | tr_cancel |
+| [ ] | ui/appwindow.slint:287 | tr_confirm_logout |
+| [ ] | ui/appwindow.slint:288 | tr_voice_connecting |
+| [ ] | ui/appwindow.slint:289 | tr_voice_connecting_title |
+| [ ] | ui/appwindow.slint:290 | tr_voice_connecting_desc |
+| [ ] | ui/appwindow.slint:291 | tr_voice_connected |
+| [ ] | ui/appwindow.slint:292 | tr_qr_title |
+| [ ] | ui/appwindow.slint:293 | tr_qr_desc |
+| [ ] | ui/appwindow.slint:294 | tr_qr_confirm |
+| [ ] | ui/appwindow.slint:455 | tr_start_screen_share |
+| [ ] | ui/appwindow.slint:456 | tr_stop_screen_share |
+| [ ] | ui/appwindow.slint:457 | tr_watching_stream |
+| [ ] | ui/appwindow.slint:458 | tr_live_badge |
+| [ ] | ui/appwindow.slint:459 | tr_stream_quality |
 | [ ] | ui/components/channel_sidebar.slint:25 | tr_server_channels |
 | [ ] | ui/components/channel_sidebar.slint:36 | tr_voice_connecting |
 | [ ] | ui/components/channel_sidebar.slint:37 | tr_voice_connected |
 | [ ] | ui/components/channel_sidebar.slint:39 | tr_leave |
 | [ ] | ui/components/chat_messages_view.slint:83 | tr_replying_to |
-| [ ] | ui/components/settings_view.slint:27 | tr_settings_title |
-| [ ] | ui/components/settings_view.slint:30 | tr_settings_tab_voice |
-| [ ] | ui/components/settings_view.slint:31 | tr_settings_tab_language |
-| [ ] | ui/components/settings_view.slint:32 | tr_settings_tab_keybinds |
-| [ ] | ui/components/settings_view.slint:33 | tr_settings_tab_video_interface |
-| [ ] | ui/components/settings_view.slint:34 | tr_settings_tab_security |
-| [ ] | ui/components/settings_view.slint:35 | tr_settings_tab_network_proxy |
-| [ ] | ui/components/settings_view.slint:36 | tr_settings_tab_updates |
-| [ ] | ui/components/settings_view.slint:37 | tr_settings_output_device |
-| [ ] | ui/components/settings_view.slint:39 | tr_settings_input_device |
-| [ ] | ui/components/settings_view.slint:42 | tr_settings_threshold |
-| [ ] | ui/components/settings_view.slint:44 | tr_settings_mic_level |
-| [ ] | ui/components/settings_view.slint:47 | tr_settings_btn_test_stop |
-| [ ] | ui/components/settings_view.slint:48 | tr_settings_btn_test_start |
-| [ ] | ui/components/settings_view.slint:50 | tr_keybind_mute_title |
-| [ ] | ui/components/settings_view.slint:51 | tr_keybind_mute_desc |
-| [ ] | ui/components/settings_view.slint:53 | tr_keybind_recording_prompt |
-| [ ] | ui/components/settings_view.slint:55 | tr_keybind_btn_record |
-| [ ] | ui/components/settings_view.slint:56 | tr_keybind_btn_clear |
-| [ ] | ui/components/settings_view.slint:57 | tr_keybind_guide_title |
-| [ ] | ui/components/settings_view.slint:58 | tr_keybind_guide_desc |
-| [ ] | ui/components/settings_view.slint:59 | tr_keybind_deafen_title |
-| [ ] | ui/components/settings_view.slint:60 | tr_keybind_deafen_desc |
-| [ ] | ui/components/settings_view.slint:87 | tr_settings_done |
 
-**85 entries.**
+**37 entries.**
 
 ## 3. hardcoded slint property defaults (Portuguese-typical chars)
 
 | status | file:line | excerpt |
 |---|---|---|
-| [ ] | ui/appwindow.slint:419 | selected_input_device: "Microfone Padrão do Sistema" |
-| [ ] | ui/appwindow.slint:420 | selected_output_device: "Alto-falantes Padrão do Sistema" |
+| [ ] | ui/appwindow.slint:395 | selected_input_device: "Microfone Padrão do Sistema" |
+| [ ] | ui/appwindow.slint:396 | selected_output_device: "Alto-falantes Padrão do Sistema" |
 
 **2 entries.**
 
@@ -368,7 +320,7 @@ edit the script and re-run. Checked rows belong to a tracking task in
 | [ ] | src/ui/gpu_video.rs:130 | log::info!("🎞️ [GPU VIDEO] Transmissão do peer {} exibida direto pela GPU", peer); |
 | [ ] | src/ui/gpu_video.rs:133 | Err(e) => log::warn!("🎞️ [GPU VIDEO] Não foi possível ligar as camadas de vídeo: {:?}", e) |
 | [ ] | src/ui/gpu_video.rs:136 | log::info!("🎞️ [GPU VIDEO] Transmissão volta a ser exibida pela CPU"); |
-| [ ] | src/ui/helpers.rs:782 | warn!("Não foi possível carregar o índice de comandos do servidor {}: {}", guild_id, e); |
+| [ ] | src/ui/helpers.rs:743 | warn!("Não foi possível carregar o índice de comandos do servidor {}: {}", guild_id, e); |
 | [ ] | src/utils/attachment_cache.rs:29 | warn!("Não foi possível criar diretório temporário de imagens: {}", e); |
 | [ ] | src/utils/attachment_cache.rs:300 | log::warn!("Anexo de imagem com dimensões excessivas rejeitado por segurança: {}x{}", w, h |
 | [ ] | src/utils/emoji_cache.rs:42 | warn!("Não foi possível criar diretório de cache de emojis: {}", e); |
@@ -406,202 +358,225 @@ edit the script and re-run. Checked rows belong to a tracking task in
 
 | status | file:line | excerpt |
 |---|---|---|
-| [ ] | ui/appwindow.slint:319 | Ctrl+Shift+M |
-| [ ] | ui/appwindow.slint:320 | Ctrl+Shift+D |
-| [ ] | ui/appwindow.slint:1863 | \{Math.round(root.stream_remote_volume * 100)}% |
-| [ ] | ui/appwindow.slint:5189 | \{Math.round(root.stream_volume * 100)}% |
+| [ ] | ui/appwindow.slint:295 | Ctrl+Shift+M |
+| [ ] | ui/appwindow.slint:296 | Ctrl+Shift+D |
+| [ ] | ui/appwindow.slint:1839 | \{Math.round(root.stream_remote_volume * 100)}% |
+| [ ] | ui/appwindow.slint:5141 | \{Math.round(root.stream_volume * 100)}% |
 | [ ] | ui/components/channel_sidebar.slint:268 | \{channel.voice_count} |
-| [ ] | ui/components/settings_view.slint:595 | Native Rust GUI |
-| [ ] | ui/components/settings_view.slint:2773 | MLS RFC 9420 |
-| [ ] | ui/components/settings_view.slint:3296 | Tor & SOCKS5 |
-| [ ] | ui/components/settings_view.slint:3328 | Debugging & Burp |
-| [ ] | ui/components/settings_view.slint:3505 | Litecord Client |
-| [ ] | ui/components/settings_view.slint:3690 | Litecord • Ultra-Fast Native Discord Client |
-| [ ] | ui/components/tr.slint:3 | Share on web |
-| [ ] | ui/components/tr.slint:5 | Stop web |
-| [ ] | ui/components/tr.slint:7 | Copy link |
-| [ ] | ui/components/tr.slint:8 | Link copied |
-| [ ] | ui/components/tr.slint:10 | Re-generate QR Code |
-| [ ] | ui/components/tr.slint:11 | Reduced preview to save resources |
-| [ ] | ui/components/tr.slint:12 | You are streaming |
-| [ ] | ui/components/tr.slint:15 | Disable Intangible |
-| [ ] | ui/components/tr.slint:16 | DISCORD SMART COMMANDS |
-| [ ] | ui/components/tr.slint:17 | Click to autocomplete |
-| [ ] | ui/components/tr.slint:18 | Manage Accounts |
-| [ ] | ui/components/tr.slint:19 | Quickly switch accounts or add a second saved account. |
-| [ ] | ui/components/tr.slint:22 | + Add Another Account |
-| [ ] | ui/components/tr.slint:23 | Sign Out of All Accounts |
-| [ ] | ui/components/tr.slint:24 | New Update Available! |
-| [ ] | ui/components/tr.slint:25 | Don't show again |
-| [ ] | ui/components/tr.slint:26 | Remind Me Later |
-| [ ] | ui/components/tr.slint:27 | Yes, Update |
-| [ ] | ui/components/tr.slint:28 | Share your screen |
-| [ ] | ui/components/tr.slint:29 | Screens / Windows |
-| [ ] | ui/components/tr.slint:33 | No camera / webcam detected on the system. |
-| [ ] | ui/components/tr.slint:34 | STREAM QUALITY |
-| [ ] | ui/components/tr.slint:36 | FRAME RATE (FPS) |
-| [ ] | ui/components/tr.slint:37 | The webcam will stream using your device's native resolution and frame rate. |
-| [ ] | ui/components/tr.slint:38 | Stream Computer / Window Audio |
-| [ ] | ui/components/tr.slint:39 | Includes the app or game sound during the stream |
-| [ ] | ui/components/tr.slint:40 | Streaming Browser (Videos / DRM) |
-| [ ] | ui/components/tr.slint:41 | Opens the browser without black-screen locks to watch with friends |
-| [ ] | ui/components/tr.slint:43 | Direct Camera Stream |
-| [ ] | ui/components/tr.slint:44 | Webcam video only (no system audio capture) |
-| [ ] | ui/components/tr.slint:47 | Incoming voice call |
-| [ ] | ui/components/tr.slint:50 | Litecord - Detached Stream |
-| [ ] | ui/components/tr.slint:52 | Output Device |
-| [ ] | ui/components/tr.slint:53 | For the best positional fidelity and to avoid echo or sound leaking in group cal |
-| [ ] | ui/components/tr.slint:54 | Input Device |
-| [ ] | ui/components/tr.slint:55 | Select your main microphone or headset. We recommend using the default device or |
-| [ ] | ui/components/tr.slint:56 | INPUT VOLUME (MICROPHONE GAIN) |
-| [ ] | ui/components/tr.slint:57 | Microphone Gain |
-| [ ] | ui/components/tr.slint:58 | Adjust your microphone gain. Values above 100% (up to 200%) amplify your voice s |
-| [ ] | ui/components/tr.slint:59 | Sensitivity (VAD) |
-| [ ] | ui/components/tr.slint:60 | Speak normally. Adjust the control so your voice goes past the white mark, while |
-| [ ] | ui/components/tr.slint:61 | Loopback Test |
-| [ ] | ui/components/tr.slint:62 | Lets you hear your processed voice in real time with Litecord's filter through y |
-| [ ] | ui/components/tr.slint:63 | Smart Voice Ducking |
-| [ ] | ui/components/tr.slint:65 | The Opus PLC audio engine automatically lowers other members' sound by 12 dB whe |
-| [ ] | ui/components/tr.slint:66 | Competitive Edge |
-| [ ] | ui/components/tr.slint:67 | Eliminates the cacophony in decisive FPS/MOBA moments, making sure critical call |
-| [ ] | ui/components/tr.slint:68 | SELECT THE CLIENT LANGUAGE |
-| [ ] | ui/components/tr.slint:69 | Instant Switch |
-| [ ] | ui/components/tr.slint:70 | Language changes are applied in real time across all windows without restarting  |
-| [ ] | ui/components/tr.slint:71 | Automatic Detection |
-| [ ] | ui/components/tr.slint:72 | The 'Auto' option detects the default region and language of your operating syst |
-| [ ] | ui/components/tr.slint:73 | Key Tip |
-| [ ] | ui/components/tr.slint:74 | You can use keys such as F1-F12, NumPad keys, or combinations with Ctrl, Shift a |
-| [ ] | ui/components/tr.slint:75 | VIDEO ENCODER (H.264) |
-| [ ] | ui/components/tr.slint:76 | Automatic (recommended) |
-| [ ] | ui/components/tr.slint:77 | Uses the GPU connected to the captured monitor, avoiding transfers between GPUs. |
-| [ ] | ui/components/tr.slint:78 | CPU (OpenH264) |
-| [ ] | ui/components/tr.slint:79 | Compatibility option: encodes in software and uses more CPU. |
-| [ ] | ui/components/tr.slint:80 | DXGI captures this GPU's monitors. WGC captures windows or monitors on another G |
-| [ ] | ui/components/tr.slint:81 | WGC captures on this GPU; the image may be transferred between GPUs. |
-| [ ] | ui/components/tr.slint:82 | Applies to the next screen share. If the selected GPU is unavailable, Automatic  |
-| [ ] | ui/components/tr.slint:83 | Selected GPU unavailable |
-| [ ] | ui/components/tr.slint:84 | Current capture |
-| [ ] | ui/components/tr.slint:85 | GPU processing |
-| [ ] | ui/components/tr.slint:86 | Compatibility mode |
-| [ ] | ui/components/tr.slint:87 | DXGI captures monitors; WGC captures windows or another GPU. The options below a |
-| [ ] | ui/components/tr.slint:88 | Select the GPU or CPU acceleration engine used to encode screen streams. |
-| [ ] | ui/components/tr.slint:90 | Light theme |
-| [ ] | ui/components/tr.slint:91 | Switches the whole interface between the light and dark palettes. |
-| [ ] | ui/components/tr.slint:92 | SCREEN AND WINDOW CAPTURE METHOD |
-| [ ] | ui/components/tr.slint:93 | Defines how Litecord captures the visual content of the operating system. |
-| [ ] | ui/components/tr.slint:94 | STREAM AUDIO (SYSTEM LOOPBACK) |
-| [ ] | ui/components/tr.slint:95 | Defines the technology used to capture the internal sound of games, videos and t |
-| [ ] | ui/components/tr.slint:96 | STREAM NOTICES AND INTERFACE |
-| [ ] | ui/components/tr.slint:97 | Reduced Preview Notice |
-| [ ] | ui/components/tr.slint:98 | Shows the warning pill in your own preview when the stream starts, telling you t |
-| [ ] | ui/components/tr.slint:99 | Performance Monitor (CPU / RAM / GPU) |
-| [ ] | ui/components/tr.slint:100 | Network diagnostics |
-| [ ] | ui/components/tr.slint:101 | Checks whether screen sharing with someone on another network can connect direct |
-| [ ] | ui/components/tr.slint:102 | Test network |
-| [ ] | ui/components/tr.slint:104 | Copy report |
-| [ ] | ui/components/tr.slint:106 | Your network allows direct connections: screen sharing with other networks shoul |
-| [ ] | ui/components/tr.slint:107 | Your router or provider uses symmetric NAT: screen sharing across the internet m |
-| [ ] | ui/components/tr.slint:108 | Your provider shows a different public address per server (carrier-grade NAT): s |
-| [ ] | ui/components/tr.slint:109 | No test server answered: UDP looks blocked on this network, so screen sharing ac |
-| [ ] | ui/components/tr.slint:110 | The signaling server did not answer, so peers cannot find each other over the in |
-| [ ] | ui/components/tr.slint:111 | GPU rendering |
-| [ ] | ui/components/tr.slint:112 | Draws the interface with the graphics card. Off (default), the CPU draws it, whi |
-| [ ] | ui/components/tr.slint:113 | Shows live RAM, CPU and GPU usage in the application title bar next to the setti |
-| [ ] | ui/components/tr.slint:114 | E2EE Video & Sound Encryption |
-| [ ] | ui/components/tr.slint:115 | AES-256-GCM ACTIVE |
-| [ ] | ui/components/tr.slint:116 | Every 60 FPS frame and the loopback audio are encrypted with 256-bit symmetric k |
-| [ ] | ui/components/tr.slint:117 | Wi-Fi & LAN Protection |
-| [ ] | ui/components/tr.slint:118 | Prevents anyone on the same router from capturing your stream with packet analyz |
-| [ ] | ui/components/tr.slint:119 | Windows DPAPI Credential Vault |
-| [ ] | ui/components/tr.slint:121 | Your Discord token is stored with native CryptProtectData encryption bound to yo |
-| [ ] | ui/components/tr.slint:122 | Stealer Immunity |
-| [ ] | ui/components/tr.slint:123 | Unauthorized scripts and malware cannot steal your session because the cryptogra |
-| [ ] | ui/components/tr.slint:124 | Official Discord Voice (DAVE Protocol) |
-| [ ] | ui/components/tr.slint:125 | End-to-end encrypted voice communication with Discord's official voice servers,  |
-| [ ] | ui/components/tr.slint:126 | Zero Intermediaries |
-| [ ] | ui/components/tr.slint:127 | Connections are 100% direct to the Discord API. There are no third-party servers |
-| [ ] | ui/components/tr.slint:128 | Proxy Connection Mode |
-| [ ] | ui/components/tr.slint:129 | Proxy Address and Authentication |
-| [ ] | ui/components/tr.slint:130 | Server / Host IP: |
-| [ ] | ui/components/tr.slint:132 | User (Optional): |
-| [ ] | ui/components/tr.slint:133 | Password (Optional): |
-| [ ] | ui/components/tr.slint:134 | Save and Apply |
-| [ ] | ui/components/tr.slint:135 | Bypass Blocks |
-| [ ] | ui/components/tr.slint:136 | Lets you get around firewalls and DNS blocks at schools or companies. |
-| [ ] | ui/components/tr.slint:137 | Compatible with Tor's port 9050 and local SSH tunnels to anonymize your IP. |
-| [ ] | ui/components/tr.slint:138 | Point to 127.0.0.1:8080 to inspect REST API requests. |
-| [ ] | ui/components/tr.slint:139 | Gaming Performance |
-| [ ] | ui/components/tr.slint:140 | With the proxy disabled, the impact is 0%. Voice and video keep direct UDP route |
-| [ ] | ui/components/tr.slint:141 | Official Release Channel |
-| [ ] | ui/components/tr.slint:142 | Updates are checked directly in the GitHub repository with domain signature vali |
-| [ ] | ui/components/tr.slint:143 | Native Rust Performance |
-| [ ] | ui/components/tr.slint:144 | • CPU usage: < 0.1% when idle (0.0% in DeepSleep mode in the tray)\n• RAM: ~32 M |
-| [ ] | ui/components/tr.slint:145 | DeepSleep Mode |
-| [ ] | ui/components/tr.slint:146 | When minimized to the tray, the interface freezes its rendering to guarantee 100 |
-| [ ] | ui/components/tr.slint:148 | Video & Interface |
-| [ ] | ui/components/tr.slint:149 | Stop Streaming |
-| [ ] | ui/components/tr.slint:150 | Watching Stream |
-| [ ] | ui/components/tr.slint:152 | Waiting for Access Token... |
-| [ ] | ui/components/tr.slint:153 | Not connected |
-| [ ] | ui/components/tr.slint:154 | Select a channel |
-| [ ] | ui/components/tr.slint:155 | Downloading update... |
-| [ ] | ui/components/tr.slint:156 | Comparing local version with GitHub... |
-| [ ] | ui/components/tr.slint:157 | Proxy settings saved successfully! |
-| [ ] | ui/components/tr.slint:158 | Testing connection through proxy... |
-| [ ] | ui/components/tr.slint:159 | The QR Code session expired or was cancelled on the phone. Click Generate QR to  |
-| [ ] | ui/components/tr.slint:160 | Discord required a Captcha verification for the QR Code. Please paste your Token |
-| [ ] | ui/components/tr.slint:161 | You signed out. Enter your token or scan the QR Code. |
-| [ ] | ui/components/tr.slint:162 | Connection failed via Proxy ({}) |
-| [ ] | ui/components/tr.slint:163 | Auto-connecting to Gateway v9... |
-| [ ] | ui/components/tr.slint:164 | Permissions unavailable |
-| [ ] | ui/components/tr.slint:165 | Failed to check permissions. Select the server again to try. |
-| [ ] | ui/components/tr.slint:166 | No accessible text channel |
-| [ ] | ui/components/tr.slint:167 | Press Enter to run  |
-| [ ] | ui/components/tr.slint:168 | Type the value for  |
-| [ ] | ui/components/tr.slint:169 | Press Enter or Send to run  |
-| [ ] | ui/components/tr.slint:171 | Welcome to Litecord! Your servers will load in the sidebar on the left. |
-| [ ] | ui/components/tr.slint:174 | Mic active |
-| [ ] | ui/components/tr.slint:176 | A new version of Litecord with improvements and fixes is ready to install. Updat |
-| [ ] | ui/components/tr.slint:177 | Screen / Window |
-| [ ] | ui/components/tr.slint:178 | Native system portal |
-| [ ] | ui/components/tr.slint:182 | Play music, audio or a playlist (YouTube/Spotify/SoundCloud) |
-| [ ] | ui/components/tr.slint:183 | /play <name or link> |
-| [ ] | ui/components/tr.slint:184 | Song name or YouTube/Spotify/SoundCloud link |
-| [ ] | ui/components/tr.slint:185 | Skip to the next track in the queue |
-| [ ] | ui/components/tr.slint:186 | Stop the bot's playback and clear the queue |
-| [ ] | ui/components/tr.slint:187 | Pause the song that is playing |
-| [ ] | ui/components/tr.slint:188 | Resume the paused playback |
-| [ ] | ui/components/tr.slint:189 | Show the list of songs in the queue |
-| [ ] | ui/components/tr.slint:190 | Show details of the song playing right now |
-| [ ] | ui/components/tr.slint:191 | Adjust the bot's playback volume |
-| [ ] | ui/components/tr.slint:192 | Volume from 1 to 100 |
-| [ ] | ui/components/tr.slint:193 | Enable or disable repeat for the song or queue |
-| [ ] | ui/components/tr.slint:194 | Mode: track, queue or off |
-| [ ] | ui/components/tr.slint:195 | Shuffle the song queue |
-| [ ] | ui/components/tr.slint:196 | Search for and show the lyrics of the current song |
-| [ ] | ui/components/tr.slint:197 | Song name (optional) |
-| [ ] | ui/components/tr.slint:198 | Keep the bot connected 24/7 in the voice channel |
-| [ ] | ui/components/tr.slint:199 | Show the bot's help menu and commands |
-| [ ] | ui/components/tr.slint:200 | Check the latency and response time |
-| [ ] | ui/components/tr.slint:201 | Clear recent messages in the channel |
-| [ ] | ui/components/tr.slint:202 | /clear <amount> |
-| [ ] | ui/components/tr.slint:203 | Number of messages to delete |
-| [ ] | ui/components/tr.slint:204 | Show a user's enlarged avatar |
-| [ ] | ui/components/tr.slint:205 | /avatar [@user] |
-| [ ] | ui/components/tr.slint:206 | Discord user |
-| [ ] | ui/components/tr.slint:207 | View detailed information about a user's account |
-| [ ] | ui/components/tr.slint:208 | /userinfo [@user] |
-| [ ] | ui/components/tr.slint:209 | View statistics and information about the current server |
-| [ ] | ui/components/tr.slint:212 | None / Disabled |
-| [ ] | ui/components/tr.slint:215 | Test Proxy |
-| [ ] | ui/components/tr.slint:217 | Check for Updates |
-| [ ] | ui/components/tr.slint:218 | Loading older messages... |
-| [ ] | ui/components/tr.slint:219 | Load older messages |
-| [ ] | ui/components/tr.slint:221 | Download Image ( |
-| [ ] | ui/components/tr.slint:222 | Download Image |
-| [ ] | ui/components/tr.slint:227 | just now |
+| [ ] | ui/components/settings_view.slint:571 | Native Rust GUI |
+| [ ] | ui/components/settings_view.slint:2749 | MLS RFC 9420 |
+| [ ] | ui/components/settings_view.slint:3272 | Tor & SOCKS5 |
+| [ ] | ui/components/settings_view.slint:3304 | Debugging & Burp |
+| [ ] | ui/components/settings_view.slint:3481 | Litecord Client |
+| [ ] | ui/components/settings_view.slint:3666 | Litecord • Ultra-Fast Native Discord Client |
+| [ ] | ui/components/tr.slint:5 | Voice & Audio Settings |
+| [ ] | ui/components/tr.slint:6 | Voice & Audio |
+| [ ] | ui/components/tr.slint:10 | Updates & About |
+| [ ] | ui/components/tr.slint:11 | Network & Proxy |
+| [ ] | ui/components/tr.slint:12 | INPUT DEVICE (MICROPHONE) |
+| [ ] | ui/components/tr.slint:13 | OUTPUT DEVICE (SPEAKERS / HEADPHONES) |
+| [ ] | ui/components/tr.slint:14 | VOICE DETECTION SENSITIVITY (THRESHOLD) |
+| [ ] | ui/components/tr.slint:15 | REAL-TIME MICROPHONE LEVEL |
+| [ ] | ui/components/tr.slint:17 | Proxy test successful! Latency: {}ms (Status: {}) |
+| [ ] | ui/components/tr.slint:18 | Proxy responded in {}ms, but with HTTP status {} |
+| [ ] | ui/components/tr.slint:19 | Failed to connect via proxy: {} |
+| [ ] | ui/components/tr.slint:20 | System proxy connection failed! Click here or the gear at the top to open Settin |
+| [ ] | ui/components/tr.slint:21 | The proxy ({}: {}:{}) is unreachable or refusing connections! Click here or the  |
+| [ ] | ui/components/tr.slint:22 | Test Microphone (\"Hear Yourself\") |
+| [ ] | ui/components/tr.slint:23 | Stop Testing (Listening...) |
+| [ ] | ui/components/tr.slint:25 | Toggle Mute |
+| [ ] | ui/components/tr.slint:26 | Global shortcut to mute or unmute your microphone during voice calls. |
+| [ ] | ui/components/tr.slint:27 | Press desired key combination... |
+| [ ] | ui/components/tr.slint:28 | Record Keybind |
+| [ ] | ui/components/tr.slint:30 | Global Shortcuts |
+| [ ] | ui/components/tr.slint:31 | Keybinds work seamlessly across all applications and games, even when Litecord i |
+| [ ] | ui/components/tr.slint:32 | Toggle Deafen |
+| [ ] | ui/components/tr.slint:33 | Global shortcut to deafen or undeafen all voice audio and microphone. |
+| [ ] | ui/components/tr.slint:35 | Share on web |
+| [ ] | ui/components/tr.slint:37 | Stop web |
+| [ ] | ui/components/tr.slint:39 | Copy link |
+| [ ] | ui/components/tr.slint:40 | Link copied |
+| [ ] | ui/components/tr.slint:42 | Re-generate QR Code |
+| [ ] | ui/components/tr.slint:43 | Reduced preview to save resources |
+| [ ] | ui/components/tr.slint:44 | You are streaming |
+| [ ] | ui/components/tr.slint:47 | Disable Intangible |
+| [ ] | ui/components/tr.slint:48 | DISCORD SMART COMMANDS |
+| [ ] | ui/components/tr.slint:49 | Click to autocomplete |
+| [ ] | ui/components/tr.slint:50 | Manage Accounts |
+| [ ] | ui/components/tr.slint:51 | Quickly switch accounts or add a second saved account. |
+| [ ] | ui/components/tr.slint:54 | + Add Another Account |
+| [ ] | ui/components/tr.slint:55 | Sign Out of All Accounts |
+| [ ] | ui/components/tr.slint:56 | New Update Available! |
+| [ ] | ui/components/tr.slint:57 | Don't show again |
+| [ ] | ui/components/tr.slint:58 | Remind Me Later |
+| [ ] | ui/components/tr.slint:59 | Yes, Update |
+| [ ] | ui/components/tr.slint:60 | Share your screen |
+| [ ] | ui/components/tr.slint:61 | Screens / Windows |
+| [ ] | ui/components/tr.slint:65 | No camera / webcam detected on the system. |
+| [ ] | ui/components/tr.slint:66 | STREAM QUALITY |
+| [ ] | ui/components/tr.slint:68 | FRAME RATE (FPS) |
+| [ ] | ui/components/tr.slint:69 | The webcam will stream using your device's native resolution and frame rate. |
+| [ ] | ui/components/tr.slint:70 | Stream Computer / Window Audio |
+| [ ] | ui/components/tr.slint:71 | Includes the app or game sound during the stream |
+| [ ] | ui/components/tr.slint:72 | Streaming Browser (Videos / DRM) |
+| [ ] | ui/components/tr.slint:73 | Opens the browser without black-screen locks to watch with friends |
+| [ ] | ui/components/tr.slint:75 | Direct Camera Stream |
+| [ ] | ui/components/tr.slint:76 | Webcam video only (no system audio capture) |
+| [ ] | ui/components/tr.slint:79 | Incoming voice call |
+| [ ] | ui/components/tr.slint:82 | Litecord - Detached Stream |
+| [ ] | ui/components/tr.slint:84 | Output Device |
+| [ ] | ui/components/tr.slint:85 | For the best positional fidelity and to avoid echo or sound leaking in group cal |
+| [ ] | ui/components/tr.slint:86 | Input Device |
+| [ ] | ui/components/tr.slint:87 | Select your main microphone or headset. We recommend using the default device or |
+| [ ] | ui/components/tr.slint:88 | INPUT VOLUME (MICROPHONE GAIN) |
+| [ ] | ui/components/tr.slint:89 | Microphone Gain |
+| [ ] | ui/components/tr.slint:90 | Adjust your microphone gain. Values above 100% (up to 200%) amplify your voice s |
+| [ ] | ui/components/tr.slint:91 | Sensitivity (VAD) |
+| [ ] | ui/components/tr.slint:92 | Speak normally. Adjust the control so your voice goes past the white mark, while |
+| [ ] | ui/components/tr.slint:93 | Loopback Test |
+| [ ] | ui/components/tr.slint:94 | Lets you hear your processed voice in real time with Litecord's filter through y |
+| [ ] | ui/components/tr.slint:95 | Smart Voice Ducking |
+| [ ] | ui/components/tr.slint:97 | The Opus PLC audio engine automatically lowers other members' sound by 12 dB whe |
+| [ ] | ui/components/tr.slint:98 | Competitive Edge |
+| [ ] | ui/components/tr.slint:99 | Eliminates the cacophony in decisive FPS/MOBA moments, making sure critical call |
+| [ ] | ui/components/tr.slint:100 | SELECT THE CLIENT LANGUAGE |
+| [ ] | ui/components/tr.slint:101 | Instant Switch |
+| [ ] | ui/components/tr.slint:102 | Language changes are applied in real time across all windows without restarting  |
+| [ ] | ui/components/tr.slint:103 | Automatic Detection |
+| [ ] | ui/components/tr.slint:104 | The 'Auto' option detects the default region and language of your operating syst |
+| [ ] | ui/components/tr.slint:105 | Key Tip |
+| [ ] | ui/components/tr.slint:106 | You can use keys such as F1-F12, NumPad keys, or combinations with Ctrl, Shift a |
+| [ ] | ui/components/tr.slint:107 | VIDEO ENCODER (H.264) |
+| [ ] | ui/components/tr.slint:108 | Automatic (recommended) |
+| [ ] | ui/components/tr.slint:109 | Uses the GPU connected to the captured monitor, avoiding transfers between GPUs. |
+| [ ] | ui/components/tr.slint:110 | CPU (OpenH264) |
+| [ ] | ui/components/tr.slint:111 | Compatibility option: encodes in software and uses more CPU. |
+| [ ] | ui/components/tr.slint:112 | DXGI captures this GPU's monitors. WGC captures windows or monitors on another G |
+| [ ] | ui/components/tr.slint:113 | WGC captures on this GPU; the image may be transferred between GPUs. |
+| [ ] | ui/components/tr.slint:114 | Applies to the next screen share. If the selected GPU is unavailable, Automatic  |
+| [ ] | ui/components/tr.slint:115 | Selected GPU unavailable |
+| [ ] | ui/components/tr.slint:116 | Current capture |
+| [ ] | ui/components/tr.slint:117 | GPU processing |
+| [ ] | ui/components/tr.slint:118 | Compatibility mode |
+| [ ] | ui/components/tr.slint:119 | DXGI captures monitors; WGC captures windows or another GPU. The options below a |
+| [ ] | ui/components/tr.slint:120 | Select the GPU or CPU acceleration engine used to encode screen streams. |
+| [ ] | ui/components/tr.slint:122 | Light theme |
+| [ ] | ui/components/tr.slint:123 | Switches the whole interface between the light and dark palettes. |
+| [ ] | ui/components/tr.slint:124 | SCREEN AND WINDOW CAPTURE METHOD |
+| [ ] | ui/components/tr.slint:125 | Defines how Litecord captures the visual content of the operating system. |
+| [ ] | ui/components/tr.slint:126 | STREAM AUDIO (SYSTEM LOOPBACK) |
+| [ ] | ui/components/tr.slint:127 | Defines the technology used to capture the internal sound of games, videos and t |
+| [ ] | ui/components/tr.slint:128 | STREAM NOTICES AND INTERFACE |
+| [ ] | ui/components/tr.slint:129 | Reduced Preview Notice |
+| [ ] | ui/components/tr.slint:130 | Shows the warning pill in your own preview when the stream starts, telling you t |
+| [ ] | ui/components/tr.slint:131 | Performance Monitor (CPU / RAM / GPU) |
+| [ ] | ui/components/tr.slint:132 | Network diagnostics |
+| [ ] | ui/components/tr.slint:133 | Checks whether screen sharing with someone on another network can connect direct |
+| [ ] | ui/components/tr.slint:134 | Test network |
+| [ ] | ui/components/tr.slint:136 | Copy report |
+| [ ] | ui/components/tr.slint:138 | Your network allows direct connections: screen sharing with other networks shoul |
+| [ ] | ui/components/tr.slint:139 | Your router or provider uses symmetric NAT: screen sharing across the internet m |
+| [ ] | ui/components/tr.slint:140 | Your provider shows a different public address per server (carrier-grade NAT): s |
+| [ ] | ui/components/tr.slint:141 | No test server answered: UDP looks blocked on this network, so screen sharing ac |
+| [ ] | ui/components/tr.slint:142 | The signaling server did not answer, so peers cannot find each other over the in |
+| [ ] | ui/components/tr.slint:143 | GPU rendering |
+| [ ] | ui/components/tr.slint:144 | Draws the interface with the graphics card. Off (default), the CPU draws it, whi |
+| [ ] | ui/components/tr.slint:145 | Shows live RAM, CPU and GPU usage in the application title bar next to the setti |
+| [ ] | ui/components/tr.slint:146 | E2EE Video & Sound Encryption |
+| [ ] | ui/components/tr.slint:147 | AES-256-GCM ACTIVE |
+| [ ] | ui/components/tr.slint:148 | Every 60 FPS frame and the loopback audio are encrypted with 256-bit symmetric k |
+| [ ] | ui/components/tr.slint:149 | Wi-Fi & LAN Protection |
+| [ ] | ui/components/tr.slint:150 | Prevents anyone on the same router from capturing your stream with packet analyz |
+| [ ] | ui/components/tr.slint:151 | Windows DPAPI Credential Vault |
+| [ ] | ui/components/tr.slint:153 | Your Discord token is stored with native CryptProtectData encryption bound to yo |
+| [ ] | ui/components/tr.slint:154 | Stealer Immunity |
+| [ ] | ui/components/tr.slint:155 | Unauthorized scripts and malware cannot steal your session because the cryptogra |
+| [ ] | ui/components/tr.slint:156 | Official Discord Voice (DAVE Protocol) |
+| [ ] | ui/components/tr.slint:157 | End-to-end encrypted voice communication with Discord's official voice servers,  |
+| [ ] | ui/components/tr.slint:158 | Zero Intermediaries |
+| [ ] | ui/components/tr.slint:159 | Connections are 100% direct to the Discord API. There are no third-party servers |
+| [ ] | ui/components/tr.slint:160 | Proxy Connection Mode |
+| [ ] | ui/components/tr.slint:161 | Proxy Address and Authentication |
+| [ ] | ui/components/tr.slint:162 | Server / Host IP: |
+| [ ] | ui/components/tr.slint:164 | User (Optional): |
+| [ ] | ui/components/tr.slint:165 | Password (Optional): |
+| [ ] | ui/components/tr.slint:166 | Save and Apply |
+| [ ] | ui/components/tr.slint:167 | Bypass Blocks |
+| [ ] | ui/components/tr.slint:168 | Lets you get around firewalls and DNS blocks at schools or companies. |
+| [ ] | ui/components/tr.slint:169 | Compatible with Tor's port 9050 and local SSH tunnels to anonymize your IP. |
+| [ ] | ui/components/tr.slint:170 | Point to 127.0.0.1:8080 to inspect REST API requests. |
+| [ ] | ui/components/tr.slint:171 | Gaming Performance |
+| [ ] | ui/components/tr.slint:172 | With the proxy disabled, the impact is 0%. Voice and video keep direct UDP route |
+| [ ] | ui/components/tr.slint:173 | Official Release Channel |
+| [ ] | ui/components/tr.slint:174 | Updates are checked directly in the GitHub repository with domain signature vali |
+| [ ] | ui/components/tr.slint:175 | Native Rust Performance |
+| [ ] | ui/components/tr.slint:176 | • CPU usage: < 0.1% when idle (0.0% in DeepSleep mode in the tray)\n• RAM: ~32 M |
+| [ ] | ui/components/tr.slint:177 | DeepSleep Mode |
+| [ ] | ui/components/tr.slint:178 | When minimized to the tray, the interface freezes its rendering to guarantee 100 |
+| [ ] | ui/components/tr.slint:180 | Video & Interface |
+| [ ] | ui/components/tr.slint:181 | Stop Streaming |
+| [ ] | ui/components/tr.slint:182 | Watching Stream |
+| [ ] | ui/components/tr.slint:184 | Waiting for Access Token... |
+| [ ] | ui/components/tr.slint:185 | Not connected |
+| [ ] | ui/components/tr.slint:186 | Select a channel |
+| [ ] | ui/components/tr.slint:187 | Downloading update... |
+| [ ] | ui/components/tr.slint:188 | Comparing local version with GitHub... |
+| [ ] | ui/components/tr.slint:189 | Proxy settings saved successfully! |
+| [ ] | ui/components/tr.slint:190 | Testing connection through proxy... |
+| [ ] | ui/components/tr.slint:191 | The QR Code session expired or was cancelled on the phone. Click Generate QR to  |
+| [ ] | ui/components/tr.slint:192 | Discord required a Captcha verification for the QR Code. Please paste your Token |
+| [ ] | ui/components/tr.slint:193 | You signed out. Enter your token or scan the QR Code. |
+| [ ] | ui/components/tr.slint:194 | Connection failed via Proxy ({}) |
+| [ ] | ui/components/tr.slint:195 | Auto-connecting to Gateway v9... |
+| [ ] | ui/components/tr.slint:196 | Permissions unavailable |
+| [ ] | ui/components/tr.slint:197 | Failed to check permissions. Select the server again to try. |
+| [ ] | ui/components/tr.slint:198 | No accessible text channel |
+| [ ] | ui/components/tr.slint:199 | Press Enter to run  |
+| [ ] | ui/components/tr.slint:200 | Type the value for  |
+| [ ] | ui/components/tr.slint:201 | Press Enter or Send to run  |
+| [ ] | ui/components/tr.slint:203 | Welcome to Litecord! Your servers will load in the sidebar on the left. |
+| [ ] | ui/components/tr.slint:206 | Mic active |
+| [ ] | ui/components/tr.slint:208 | A new version of Litecord with improvements and fixes is ready to install. Updat |
+| [ ] | ui/components/tr.slint:209 | Screen / Window |
+| [ ] | ui/components/tr.slint:210 | Native system portal |
+| [ ] | ui/components/tr.slint:214 | Play music, audio or a playlist (YouTube/Spotify/SoundCloud) |
+| [ ] | ui/components/tr.slint:215 | /play <name or link> |
+| [ ] | ui/components/tr.slint:216 | Song name or YouTube/Spotify/SoundCloud link |
+| [ ] | ui/components/tr.slint:217 | Skip to the next track in the queue |
+| [ ] | ui/components/tr.slint:218 | Stop the bot's playback and clear the queue |
+| [ ] | ui/components/tr.slint:219 | Pause the song that is playing |
+| [ ] | ui/components/tr.slint:220 | Resume the paused playback |
+| [ ] | ui/components/tr.slint:221 | Show the list of songs in the queue |
+| [ ] | ui/components/tr.slint:222 | Show details of the song playing right now |
+| [ ] | ui/components/tr.slint:223 | Adjust the bot's playback volume |
+| [ ] | ui/components/tr.slint:224 | Volume from 1 to 100 |
+| [ ] | ui/components/tr.slint:225 | Enable or disable repeat for the song or queue |
+| [ ] | ui/components/tr.slint:226 | Mode: track, queue or off |
+| [ ] | ui/components/tr.slint:227 | Shuffle the song queue |
+| [ ] | ui/components/tr.slint:228 | Search for and show the lyrics of the current song |
+| [ ] | ui/components/tr.slint:229 | Song name (optional) |
+| [ ] | ui/components/tr.slint:230 | Keep the bot connected 24/7 in the voice channel |
+| [ ] | ui/components/tr.slint:231 | Show the bot's help menu and commands |
+| [ ] | ui/components/tr.slint:232 | Check the latency and response time |
+| [ ] | ui/components/tr.slint:233 | Clear recent messages in the channel |
+| [ ] | ui/components/tr.slint:234 | /clear <amount> |
+| [ ] | ui/components/tr.slint:235 | Number of messages to delete |
+| [ ] | ui/components/tr.slint:236 | Show a user's enlarged avatar |
+| [ ] | ui/components/tr.slint:237 | /avatar [@user] |
+| [ ] | ui/components/tr.slint:238 | Discord user |
+| [ ] | ui/components/tr.slint:239 | View detailed information about a user's account |
+| [ ] | ui/components/tr.slint:240 | /userinfo [@user] |
+| [ ] | ui/components/tr.slint:241 | View statistics and information about the current server |
+| [ ] | ui/components/tr.slint:244 | None / Disabled |
+| [ ] | ui/components/tr.slint:247 | Test Proxy |
+| [ ] | ui/components/tr.slint:249 | Check for Updates |
+| [ ] | ui/components/tr.slint:250 | Loading older messages... |
+| [ ] | ui/components/tr.slint:251 | Load older messages |
+| [ ] | ui/components/tr.slint:253 | Download Image ( |
+| [ ] | ui/components/tr.slint:254 | Download Image |
+| [ ] | ui/components/tr.slint:259 | just now |
 
-**194 entries.**
+**217 entries.**
 
 ## 6. Whitelist
 

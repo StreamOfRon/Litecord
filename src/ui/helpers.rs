@@ -229,33 +229,6 @@ pub fn apply_i18n_translations(ui: &AppWindow, lang: i18n::Language) {
     ui.set_current_language_code(lang.code().into());
     i18n_ui::set_current(resolved);
     i18n_ui::apply_to_window(ui, i18n_ui::table_for(resolved));
-    ui.set_tr_login_title(tr.login_title.into());
-    ui.set_tr_login_desc(tr.login_desc.into());
-    ui.set_tr_login_placeholder(tr.login_placeholder.into());
-    ui.set_tr_login_btn_connect(tr.login_btn_connect.into());
-    ui.set_tr_login_btn_detect(tr.login_btn_detect.into());
-    ui.set_tr_server_channels(tr.server_channels.into());
-    ui.set_tr_leave(tr.leave.into());
-    ui.set_tr_view_text_chat(tr.view_text_chat.into());
-    ui.set_tr_leave_call(tr.leave_call.into());
-    ui.set_tr_voice_participants_title(tr.voice_participants_title.into());
-    ui.set_tr_badge_you(tr.you.into());
-    ui.set_tr_view_voice_room(tr.view_voice_room.into());
-    ui.set_tr_replying_to(tr.replying_to.into());
-    ui.set_tr_chat_placeholder_prefix(tr.chat_placeholder_prefix.into());
-    ui.set_tr_send(tr.send.into());
-    ui.set_tr_settings_language_label(tr.settings_language_label.into());
-    ui.set_tr_logout_title(tr.logout_title.into());
-    ui.set_tr_logout_confirm_prefix(tr.logout_confirm_prefix.into());
-    ui.set_tr_cancel(tr.cancel.into());
-    ui.set_tr_confirm_logout(tr.confirm_logout.into());
-    ui.set_tr_voice_connecting(tr.voice_connecting.into());
-    ui.set_tr_voice_connecting_title(tr.voice_connecting_title.into());
-    ui.set_tr_voice_connecting_desc(tr.voice_connecting_desc.into());
-    ui.set_tr_voice_connected(tr.voice_connected.into());
-    ui.set_tr_qr_title(tr.qr_title.into());
-    ui.set_tr_qr_desc(tr.qr_desc.into());
-    ui.set_tr_qr_confirm(tr.qr_confirm.into());
 
     let lang_items: Vec<LanguageItem> = i18n::Language::all_available().iter().map(|&l| {
         let (display, native) = l.display_info();

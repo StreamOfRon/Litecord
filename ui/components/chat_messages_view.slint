@@ -80,7 +80,6 @@ export component ChatMessagesView inherits Rectangle {
     in-out property <[ChatMessage]> messages;
     in-out property <bool> has_more_older_messages: false;
     in-out property <bool> is_loading_older_messages: false;
-    in-out property <string> tr_replying_to: "Replying to ";
     in-out property <length> scroll_y: 0px;
     in-out property <int> scroll_trigger: 0;
     callback load_older_messages();
@@ -259,7 +258,7 @@ export component ChatMessagesView inherits Rectangle {
                                 }
 
                                 Text {
-                                    text: msg.reply-command != "" ? msg.reply-author : (root.tr_replying_to + msg.reply-author);
+                                    text: msg.reply-command != "" ? msg.reply-author : (Tr.replying_to + msg.reply-author);
                                     color: AppTheme.text-secondary;
                                     font-family: ChatTypography.family;
                                     font-size: ChatTypography.preview-size;

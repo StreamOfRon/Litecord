@@ -265,6 +265,32 @@ ui_strings! {
     (time_ago, set_time_ago, "{} ago", "há {}", "hace {}", "vor {}", "il y a {}", "{} назад", "{}前"),
     (time_soon, set_time_soon, "in a moment", "em instantes", "en un momento", "gleich", "dans un instant", "сейчас", "まもなく"),
     (time_just_now, set_time_just_now, "just now", "há instantes", "hace un momento", "gerade eben", "à l'instant", "только что", "たった今"),
+    (login_title, set_login_title, "Sign in to Litecord", "Entrar no Litecord", "Iniciar sesión en Litecord", "Bei Litecord anmelden", "Connexion à Litecord", "Вход в Litecord", "Litecord にログイン"),
+    (login_desc, set_login_desc, "Enter your Discord User Token for direct connection to Gateway v9.\n(Estimated RAM usage ~15MB)", "Insira seu Discord User Token para conexão direta à Gateway v9.\n(Consumo de RAM estimado em ~15MB)", "Introduce tu Discord User Token para conexión directa a Gateway v9.\n(Consumo de RAM estimado en ~15MB)", "Gib deinen Discord User Token für direkte Gateway v9 Verbindung ein.\n(Geschätzter RAM-Verbrauch ~15MB)", "Entrez votre Discord User Token pour connexion directe à Gateway v9.\n(RAM estimée ~15Mo)", "Введите Discord User Token для подключения к Gateway v9.\n(Потребление ОЗУ ~15МБ)", "Gateway v9 に接続するために Discord ユーザートークンを入力してください。\n(推定RAM使用量: 約15MB)"),
+    (login_placeholder, set_login_placeholder, "Paste your Discord User Token here...", "Cole seu Discord User Token aqui...", "Pega tu Discord User Token aquí...", "Discord User Token hier einfügen...", "Collez votre token Discord ici...", "Вставьте токен Discord сюда...", "Discord トークンをここに貼り付け..."),
+    (login_btn_connect, set_login_btn_connect, "Connect to Gateway", "Conectar à Gateway", "Conectar a la Gateway", "Mit Gateway verbinden", "Se connecter à la Gateway", "Подключиться к Gateway", "Gateway に接続"),
+    (login_btn_detect, set_login_btn_detect, "Detect Discord Token", "Detectar Token do Discord", "Detectar Token de Discord", "Discord Token erkennen", "Détecter le Token Discord", "Найти токен Discord", "Discord トークンを自動検出"),
+    (server_channels, set_server_channels, "SERVER CHANNELS", "CANAIS DO SERVIDOR", "CANALES DEL SERVIDOR", "SERVERKANÄLE", "SALONS DU SERVEUR", "КАНАЛЫ СЕРВЕРА", "サーバーチャンネル"),
+    (leave, set_leave, "Leave", "Sair", "Salir", "Verlassen", "Quitter", "Выйти", "退出"),
+    (view_text_chat, set_view_text_chat, "View Text Chat", "Ver Chat de Texto", "Ver Chat de Texto", "Textchat anzeigen", "Voir le Salon Textuel", "Текстовый чат", "テキストチャットを表示"),
+    (leave_call, set_leave_call, "Disconnect Call", "Sair da Call", "Desconectar Llamada", "Anruf beenden", "Déconnecter l'Appel", "Покинуть звонок", "通話を終了"),
+    (voice_participants_title, set_voice_participants_title, "VOICE ROOM PARTICIPANTS", "PARTICIPANTES NA SALA DE ÁUDIO", "PARTICIPANTES EN LA SALA DE VOZ", "TEILNEHMER IM SPRACHRAUM", "PARTICIPANTS DANS LE SALON VOCAL", "УЧАСТНИКИ В ГОЛОСОВОМ КАНАЛЕ", "ボイスルームの参加者"),
+    (badge_you, set_badge_you, "YOU", "VOCÊ", "TÚ", "DU", "VOUS", "ВЫ", "あなた"),
+    (view_voice_room, set_view_voice_room, "View Voice Room", "Ver Sala de Voz", "Ver Sala de Voz", "Sprachraum anzeigen", "Voir le Salon Vocal", "Голосовой канал", "ボイスルームを表示"),
+    (replying_to, set_replying_to, "Replying to @", "Respondendo a @", "Respondiendo a @", "Antwort auf @", "En réponse à @", "В ответ @", "返信先: @"),
+    (chat_placeholder_prefix, set_chat_placeholder_prefix, "Message ", "Conversar em ", "Enviar mensaje a ", "Nachricht an ", "Envoyer un message dans ", "Написать в ", "メッセージを送信: "),
+    (send, set_send, "Send", "Enviar", "Enviar", "Senden", "Envoyer", "Отправить", "送信"),
+    (settings_language_label, set_settings_language_label, "LANGUAGE / IDIOMA", "IDIOMA / LANGUAGE", "IDIOMA / LANGUAGE", "SPRACHE / LANGUAGE", "LANGUE / LANGUAGE", "ЯЗЫК / LANGUAGE", "言語 / LANGUAGE"),
+    (logout_title, set_logout_title, "Sign Out", "Sair da Conta", "Cerrar Sesión", "Abmelden", "Se Déconnecter", "Выйти из аккаунта", "ログアウト"),
+    (logout_confirm_prefix, set_logout_confirm_prefix, "Do you want to log out from ", "Deseja desconectar de ", "¿Deseas desconectarte de ", "Möchtest du dich abmelden von ", "Voulez-vous vous déconnecter de ", "Вы действительно хотите выйти из ", "本当にログアウトしますか: "),
+    (confirm_logout, set_confirm_logout, "Sign Out", "Sair", "Cerrar Sesión", "Abmelden", "Déconnexion", "Выйти", "ログアウト"),
+    (voice_connecting, set_voice_connecting, "Connecting...", "Conectando...", "Conectando...", "Verbinden...", "Connexion...", "Подключение...", "接続中..."),
+    (voice_connecting_title, set_voice_connecting_title, "Connecting to Voice Channel...", "Conectando à Sala de Voz...", "Conectando a la Sala de Voz...", "Verbindung zum Sprachkanal...", "Connexion au Salon Vocal...", "Подключение к голосовому каналу...", "ボイスチャンネルに接続中..."),
+    (voice_connecting_desc, set_voice_connecting_desc, "Authenticating with Voice Gateway v9 and negotiating DAVE E2EE encryption...", "Autenticando na Voice Gateway v9 e negociando criptografia ponta-a-ponta (DAVE)...", "Autenticando en Voice Gateway v9 y negociando cifrado E2EE (DAVE)...", "Authentifizierung mit Voice Gateway v9 und Aushandlung der DAVE E2EE-Verschlüsselung...", "Authentification auprès de la Voice Gateway v9 et négociation du chiffrement DAVE E2EE...", "Аутентификация в Voice Gateway v9 и согласование E2EE шифрования (Дэйв)...", "Voice Gateway v9 に認証し、DAVE E2EE 暗号化を確立しています..."),
+    (voice_connected, set_voice_connected, "Voice Connected", "Voz Conectada", "Voz Conectada", "Sprache verbunden", "Vocal Connecté", "Голос подключен", "音声接続完了"),
+    (qr_title, set_qr_title, "Log in with QR Code", "Entrar com QR Code", "Iniciar sesión con código QR", "Mit QR-Code anmelden", "Se connecter avec un code QR", "Вход с помощью QR-кода", "QR コードでログイン"),
+    (qr_desc, set_qr_desc, "Scan this with the Discord mobile app to log in instantly.", "Escaneie pelo aplicativo móvel do Discord para entrar instantaneamente.", "Escanéalo con la app móvil de Discord para entrar al instante.", "Mit der mobilen Discord-App scannen, um dich sofort anzumelden.", "Scannez avec l'application mobile Discord pour vous connecter instantanément.", "Сканируйте в мобильном приложении Discord для мгновенного входа.", "Discord モバイルアプリでスキャンしてすぐにログインできます。"),
+    (qr_confirm, set_qr_confirm, "Approve login on your phone!", "Confirme o login no seu celular!", "¡Confirma el acceso en tu móvil!", "Bestätige die Anmeldung auf deinem Handy!", "Confirmez la connexion sur votre téléphone !", "Подтвердите вход на телефоне!", "スマホでログインを承認してください！"),
     (settings_title, set_settings_title, "Voice & Audio Settings", "Configurações de Voz e Áudio", "Ajustes de Voz y Audio", "Sprach- und Audioeinstellungen", "Paramètres Vocaux et Audio", "Настройки звука и голоса", "音声とオーディオ設定"),
     (settings_tab_voice, set_settings_tab_voice, "Voice & Audio", "Voz & Áudio", "Voz y Audio", "Sprach & Audio", "Vocal & Audio", "Голос и Звук", "音声 & オーディオ"),
     (settings_tab_language, set_settings_tab_language, "Language", "Idioma", "Idioma", "Sprache", "Langue", "Язык", "言語"),
@@ -362,27 +388,43 @@ mod tests {
     use super::*;
 
     #[test]
-    fn settings_view_tr_props_are_all_in_table() {
-        let src =
-            std::fs::read_to_string(concat!(env!("CARGO_MANIFEST_DIR"), "/ui/components/settings_view.slint"))
-                .unwrap();
-        let remaining: Vec<&str> = src
-            .lines()
-            .filter_map(|l| {
-                let l = l.trim();
-                l.starts_with("in property <string> tr_")
-                    .then(|| {
-                        l.trim_start_matches("in property <string> ")
-                            .split(':')
-                            .next()
-                            .unwrap()
-                            .trim()
-                    })
-            })
-            .collect();
+    fn all_tr_props_are_served_by_ui_table() {
+        let mut remaining: Vec<String> = Vec::new();
+        let ui_root = std::path::Path::new(concat!(env!("CARGO_MANIFEST_DIR"), "/ui"));
+        let mut stack = vec![ui_root.to_path_buf()];
+        while let Some(dir) = stack.pop() {
+            for entry in std::fs::read_dir(&dir).unwrap() {
+                let p = entry.unwrap().path();
+                if p.is_dir() {
+                    stack.push(p);
+                } else if p.extension().map(|e| e == "slint").unwrap_or(false) {
+                    let text = std::fs::read_to_string(&p).unwrap();
+                    for (i, l) in text.lines().enumerate() {
+                        let t = l.trim();
+                        if t.starts_with("in property <string> tr_")
+                            || t.starts_with("in-out property <string> tr_")
+                        {
+                            let name = t
+                                .trim_start_matches("in-out property <string> ")
+                                .trim_start_matches("in property <string> ")
+                                .split(&[':', ' '][..])
+                                .next()
+                                .unwrap()
+                                .to_string();
+                            // tr_stream_quality is a dynamic runtime value
+                            // (resolution + fps), set from src/main.rs and not
+                            // a translated string — exempt (plan Task 4).
+                            if name != "tr_stream_quality" {
+                                remaining.push(format!("{}:{}: {}", p.display(), i + 1, name));
+                            }
+                        }
+                    }
+                }
+            }
+        }
         assert!(
             remaining.is_empty(),
-            "hand-wired tr_ props left in settings_view.slint: {remaining:?}"
+            "hand-wired tr_ props left: {remaining:?}"
         );
     }
 

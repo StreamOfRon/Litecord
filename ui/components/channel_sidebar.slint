@@ -1,3 +1,4 @@
+import { Tr } from "tr.slint";
 import { VerticalBox, HorizontalBox, ScrollView } from "std-widgets.slint";
 import { AppTheme } from "../theme.slint";
 import { IconButton } from "icon_button.slint";
@@ -22,7 +23,6 @@ export struct ChannelItem {
 
 export component ChannelSidebar inherits Rectangle {
     in property <string> active_guild_name;
-    in property <string> tr_server_channels;
     in property <[ChannelItem]> channels;
     // Shared thumbnail pool: a row shows pool[slot] only while pool_urls[slot]
     // still equals its own avatar_url, so a recycled slot never shows a wrong face.
@@ -33,10 +33,7 @@ export component ChannelSidebar inherits Rectangle {
     in property <bool> is_voice_connecting;
     in property <bool> is_muted;
     in property <bool> is_deafened;
-    in property <string> tr_voice_connecting;
-    in property <string> tr_voice_connected;
     in property <string> current_voice_channel;
-    in property <string> tr_leave;
     in property <string> user_tag;
     in property <string> user_display_name;
     in property <string> user_handle;
@@ -71,7 +68,7 @@ export component ChannelSidebar inherits Rectangle {
             padding-bottom: 2px;
 
             Text {
-                text: root.active_guild_name != "" ? root.active_guild_name : root.tr_server_channels;
+                text: root.active_guild_name != "" ? root.active_guild_name : Tr.server_channels;
                 color: AppTheme.text-strong;
                 font-size: 14px;
                 font-weight: 700;
@@ -388,7 +385,7 @@ export component ChannelSidebar inherits Rectangle {
                     alignment: center;
                     spacing: 1px;
                     Text {
-                        text: root.is_voice_connecting ? root.tr_voice_connecting : root.tr_voice_connected;
+                        text: root.is_voice_connecting ? Tr.voice_connecting : Tr.voice_connected;
                         color: AppTheme.text-on-accent;
                         font-size: 11px;
                         font-weight: 800;
@@ -434,7 +431,7 @@ export component ChannelSidebar inherits Rectangle {
                             }
 
                             Text {
-                                text: root.tr_leave;
+                                text: Tr.leave;
                                 color: AppTheme.text-on-accent;
                                 font-size: 11px;
                                 font-weight: 700;
