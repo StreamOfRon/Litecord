@@ -17,40 +17,17 @@ export struct LanguageItem {
 }
 
 export component SettingsView inherits Rectangle {
-    in property <string> tr_settings_title;
     in property <string> app_version;
     in-out property <int> settings_active_tab;
-    in property <string> tr_settings_tab_voice;
-    in property <string> tr_settings_tab_language;
-    in property <string> tr_settings_tab_keybinds;
-    in property <string> tr_settings_tab_video_interface;
-    in property <string> tr_settings_tab_security;
-    in property <string> tr_settings_tab_network_proxy;
-    in property <string> tr_settings_tab_updates;
-    in property <string> tr_settings_output_device;
     in property <[AudioDeviceItem]> output_devices;
-    in property <string> tr_settings_input_device;
     in property <[AudioDeviceItem]> input_devices;
     in-out property <float> mic_volume;
-    in property <string> tr_settings_threshold;
     in-out property <float> vad_threshold;
-    in property <string> tr_settings_mic_level;
     in property <float> mic_level;
     in property <bool> is_testing_mic;
-    in property <string> tr_settings_btn_test_stop;
-    in property <string> tr_settings_btn_test_start;
     in property <[LanguageItem]> languages;
-    in property <string> tr_keybind_mute_title;
-    in property <string> tr_keybind_mute_desc;
     in property <int> recording_keybind_for;
-    in property <string> tr_keybind_recording_prompt;
     in property <string> keybind_mute_str;
-    in property <string> tr_keybind_btn_record;
-    in property <string> tr_keybind_btn_clear;
-    in property <string> tr_keybind_guide_title;
-    in property <string> tr_keybind_guide_desc;
-    in property <string> tr_keybind_deafen_title;
-    in property <string> tr_keybind_deafen_desc;
     in property <string> keybind_deafen_str;
     in property <[SettingOptionItem]> noise_suppression_options;
     in property <bool> echo_cancellation: false;
@@ -80,7 +57,6 @@ export component SettingsView inherits Rectangle {
     in property <bool> proxy_test_is_success;
     in property <string> update_check_feedback;
     in property <bool> is_checking_update;
-    in property <string> tr_settings_done;
 
     callback close_settings();
     callback select_output_device(string);
@@ -200,17 +176,17 @@ export component SettingsView inherits Rectangle {
                         alignment: start;
                         SettingsNavGroup { text: Tr.settings_group_calls; x: 12px; height: 22px; }
                         SettingsNavItem {
-                            text: root.tr_settings_tab_voice;
+                            text: Tr.settings_tab_voice;
                             active: root.settings_active_tab == 0;
                             clicked => { root.settings_active_tab = 0; }
                         }
                         SettingsNavItem {
-                            text: root.tr_settings_tab_video_interface;
+                            text: Tr.settings_tab_video;
                             active: root.settings_active_tab == 5;
                             clicked => { root.settings_active_tab = 5; }
                         }
                         SettingsNavItem {
-                            text: root.tr_settings_tab_keybinds;
+                            text: Tr.settings_tab_keybinds;
                             active: root.settings_active_tab == 2;
                             clicked => { root.settings_active_tab = 2; }
                         }
@@ -222,7 +198,7 @@ export component SettingsView inherits Rectangle {
                             clicked => { root.settings_active_tab = 1; }
                         }
                         SettingsNavItem {
-                            text: root.tr_settings_tab_network_proxy;
+                            text: Tr.settings_tab_network_proxy;
                             active: root.settings_active_tab == 6;
                             clicked => { root.settings_active_tab = 6; }
                         }
@@ -247,7 +223,7 @@ export component SettingsView inherits Rectangle {
                         if root.settings_active_tab == 0: VerticalLayout {
                             spacing: 28px;
                             alignment: start;
-                            SettingsPageTitle { title: root.tr_settings_tab_voice; }
+                            SettingsPageTitle { title: Tr.settings_tab_voice; }
 
                             SettingsSection {
                                 title: Tr.output_device;
@@ -336,7 +312,7 @@ export component SettingsView inherits Rectangle {
                                 HorizontalLayout {
                                     alignment: start;
                                     SettingsButton {
-                                        text: root.is_testing_mic ? root.tr_settings_btn_test_stop : root.tr_settings_btn_test_start;
+                                        text: root.is_testing_mic ? Tr.settings_btn_test_stop : Tr.settings_btn_test_start;
                                         clicked => { root.toggle_test_mic(); }
                                     }
                                 }
@@ -381,7 +357,7 @@ export component SettingsView inherits Rectangle {
                         if root.settings_active_tab == 5: VerticalLayout {
                             spacing: 28px;
                             alignment: start;
-                            SettingsPageTitle { title: root.tr_settings_tab_video_interface; }
+                            SettingsPageTitle { title: Tr.settings_tab_video; }
 
                             SettingsSection {
                                 title: Tr.stream_ui_title;
@@ -438,7 +414,7 @@ export component SettingsView inherits Rectangle {
                         if root.settings_active_tab == 2: VerticalLayout {
                             spacing: 28px;
                             alignment: start;
-                            SettingsPageTitle { title: root.tr_settings_tab_keybinds; subtitle: root.tr_keybind_guide_desc; }
+                            SettingsPageTitle { title: Tr.settings_tab_keybinds; subtitle: Tr.keybind_guide_desc; }
                             Rectangle {
                                 border-radius: 10px;
                                 border-width: 1px;
@@ -447,8 +423,8 @@ export component SettingsView inherits Rectangle {
                                     padding: 16px;
                                     spacing: 16px;
                                     for kb in [
-                                        { slot: 1, title: root.tr_keybind_mute_title, desc: root.tr_keybind_mute_desc, keys: root.keybind_mute_str },
-                                        { slot: 2, title: root.tr_keybind_deafen_title, desc: root.tr_keybind_deafen_desc, keys: root.keybind_deafen_str },
+                                        { slot: 1, title: Tr.keybind_mute_title, desc: Tr.keybind_mute_desc, keys: root.keybind_mute_str },
+                                        { slot: 2, title: Tr.keybind_deafen_title, desc: Tr.keybind_deafen_desc, keys: root.keybind_deafen_str },
                                     ]: SettingsRow {
                                         title: kb.title;
                                         desc: kb.desc;
@@ -479,7 +455,7 @@ export component SettingsView inherits Rectangle {
                                                 }
                                             }
                                             SettingsButton {
-                                                text: root.tr_keybind_btn_clear;
+                                                text: Tr.keybind_btn_clear;
                                                 clicked => { root.reset_keybind(kb.slot); }
                                             }
                                         }
@@ -551,7 +527,7 @@ export component SettingsView inherits Rectangle {
                         if root.settings_active_tab == 6: VerticalLayout {
                             spacing: 28px;
                             alignment: start;
-                            SettingsPageTitle { title: root.tr_settings_tab_network_proxy; }
+                            SettingsPageTitle { title: Tr.settings_tab_network_proxy; }
 
                             SettingsSection {
                                 title: Tr.proxy_mode;
