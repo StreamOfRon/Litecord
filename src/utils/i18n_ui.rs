@@ -309,6 +309,23 @@ ui_strings! {
     (tray_show, set_tray_show, "Open Litecord", "Exibir Litecord", "Abrir Litecord", "Litecord öffnen", "Ouvrir Litecord", "Открыть Litecord", "Litecord を開く"), // machine TODO
     (tray_quit, set_tray_quit, "Quit", "Sair", "Salir", "Beenden", "Quitter", "Выход", "終了"), // machine TODO
     (tray_tooltip, set_tray_tooltip, "Litecord — Ultra-Lightweight Discord Client", "Litecord - Discord Client Ultra-Leve", "Litecord: cliente de Discord ultraligero", "Litecord – ultraleichter Discord-Client", "Litecord — client Discord ultra-léger", "Litecord — сверхлёгкий клиент Discord", "Litecord — 超軽量 Discord クライアント"), // machine TODO
+    // Option lists for the Video & Interface tab (built in Rust in
+    // src/ui/helpers.rs set Video settings modal). BR values keep the current
+    // wording; es/de/fr/ru/ja are machine translations pending review.
+    (enc_auto_desc, set_enc_auto_desc, "Prefers available hardware GPU acceleration, falling back to CPU.", "Prioriza aceleração por hardware GPU disponível com fallback para CPU.", "Prioriza la aceleración de GPU disponible, con reserva a CPU.", "Bevorzugt verfügbare GPU-Beschleunigung, mit CPU-Fallback.", "Privilégie l'accélération GPU disponible, avec repli sur le CPU.", "Предпочитает доступное аппаратное ускорение GPU, при сбое — CPU.", "利用可能なGPUアクセラレーションを優先し、CPUへフォールバックします。"),
+    (enc_nvenc_desc, set_enc_nvenc_desc, "Hardware accelerated encoding via NVIDIA GeForce / RTX GPUs.", "Codificação acelerada por hardware via GPU NVIDIA GeForce / RTX.", "Codificación acelerada por hardware en GPU NVIDIA GeForce/RTX.", "Hardware-beschleunigte Kodierung über NVIDIA GeForce/RTX-GPUs.", "Encodage accéléré par matériel sur GPU NVIDIA GeForce / RTX.", "Аппаратное кодирование на GPU NVIDIA GeForce / RTX.", "NVIDIA GeForce / RTX GPUによるハードウェアエンコード。"),
+    (enc_ffmpeg_desc, set_enc_ffmpeg_desc, "GPU-accelerated pipeline via FFmpeg (VA-API, QSV, NVENC).", "Pipeline acelerado por GPU via FFmpeg (VA-API, QSV, NVENC).", "Pipeline acelerado por GPU vía FFmpeg (VA-API, QSV, NVENC).", "GPU-beschleunigte Pipeline über FFmpeg (VA-API, QSV, NVENC).", "Pipeline accéléré par GPU via FFmpeg (VA-API, QSV, NVENC).", "GPU-ускоренный конвейер через FFmpeg (VA-API, QSV, NVENC).", "FFmpeg (VA-API、QSV、NVENC) によるGPUアクセラレーションパイプライン。"),
+    (enc_openh264_desc, set_enc_openh264_desc, "Universal multithreaded software encoding with SIMD optimizations.", "Codificação universal por software multithread com otimizações SIMD.", "Codificación por software universal multihilo con optimizaciones SIMD.", "Universelle multithreaded Software-Kodierung mit SIMD-Optimierung.", "Encodage logiciel universel multithread avec optimisations SIMD.", "Универсальное многопоточное программное кодирование с оптимизацией SIMD.", "マルチスレッドのソフトウェアエンコード（SIMD最適化）。"),
+    (vcap_auto_desc, set_vcap_auto_desc, "Uses the system's native selector via XDG Desktop Portal and PipeWire.", "Utiliza o seletor nativo do sistema via XDG Desktop Portal e PipeWire.", "Usa el selector nativo del sistema vía XDG Desktop Portal y PipeWire.", "Nutzt den nativen Systemselektor über XDG Desktop Portal und PipeWire.", "Utilise le sélecteur natif du système via XDG Desktop Portal et PipeWire.", "Использует нативный селектор системы через XDG Desktop Portal и PipeWire.", "XDG Desktop PortalとPipeWireによるネイティブセレクターを使用。"),
+    (vcap_portal_desc, set_vcap_portal_desc, "Modern low-latency screen capture compatible with Wayland and Flatpak.", "Captura de tela moderna de baixa latência compatível com Wayland e Flatpak.", "Captura de pantalla moderna de baja latencia compatible con Wayland y Flatpak.", "Moderne Latenz-arme Bildschirmaufnahme, kompatibel mit Wayland und Flatpak.", "Capture d'écran moderne à faible latence compatible Wayland et Flatpak.", "Современный захват экрана с низкой задержкой, совместим с Wayland и Flatpak.", "Wayland・Flatpak対応の低遅延スクリーンキャプチャ。"),
+    (vcap_x11_desc, set_vcap_x11_desc, "Legacy direct screen capture on X11 sessions.", "Captura legada direta de tela em sessões gráficas X11.", "Captura de pantalla directa heredada en sesiones gráficas X11.", "Legacy direkte Bildschirmaufnahme in X11-Sitzungen.", "Capture d'écran directe héritée dans les sessions X11.", "Устаревший прямой захват экрана в X11-сессиях.", "X11セッション向けのレガシー直接キャプチャ。"),
+    (vcap_printwin_desc, set_vcap_printwin_desc, "Direct window capture (foreground or background) via DWM.", "Captura direta de janelas em primeiro ou segundo plano via DWM.", "Captura directa de ventanas en primer o segundo plano vía DWM.", "Direkte Fensteraufnahme (Vorder-/Hintergrund) über DWM.", "Capture directe des fenêtres (avant ou arrière-plan) via DWM.", "Прямой захват окон (передний/задний план) через DWM.", "DWMによるウィンドウの直接キャプチャ（前面/背面）。"),
+    (vcap_bitblt_desc, set_vcap_bitblt_desc, "Classic high-performance capture straight from the desktop framebuffer.", "Captura clássica de alto desempenho diretamente do framebuffer do desktop.", "Captura clásica de alto rendimiento directamente del framebuffer del escritorio.", "Klassische leistungsstarke Aufnahme direkt aus dem Desktop-Framebuffer.", "Capture classique performante depuis le framebuffer du bureau.", "Классический высокопроизводительный захват из фреймбуфера рабочего стола.", "デスクトップのフレームバッファから直接行う従来型高性能キャプチャ。"),
+    (aloop_auto_desc, set_aloop_auto_desc, "Captures the default PulseAudio/PipeWire sink monitor via GStreamer pulsesrc.", "Captura monitor do sink padrão PulseAudio/PipeWire via GStreamer pulsesrc.", "Captura el monitor del sink PulseAudio/PipeWire vía GStreamer pulsesrc.", "Erfasst den PulseAudio/PipeWire-Sink-Monitor über GStreamer pulsesrc.", "Capture le moniteur du sink PulseAudio/PipeWire via GStreamer pulsesrc.", "Захватывает монитор PulseAudio/PipeWire через GStreamer pulsesrc.", "GStreamer pulsesrcによるPulseAudio/PipeWireシンクモニターのキャプチャ。"),
+    (aloop_pulsesrc_desc, set_aloop_pulsesrc_desc, "Dedicated GStreamer pipeline connected to the PipeWire monitor sink.", "Pipeline GStreamer dedicado conectado ao sink monitor do PipeWire.", "Pipeline GStreamer dedicado conectado al sink monitor de PipeWire.", "Dedizierte GStreamer-Pipeline, verbunden mit dem PipeWire-Monitor-Sink.", "Pipeline GStreamer dédiée connectée au sink monitor de PipeWire.", "Отдельный конвейер GStreamer, подключённый к монитору PipeWire.", "PipeWireモニターシンクに接続する専用GStreamerパイプライン。"),
+    (aloop_cpal_desc, set_aloop_cpal_desc, "Standard capture via the CPAL audio interface.", "Captura padrão via interface de áudio CPAL.", "Captura estándar vía la interfaz de audio CPAL.", "Standard-Aufnahme über die CPAL-Audioschnittstelle.", "Capture standard via l'interface audio CPAL.", "Стандартный захват через аудиоинтерфейс CPAL.", "CPALオーディオインターフェース経由の標準キャプチャ。"),
+    (aloop_wasapi_desc, set_aloop_wasapi_desc, "Native capture that removes friends' voices and Litecord sounds from your stream.", "Captura nativa que remove vozes dos amigos e sons do Litecord da sua transmissão.", "Captura nativa que elimina las voces de amigos y sonidos de Litecord de tu direct en local.", "Nativaufnahme, das Stimmen von Freunden und Litecord-Sounds aus dem Stream entfernt.", "Capture native qui supprime les voix des amis et les sons de Litecord du direct.", "Нативный захват убирает голоса друзей и звуки Litecord из вашей трансляции.", "ネイティブキャプチャは、通話相手の声とLitecordのサウンドを配信に混ぜません。"),
+    (aloop_wasapi2_desc, set_aloop_wasapi2_desc, "Process-isolated WASAPI capture (excludes Litecord audio from the stream).", "Captura com isolamento de processo WASAPI (exclui o Litecord do áudio da stream).", "Captura WASAPI con aislamiento de proceso (excluye el audio de Litecord del local en directo).", "Prozessisolierter WASAPI-Capture (Litecord-Audio bleibt draußen).", "Capture WASAPI isolée par processus (exclut l'audio de Litecord du direct).", "WASAPI с изоляцией процесса (Litecord не попадает в трансляцию).", "プロセス分離WASAPIキャプチャ（Litecordの音声は配信に含まれません）。"),
     (proxy_test_success, set_proxy_test_success, "Proxy test successful! Latency: {}ms (Status: {})", "Conexão bem-sucedida! Latência: {}ms (Status: {})", "¡Conexión correcta! Latencia: {}ms (Estado: {})", "Verbindung erfolgreich! Latenz: {}ms (Status: {})", "Connexion réussie ! Latence : {}ms (Statut : {})", "Соединение успешно! Задержка: {} мс (Статус: {})", "接続成功！レイテンシ: {}ms (ステータス: {})"), // machine TODO
     (proxy_test_http_status, set_proxy_test_http_status, "Proxy responded in {}ms, but with HTTP status {}", "Proxy respondeu em {}ms, mas com status HTTP {}", "El proxy respondió en {}ms, pero con estado HTTP {}", "Proxy antwortete in {}ms, aber mit HTTP-Status {}", "Le proxy a répondu en {}ms, mais avec le statut HTTP {}", "Прокси ответил за {} мс, но со статусом HTTP {}", "プロキシは {}ms で応答しましたが、HTTPステータスは {} です"), // machine TODO
     (proxy_test_failed, set_proxy_test_failed, "Failed to connect via proxy: {}", "Falha ao conectar via Proxy: {}", "Fallo al conectar vía proxy: {}", "Verbindung über Proxy fehlgeschlagen: {}", "Échec de connexion via le proxy : {}", "Не удалось подключиться через прокси: {}", "プロキシ経由で接続できませんでした: {}"), // machine TODO
@@ -452,6 +469,31 @@ mod tests {
         for (key, _) in entries() {
             assert!(!seen.contains(&key), "duplicate ui_strings key: {key}");
             seen.push(key);
+        }
+    }
+
+
+    #[test]
+    fn video_interface_option_rows_en_no_pt() {
+        // The encoder / capture / loopback option lists are built in Rust from
+        // these rows (Video & Interface tab). EN is the fallback; PT is legacy.
+        let keys = [
+            "enc_auto_desc", "enc_nvenc_desc", "enc_ffmpeg_desc", "enc_openh264_desc",
+            "vcap_auto_desc", "vcap_portal_desc", "vcap_x11_desc",
+            "vcap_printwin_desc", "vcap_bitblt_desc",
+            "aloop_auto_desc", "aloop_pulsesrc_desc", "aloop_cpal_desc",
+            "aloop_wasapi_desc", "aloop_wasapi2_desc",
+        ];
+        let entries = entries();
+        for key in keys {
+            let row = entries.iter().find(|(k, _)| *k == key)
+                .unwrap_or_else(|| panic!("missing option row: {key}"));
+            for (i, text) in row.1.iter().enumerate() {
+                assert!(!text.trim().is_empty(), "{key}: empty text for {}", LANGUAGES[i]);
+            }
+            for ch in ['ã', 'õ', 'ç'] {
+                assert!(!row.1[0].contains(ch), "{key}: PT-only char in EN fallback: {:?}", row.1[0]);
+            }
         }
     }
 

@@ -241,7 +241,9 @@ pub fn apply_i18n_translations(ui: &AppWindow, lang: i18n::Language) {
         }
     }).collect();
     ui.set_languages(std::rc::Rc::new(slint::VecModel::from(lang_items)).into());
-    #[cfg(windows)]
+    // Rebuild the Video & Interface option lists for every language on every
+    // platform (not just Windows): switching the UI language from Settings
+    // keeps those lists in the selected language without a restart.
     populate_video_interface_settings(ui);
 }
 
@@ -299,120 +301,135 @@ pub fn populate_video_interface_settings(ui: &AppWindow) {
     };
 
     #[cfg(not(target_os = "windows"))]
-    let enc_items = vec![
-        SettingOptionItem {
-            id: "auto".into(),
-            name: "Automático (Recomendado)".into(),
-            desc: "Prioriza aceleração por hardware GPU disponível com fallback para CPU.".into(),
-            is_selected: enc == "auto",
-        },
-        SettingOptionItem {
-            id: "nvenc".into(),
-            name: "NVIDIA NVENC".into(),
-            desc: "Codificação acelerada por hardware via GPU NVIDIA GeForce / RTX.".into(),
-            is_selected: enc == "nvenc",
-        },
-        SettingOptionItem {
-            id: "ffmpeg".into(),
-            name: "FFmpeg Hardware (VA-API / QSV)".into(),
-            desc: "Pipeline acelerado por GPU via FFmpeg (VA-API, QSV, NVENC).".into(),
-            is_selected: enc == "ffmpeg",
-        },
-        SettingOptionItem {
-            id: "openh264".into(),
-            name: "Cisco OpenH264 (CPU)".into(),
-            desc: "Codificação universal por software multithread com otimizações SIMD.".into(),
-            is_selected: enc == "openh264",
-        },
-    ];
+    let enc_items = {
+        let text = i18n_ui::ui_text();
+        vec![
+            SettingOptionItem {
+                id: "auto".into(),
+                name: text.gpu_auto.into(),
+                desc: text.enc_auto_desc.into(),
+                is_selected: enc == "auto",
+            },
+            SettingOptionItem {
+                id: "nvenc".into(),
+                name: "NVIDIA NVENC".into(),
+                desc: text.enc_nvenc_desc.into(),
+                is_selected: enc == "nvenc",
+            },
+            SettingOptionItem {
+                id: "ffmpeg".into(),
+                name: "FFmpeg Hardware (VA-API / QSV)".into(),
+                desc: text.enc_ffmpeg_desc.into(),
+                is_selected: enc == "ffmpeg",
+            },
+            SettingOptionItem {
+                id: "openh264".into(),
+                name: "Cisco OpenH264 (CPU)".into(),
+                desc: text.enc_openh264_desc.into(),
+                is_selected: enc == "openh264",
+            },
+        ]
+    };
 
     #[cfg(target_os = "windows")]
-    let vcap_items = vec![
-        SettingOptionItem {
-            id: "auto".into(),
-            name: "Automático (Recomendado)".into(),
-            desc: "Tenta PrintWindow para janelas DirectX e usa BitBlt GDI para desktop e fallback.".into(),
-            is_selected: vcap == "auto",
-        },
-        SettingOptionItem {
-            id: "printwindow".into(),
-            name: "PrintWindow (DirectX / DWM)".into(),
-            desc: "Captura direta de janelas em primeiro ou segundo plano via DWM.".into(),
-            is_selected: vcap == "printwindow",
-        },
-        SettingOptionItem {
-            id: "bitblt".into(),
-            name: "BitBlt GDI (Desktop Crop)".into(),
-            desc: "Captura clássica de alto desempenho diretamente do framebuffer do desktop.".into(),
-            is_selected: vcap == "bitblt",
-        },
-    ];
+    let vcap_items = {
+        let text = i18n_ui::ui_text();
+        vec![
+            SettingOptionItem {
+                id: "auto".into(),
+                name: text.gpu_auto.into(),
+                desc: text.vcap_printwin_desc.into(),
+                is_selected: vcap == "auto",
+            },
+            SettingOptionItem {
+                id: "printwindow".into(),
+                name: "PrintWindow (DirectX / DWM)".into(),
+                desc: text.vcap_printwin_desc.into(),
+                is_selected: vcap == "printwindow",
+            },
+            SettingOptionItem {
+                id: "bitblt".into(),
+                name: "BitBlt GDI (Desktop Crop)".into(),
+                desc: text.vcap_bitblt_desc.into(),
+                is_selected: vcap == "bitblt",
+            },
+        ]
+    };
 
     #[cfg(not(target_os = "windows"))]
-    let vcap_items = vec![
-        SettingOptionItem {
-            id: "auto".into(),
-            name: "Automático (Recomendado)".into(),
-            desc: "Utiliza o seletor nativo do sistema via XDG Desktop Portal e PipeWire.".into(),
-            is_selected: vcap == "auto",
-        },
-        SettingOptionItem {
-            id: "portal".into(),
-            name: "XDG Desktop Portal + PipeWire".into(),
-            desc: "Captura de tela moderna de baixa latência compatível com Wayland e Flatpak.".into(),
-            is_selected: vcap == "portal",
-        },
-        SettingOptionItem {
-            id: "x11".into(),
-            name: "X11 Fallback".into(),
-            desc: "Captura legada direta de tela em sessões gráficas X11.".into(),
-            is_selected: vcap == "x11",
-        },
-    ];
+    let vcap_items = {
+        let text = i18n_ui::ui_text();
+        vec![
+            SettingOptionItem {
+                id: "auto".into(),
+                name: text.gpu_auto.into(),
+                desc: text.vcap_auto_desc.into(),
+                is_selected: vcap == "auto",
+            },
+            SettingOptionItem {
+                id: "portal".into(),
+                name: "XDG Desktop Portal + PipeWire".into(),
+                desc: text.vcap_portal_desc.into(),
+                is_selected: vcap == "portal",
+            },
+            SettingOptionItem {
+                id: "x11".into(),
+                name: "X11 Fallback".into(),
+                desc: text.vcap_x11_desc.into(),
+                is_selected: vcap == "x11",
+            },
+        ]
+    };
 
     #[cfg(target_os = "windows")]
-    let aloop_items = vec![
-        SettingOptionItem {
-            id: "auto".into(),
-            name: "Automático (Recomendado)".into(),
-            desc: "Captura com isolamento de processo WASAPI (exclui o Litecord do áudio da stream).".into(),
-            is_selected: aloop == "auto",
-        },
-        SettingOptionItem {
-            id: "wasapi_isolated".into(),
-            name: "WASAPI Process-Loopback Isolado".into(),
-            desc: "Captura nativa que remove vozes dos amigos e sons do Litecord da sua transmissão.".into(),
-            is_selected: aloop == "wasapi_isolated",
-        },
-        SettingOptionItem {
-            id: "cpal".into(),
-            name: "CPAL WASAPI Loopback".into(),
-            desc: "Captura direta do endpoint de saída padrão do sistema operacional.".into(),
-            is_selected: aloop == "cpal",
-        },
-    ];
+    let aloop_items = {
+        let text = i18n_ui::ui_text();
+        vec![
+            SettingOptionItem {
+                id: "auto".into(),
+                name: text.gpu_auto.into(),
+                desc: text.aloop_wasapi2_desc.into(),
+                is_selected: aloop == "auto",
+            },
+            SettingOptionItem {
+                id: "wasapi_isolated".into(),
+                name: "WASAPI Process-Loopback Isolated".into(),
+                desc: text.aloop_wasapi_desc.into(),
+                is_selected: aloop == "wasapi_isolated",
+            },
+            SettingOptionItem {
+                id: "cpal".into(),
+                name: "CPAL WASAPI Loopback".into(),
+                desc: text.aloop_cpal_desc.into(),
+                is_selected: aloop == "cpal",
+            },
+        ]
+    };
 
     #[cfg(not(target_os = "windows"))]
-    let aloop_items = vec![
-        SettingOptionItem {
-            id: "auto".into(),
-            name: "Automático (Recomendado)".into(),
-            desc: "Captura monitor do sink padrão PulseAudio/PipeWire via GStreamer pulsesrc.".into(),
-            is_selected: aloop == "auto",
-        },
-        SettingOptionItem {
-            id: "pulsesrc".into(),
-            name: "GStreamer pulsesrc (Monitor)".into(),
-            desc: "Pipeline GStreamer dedicado conectado ao sink monitor do PipeWire.".into(),
-            is_selected: aloop == "pulsesrc",
-        },
-        SettingOptionItem {
-            id: "cpal".into(),
-            name: "CPAL Audio Loopback".into(),
-            desc: "Captura padrão via interface de áudio CPAL.".into(),
-            is_selected: aloop == "cpal",
-        },
-    ];
+    let aloop_items = {
+        let text = i18n_ui::ui_text();
+        vec![
+            SettingOptionItem {
+                id: "auto".into(),
+                name: text.gpu_auto.into(),
+                desc: text.aloop_auto_desc.into(),
+                is_selected: aloop == "auto",
+            },
+            SettingOptionItem {
+                id: "pulsesrc".into(),
+                name: "GStreamer pulsesrc (Monitor)".into(),
+                desc: text.aloop_pulsesrc_desc.into(),
+                is_selected: aloop == "pulsesrc",
+            },
+            SettingOptionItem {
+                id: "cpal".into(),
+                name: "CPAL Audio Loopback".into(),
+                desc: text.aloop_cpal_desc.into(),
+                is_selected: aloop == "cpal",
+            },
+        ]
+    };
 
     ui.set_video_encoder_options(std::rc::Rc::new(slint::VecModel::from(enc_items)).into());
     ui.set_video_capture_options(std::rc::Rc::new(slint::VecModel::from(vcap_items)).into());

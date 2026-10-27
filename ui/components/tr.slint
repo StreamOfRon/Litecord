@@ -17,6 +17,21 @@ export global Tr {
     in-out property <string> tray_show: "Open Litecord";
     in-out property <string> tray_quit: "Quit";
     in-out property <string> tray_tooltip: "Litecord — Ultra-Lightweight Discord Client";
+    // Video & Interface option rows.
+    in-out property <string> enc_auto_desc: "Prefers available hardware GPU acceleration, falling back to CPU.";
+    in-out property <string> enc_nvenc_desc: "Hardware accelerated encoding via NVIDIA GeForce / RTX GPUs.";
+    in-out property <string> enc_ffmpeg_desc: "GPU-accelerated pipeline via FFmpeg (VA-API, QSV, NVENC).";
+    in-out property <string> enc_openh264_desc: "Universal multithreaded software encoding with SIMD optimizations.";
+    in-out property <string> vcap_auto_desc: "Uses the system's native selector via XDG Desktop Portal and PipeWire.";
+    in-out property <string> vcap_portal_desc: "Modern low-latency screen capture compatible with Wayland and Flatpak.";
+    in-out property <string> vcap_x11_desc: "Legacy direct screen capture on X11 sessions.";
+    in-out property <string> vcap_printwin_desc: "Direct window capture (foreground or background) via DWM.";
+    in-out property <string> vcap_bitblt_desc: "Classic high-performance capture straight from the desktop framebuffer.";
+    in-out property <string> aloop_auto_desc: "Captures the default PulseAudio/PipeWire sink monitor via GStreamer pulsesrc.";
+    in-out property <string> aloop_pulsesrc_desc: "Dedicated GStreamer pipeline connected to the PipeWire monitor sink.";
+    in-out property <string> aloop_cpal_desc: "Standard capture via the CPAL audio interface.";
+    in-out property <string> aloop_wasapi_desc: "Native capture that removes friends' voices and Litecord sounds from your stream.";
+    in-out property <string> aloop_wasapi2_desc: "Process-isolated WASAPI capture (excludes Litecord audio from the stream).";
     in-out property <string> proxy_test_success: "Proxy test successful! Latency: {}ms (Status: {})";
     in-out property <string> proxy_test_http_status: "Proxy responded in {}ms, but with HTTP status {}";
     in-out property <string> proxy_test_failed: "Failed to connect via proxy: {}";
