@@ -13,6 +13,12 @@ export global Tr {
     in-out property <string> settings_output_device: "OUTPUT DEVICE (SPEAKERS / HEADPHONES)";
     in-out property <string> settings_threshold: "VOICE DETECTION SENSITIVITY (THRESHOLD)";
     in-out property <string> settings_mic_level: "REAL-TIME MICROPHONE LEVEL";
+    // Proxy test/alert strings (Network & Proxy tab + login alert).
+    in-out property <string> proxy_test_success: "Proxy test successful! Latency: {}ms (Status: {})";
+    in-out property <string> proxy_test_http_status: "Proxy responded in {}ms, but with HTTP status {}";
+    in-out property <string> proxy_test_failed: "Failed to connect via proxy: {}";
+    in-out property <string> proxy_alert_system: "System proxy connection failed! Click here or the gear at the top to open Settings and disable it.";
+    in-out property <string> proxy_alert_manual: "The proxy ({}: {}:{}) is unreachable or refusing connections! Click here or the gear at the top to open Settings and disable it.";
     in-out property <string> settings_btn_test_start: "Test Microphone (\"Hear Yourself\")";
     in-out property <string> settings_btn_test_stop: "Stop Testing (Listening...)";
     in-out property <string> settings_done: "Done";

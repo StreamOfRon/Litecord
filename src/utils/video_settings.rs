@@ -152,3 +152,25 @@ pub fn toggle_use_light_theme() -> bool {
     new_val
 }
 
+/// UI strings rendered from this module must go through the `Tr` global in
+/// `i18n_ui` (see the localization-consistency design). This probe keeps it
+/// that way.
+#[cfg(test)]
+mod ui_string_probe {
+    /// Static strings this module feeds to a UI property. None today — the
+    /// setters below persist values only; all UI text lives in the `Tr`
+    /// global. Extend this list if a static UI string is ever added here.
+    pub fn ui_facing_strings() -> Vec<(&'static str, &'static str)> {
+        Vec::new()
+    }
+
+    #[test]
+    fn ui_facing_strings_have_no_pt_only_chars() {
+        const PT_ONLY: [char; 10] = ['í', 'â', 'ã', 'é', 'ê', 'ó', 'ô', 'õ', 'ú', 'ç'];
+        for (name, s) in ui_facing_strings() {
+            for ch in PT_ONLY {
+                assert!(!s.contains(ch), "`{name}` carries a PT-only char: {s:?}");
+            }
+        }
+    }
+}

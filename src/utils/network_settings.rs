@@ -139,13 +139,23 @@ pub async fn test_proxy_connection() -> Result<String, String> {
         Ok(resp) => {
             let latency_ms = start.elapsed().as_millis();
             if resp.status().is_success() {
-                Ok(format!("Conexão bem-sucedida! Latência: {}ms (Status: {})", latency_ms, resp.status()))
+                let texts = super::i18n_ui::ui_text();
+                Ok(texts
+                    .proxy_test_success
+                    .replacen("{}", &latency_ms.to_string(), 1)
+                    .replacen("{}", &resp.status().to_string(), 1))
             } else {
-                Ok(format!("Proxy respondeu em {}ms, mas com status HTTP {}", latency_ms, resp.status()))
+                let texts = super::i18n_ui::ui_text();
+                Ok(texts
+                    .proxy_test_http_status
+                    .replacen("{}", &latency_ms.to_string(), 1)
+                    .replacen("{}", &resp.status().to_string(), 1))
             }
         }
         Err(e) => {
-            Err(format!("Falha ao conectar via Proxy: {}", e))
+            Err(crate::utils::i18n_ui::ui_text()
+                .proxy_test_failed
+                .replacen("{}", &e.to_string(), 1))
         }
     }
 }
@@ -182,12 +192,38 @@ pub fn format_proxy_alert_message() -> String {
     let settings = get_network_settings();
     let mode = settings.proxy_mode.to_uppercase();
     if settings.proxy_mode == "system" {
-        "Falha de conexão via Proxy do Sistema! Clique aqui ou na engrenagem no topo para abrir as Configurações e desativá-lo.".to_string()
+        crate::utils::i18n_ui::ui_text().proxy_alert_system.to_string()
     } else {
-        format!(
-            "O Proxy ({}: {}:{}) está inacessível ou recusando conexão! Clique aqui ou na engrenagem no topo para abrir as Configurações e desativá-lo.",
-            mode, settings.proxy_host, settings.proxy_port
-        )
+        {
+            let texts = crate::utils::i18n_ui::ui_text();
+            texts
+                .proxy_alert_manual
+                .replacen("{}", &mode, 1)
+                .replacen("{}", &settings.proxy_host, 1)
+                .replacen("{}", &settings.proxy_port.to_string(), 1)
+        }
     }
 }
 
+/// UI strings rendered from this module must go through the `Tr` global in
+/// `i18n_ui` (see the localization-consistency design); dynamic text composes
+/// from `i18n_ui::ui_text()` templates. This probe keeps it that way.
+#[cfg(test)]
+mod ui_string_probe {
+    /// Static strings this module feeds to a UI property. None today — the
+    /// proxy test/alert messages come from `i18n_ui` templates. Extend this
+    /// list if a static UI string is ever added here, to keep the probe honest.
+    pub fn ui_facing_strings() -> Vec<(&'static str, &'static str)> {
+        Vec::new()
+    }
+
+    #[test]
+    fn ui_facing_strings_have_no_pt_only_chars() {
+        const PT_ONLY: [char; 10] = ['í', 'â', 'ã', 'é', 'ê', 'ó', 'ô', 'õ', 'ú', 'ç'];
+        for (name, s) in ui_facing_strings() {
+            for ch in PT_ONLY {
+                assert!(!s.contains(ch), "`{name}` carries a PT-only char: {s:?}");
+            }
+        }
+    }
+}

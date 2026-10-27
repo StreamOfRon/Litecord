@@ -276,6 +276,13 @@ ui_strings! {
     (settings_output_device, set_settings_output_device, "OUTPUT DEVICE (SPEAKERS / HEADPHONES)", "DISPOSITIVO DE SAÍDA (ALTO-FALANTES / FONE DE OUVIDO)", "DISPOSITIVO DE SALIDA (ALTAVOCES / AURICULARES)", "AUSGABEGERÄT (LAUTSPRECHER / KOPFHÖRER)", "PÉRIPHÉRIQUE DE SORTIE (CASQUE / ENCEINTES)", "УСТРОЙСТВО ВЫВОДА (ДИНАМИКИ / НАУШНИКИ)", "出力デバイス (スピーカー / ヘッドホン)"),
     (settings_threshold, set_settings_threshold, "VOICE DETECTION SENSITIVITY (THRESHOLD)", "SENSIBILIDADE DE DETECÇÃO DE VOZ (THRESHOLD)", "SENSIBILIDAD DE DETECCIÓN DE VOZ (THRESHOLD)", "SPRACHAKTIVIERUNG-EMPFINDLICHKEIT (THRESHOLD)", "SENSIBILITÉ DE DÉTECTION VOCALE (THRESHOLD)", "ЧУВСТВИТЕЛЬНОСТЬ ГОЛОСА (THRESHOLD)", "音声検出感度 (THRESHOLD)"),
     (settings_mic_level, set_settings_mic_level, "REAL-TIME MICROPHONE LEVEL", "NÍVEL DO MICROFONE EM TEMPO REAL", "NIVEL DE MICRÓFONO EN TIEMPO REAL", "ECHTZEIT-MIKROFONPEGEL", "NIVEAU DU MICROPHONE EN TEMPS RÉEL", "УРОВЕНЬ МИКРОФОНА В РЕАЛЬНОМ ВРЕМЕНИ", "リアルタイムマイク音量"),
+    // Proxy test/alert strings (Network & Proxy tab + login alert). Machine
+    // translations (es/de/fr/ru/ja) are placeholders pending native review.
+    (proxy_test_success, set_proxy_test_success, "Proxy test successful! Latency: {}ms (Status: {})", "Conexão bem-sucedida! Latência: {}ms (Status: {})", "¡Conexión correcta! Latencia: {}ms (Estado: {})", "Verbindung erfolgreich! Latenz: {}ms (Status: {})", "Connexion réussie ! Latence : {}ms (Statut : {})", "Соединение успешно! Задержка: {} мс (Статус: {})", "接続成功！レイテンシ: {}ms (ステータス: {})"), // machine TODO
+    (proxy_test_http_status, set_proxy_test_http_status, "Proxy responded in {}ms, but with HTTP status {}", "Proxy respondeu em {}ms, mas com status HTTP {}", "El proxy respondió en {}ms, pero con estado HTTP {}", "Proxy antwortete in {}ms, aber mit HTTP-Status {}", "Le proxy a répondu en {}ms, mais avec le statut HTTP {}", "Прокси ответил за {} мс, но со статусом HTTP {}", "プロキシは {}ms で応答しましたが、HTTPステータスは {} です"), // machine TODO
+    (proxy_test_failed, set_proxy_test_failed, "Failed to connect via proxy: {}", "Falha ao conectar via Proxy: {}", "Fallo al conectar vía proxy: {}", "Verbindung über Proxy fehlgeschlagen: {}", "Échec de connexion via le proxy : {}", "Не удалось подключиться через прокси: {}", "プロキシ経由で接続できませんでした: {}"), // machine TODO
+    (proxy_alert_system, set_proxy_alert_system, "System proxy connection failed! Click here or the gear at the top to open Settings and disable it.", "Falha de conexão via Proxy do Sistema! Clique aqui ou na engrenagem no topo para abrir as Configurações e desativá-lo.", "¡Fallo de conexión del proxy del sistema! Haz clic aquí o en el engranaje superior para abrir Ajustes y desactivarlo.", "Systemproxy-Verbindung fehlgeschlagen! Klicke hier oder auf das Zahnrad oben, um die Einstellungen zu öffnen und ihn zu deaktivieren.", "Échec de connexion du proxy système ! Clique ici ou sur la roue dentée en haut pour ouvrir les réglages et le désactiver.", "Ошибка подключения через системный прокси! Нажмите здесь или на шестерёнку сверху, чтобы открыть настройки и отключить его.", "システムプロキシの接続に失敗しました！ここまたは上部の歯車をクリックして設定を開き、無効にしてください。"), // machine TODO
+    (proxy_alert_manual, set_proxy_alert_manual, "The proxy ({}: {}:{}) is unreachable or refusing connections! Click here or the gear at the top to open Settings and disable it.", "O Proxy ({}: {}:{}) está inacessível ou recusando conexão! Clique aqui ou na engrenagem no topo para abrir as Configurações e desativá-lo.", "El proxy ({}: {}:{}) es inalcanzable o rechaza conexiones! Haz clic aquí o en el engranaje superior para abrir Ajustes y desactivarlo.", "Der Proxy ({}: {}:{}) ist nicht erreichbar oder lehnt Verbindungen ab! Klicke hier oder auf das Zahnrad oben, um die Einstellungen zu öffnen und ihn zu deaktivieren.", "Le proxy ({} : {} : {}) est injoignable ou refuse les connexions ! Clique ici ou sur la roue dentée en haut pour ouvrir les réglages et le désactiver.", "Прокси ({}: {}:{}) недоступен или отклоняет подключения! Нажмите здесь или на шестерёнку сверху, чтобы открыть настройки и отключить его.", "プロキシ ({}: {}:{}) に到達できないか接続を拒否されています！ここまたは上部の歯車をクリックして設定を開き、無効にしてください。"), // machine TODO
     (settings_btn_test_start, set_settings_btn_test_start, "Test Microphone (\"Hear Yourself\")", "Testar Microfone (\"Se Ouvir\")", "Probar Micrófono (\"Escucharse\")", "Mikrofon testen (\"Sich hören\")", "Tester le Micro (\"S'entendre\")", "Проверить микрофон (\"Слышать себя\")", "マイクをテスト (自分の声を聞く)"),
     (settings_btn_test_stop, set_settings_btn_test_stop, "Stop Testing (Listening...)", "Parar Teste (Ouvindo...)", "Detener Prueba (Escuchando...)", "Test beenden (Hören...)", "Arrêter le Test (Écoute...)", "Остановить тест (Слушаем...)", "テスト停止 (聴取中...)"),
     (settings_done, set_settings_done, "Done", "Concluído", "Hecho", "Fertig", "Terminé", "Готово", "完了"),
@@ -384,6 +391,37 @@ mod tests {
         for (key, texts) in entries() {
             for (i, text) in texts.iter().enumerate() {
                 assert!(!text.trim().is_empty(), "{key}: empty text for {}", LANGUAGES[i]);
+            }
+        }
+    }
+
+
+    #[test]
+    fn proxy_alert_strings_exist_for_every_language() {
+        let keys = [
+            "proxy_test_success",
+            "proxy_test_http_status",
+            "proxy_test_failed",
+            "proxy_alert_system",
+            "proxy_alert_manual",
+        ];
+        let entries = entries();
+        for key in keys {
+            assert!(
+                entries.iter().any(|(k, _)| *k == key),
+                "missing proxy row: {key}"
+            );
+        }
+        for (key, texts) in entries.iter() {
+            if !keys.contains(key) {
+                continue;
+            }
+            for (i, text) in texts.iter().enumerate() {
+                assert!(!text.trim().is_empty(), "{key}: empty text for {}", LANGUAGES[i]);
+            }
+            // English is the universal fallback: no Portuguese-only chars.
+            for ch in ['ã', 'õ', 'ç'] {
+                assert!(!texts[0].contains(ch), "{key}: PT-only char in EN fallback: {:?}", texts[0]);
             }
         }
     }
