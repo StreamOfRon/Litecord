@@ -244,31 +244,7 @@ pub fn apply_i18n_translations(ui: &AppWindow, lang: i18n::Language) {
     ui.set_tr_replying_to(tr.replying_to.into());
     ui.set_tr_chat_placeholder_prefix(tr.chat_placeholder_prefix.into());
     ui.set_tr_send(tr.send.into());
-    ui.set_tr_settings_title(tr.settings_title.into());
     ui.set_tr_settings_language_label(tr.settings_language_label.into());
-    ui.set_tr_settings_input_device(tr.settings_input_device.into());
-    ui.set_tr_settings_output_device(tr.settings_output_device.into());
-    ui.set_tr_settings_threshold(tr.settings_threshold.into());
-    ui.set_tr_settings_mic_level(tr.settings_mic_level.into());
-    ui.set_tr_settings_btn_test_start(match resolved {
-        i18n::Language::Portuguese => "Testar Microfone (\"Se Ouvir\")".into(),
-        i18n::Language::Spanish => "Probar Micrófono (\"Escucharse\")".into(),
-        i18n::Language::German => "Mikrofon testen (\"Sich hören\")".into(),
-        i18n::Language::French => "Tester le Micro (\"S'entendre\")".into(),
-        i18n::Language::Russian => "Проверить микрофон (\"Слышать себя\")".into(),
-        i18n::Language::Japanese => "マイクをテスト (自分の声を聞く)".into(),
-        _ => "Test Microphone (\"Hear Yourself\")".into(),
-    });
-    ui.set_tr_settings_btn_test_stop(match resolved {
-        i18n::Language::Portuguese => "Parar Teste (Ouvindo...)".into(),
-        i18n::Language::Spanish => "Detener Prueba (Escuchando...)".into(),
-        i18n::Language::German => "Test beenden (Hören...)".into(),
-        i18n::Language::French => "Arrêter le Test (Écoute...)".into(),
-        i18n::Language::Russian => "Остановить тест (Слушаем...)".into(),
-        i18n::Language::Japanese => "テスト停止 (聴取中...)".into(),
-        _ => "Stop Testing (Listening...)".into(),
-    });
-    ui.set_tr_settings_done(tr.settings_done.into());
     ui.set_tr_logout_title(tr.logout_title.into());
     ui.set_tr_logout_confirm_prefix(tr.logout_confirm_prefix.into());
     ui.set_tr_cancel(tr.cancel.into());
@@ -280,21 +256,6 @@ pub fn apply_i18n_translations(ui: &AppWindow, lang: i18n::Language) {
     ui.set_tr_qr_title(tr.qr_title.into());
     ui.set_tr_qr_desc(tr.qr_desc.into());
     ui.set_tr_qr_confirm(tr.qr_confirm.into());
-    ui.set_tr_settings_tab_voice(tr.settings_tab_voice.into());
-    ui.set_tr_settings_tab_language(tr.settings_tab_language.into());
-    ui.set_tr_settings_tab_keybinds(tr.settings_tab_keybinds.into());
-    ui.set_tr_settings_tab_security(tr.settings_tab_security.into());
-    ui.set_tr_settings_tab_network_proxy(tr.settings_tab_network_proxy.into());
-    ui.set_tr_settings_tab_updates(tr.settings_tab_updates.into());
-    ui.set_tr_keybind_mute_title(tr.keybind_mute_title.into());
-    ui.set_tr_keybind_mute_desc(tr.keybind_mute_desc.into());
-    ui.set_tr_keybind_deafen_title(tr.keybind_deafen_title.into());
-    ui.set_tr_keybind_deafen_desc(tr.keybind_deafen_desc.into());
-    ui.set_tr_keybind_recording_prompt(tr.keybind_recording_prompt.into());
-    ui.set_tr_keybind_btn_record(tr.keybind_btn_record.into());
-    ui.set_tr_keybind_btn_clear(tr.keybind_btn_clear.into());
-    ui.set_tr_keybind_guide_title(tr.keybind_guide_title.into());
-    ui.set_tr_keybind_guide_desc(tr.keybind_guide_desc.into());
 
     let lang_items: Vec<LanguageItem> = i18n::Language::all_available().iter().map(|&l| {
         let (display, native) = l.display_info();

@@ -265,6 +265,29 @@ ui_strings! {
     (time_ago, set_time_ago, "{} ago", "há {}", "hace {}", "vor {}", "il y a {}", "{} назад", "{}前"),
     (time_soon, set_time_soon, "in a moment", "em instantes", "en un momento", "gleich", "dans un instant", "сейчас", "まもなく"),
     (time_just_now, set_time_just_now, "just now", "há instantes", "hace un momento", "gerade eben", "à l'instant", "только что", "たった今"),
+    (settings_title, set_settings_title, "Voice & Audio Settings", "Configurações de Voz e Áudio", "Ajustes de Voz y Audio", "Sprach- und Audioeinstellungen", "Paramètres Vocaux et Audio", "Настройки звука и голоса", "音声とオーディオ設定"),
+    (settings_tab_voice, set_settings_tab_voice, "Voice & Audio", "Voz & Áudio", "Voz y Audio", "Sprach & Audio", "Vocal & Audio", "Голос и Звук", "音声 & オーディオ"),
+    (settings_tab_language, set_settings_tab_language, "Language", "Idioma", "Idioma", "Sprache", "Langue", "Язык", "言語"),
+    (settings_tab_keybinds, set_settings_tab_keybinds, "Keybinds", "Atalhos", "Atajos", "Tastenbelegung", "Raccourcis", "Горячие клавиши", "キー割り当て"),
+    (settings_tab_security, set_settings_tab_security, "Security & E2EE", "Segurança & E2EE", "Seguridad y E2EE", "Sicherheit & E2EE", "Sécurité & E2EE", "Безопасность и E2EE", "セキュリティ & E2EE"),
+    (settings_tab_updates, set_settings_tab_updates, "Updates & About", "Atualizações & Sobre", "Actualizaciones y Sobre", "Updates & Über", "Mises à jour & À propos", "Обновления и О программе", "アップデート & 詳細"),
+    (settings_tab_network_proxy, set_settings_tab_network_proxy, "Network & Proxy", "Rede & Proxy", "Red y Proxy", "Netzwerk & Proxy", "Réseau & Proxy", "Сеть и Прокси", "ネットワーク＆プロキシ"),
+    (settings_input_device, set_settings_input_device, "INPUT DEVICE (MICROPHONE)", "DISPOSITIVO DE ENTRADA (MICROFONE)", "DISPOSITIVO DE ENTRADA (MICRÓFONO)", "EINGABEGERÄT (MIKROFON)", "PÉRIPHÉRIQUE D'ENTRÉE (MICROPHONE)", "УСТРОЙСТВО ВВОДА (МИКРОФОН)", "入力デバイス (マイク)"),
+    (settings_output_device, set_settings_output_device, "OUTPUT DEVICE (SPEAKERS / HEADPHONES)", "DISPOSITIVO DE SAÍDA (ALTO-FALANTES / FONE DE OUVIDO)", "DISPOSITIVO DE SALIDA (ALTAVOCES / AURICULARES)", "AUSGABEGERÄT (LAUTSPRECHER / KOPFHÖRER)", "PÉRIPHÉRIQUE DE SORTIE (CASQUE / ENCEINTES)", "УСТРОЙСТВО ВЫВОДА (ДИНАМИКИ / НАУШНИКИ)", "出力デバイス (スピーカー / ヘッドホン)"),
+    (settings_threshold, set_settings_threshold, "VOICE DETECTION SENSITIVITY (THRESHOLD)", "SENSIBILIDADE DE DETECÇÃO DE VOZ (THRESHOLD)", "SENSIBILIDAD DE DETECCIÓN DE VOZ (THRESHOLD)", "SPRACHAKTIVIERUNG-EMPFINDLICHKEIT (THRESHOLD)", "SENSIBILITÉ DE DÉTECTION VOCALE (THRESHOLD)", "ЧУВСТВИТЕЛЬНОСТЬ ГОЛОСА (THRESHOLD)", "音声検出感度 (THRESHOLD)"),
+    (settings_mic_level, set_settings_mic_level, "REAL-TIME MICROPHONE LEVEL", "NÍVEL DO MICROFONE EM TEMPO REAL", "NIVEL DE MICRÓFONO EN TIEMPO REAL", "ECHTZEIT-MIKROFONPEGEL", "NIVEAU DU MICROPHONE EN TEMPS RÉEL", "УРОВЕНЬ МИКРОФОНА В РЕАЛЬНОМ ВРЕМЕНИ", "リアルタイムマイク音量"),
+    (settings_btn_test_start, set_settings_btn_test_start, "Test Microphone (\"Hear Yourself\")", "Testar Microfone (\"Se Ouvir\")", "Probar Micrófono (\"Escucharse\")", "Mikrofon testen (\"Sich hören\")", "Tester le Micro (\"S'entendre\")", "Проверить микрофон (\"Слышать себя\")", "マイクをテスト (自分の声を聞く)"),
+    (settings_btn_test_stop, set_settings_btn_test_stop, "Stop Testing (Listening...)", "Parar Teste (Ouvindo...)", "Detener Prueba (Escuchando...)", "Test beenden (Hören...)", "Arrêter le Test (Écoute...)", "Остановить тест (Слушаем...)", "テスト停止 (聴取中...)"),
+    (settings_done, set_settings_done, "Done", "Concluído", "Hecho", "Fertig", "Terminé", "Готово", "完了"),
+    (keybind_mute_title, set_keybind_mute_title, "Toggle Mute", "Mutar / Desmutar Microfone", "Silenciar / Desilenciar Micrófono", "Stummschaltung umschalten", "Couper / Réactiver le micro", "Вкл/Выкл микрофон", "マイクミュート切替"),
+    (keybind_mute_desc, set_keybind_mute_desc, "Global shortcut to mute or unmute your microphone during voice calls.", "Atalho global para mutar ou desmutar seu microfone durante chamadas.", "Atajo global para activar o desactivar tu micrófono en llamadas de voz.", "Globaler Shortcut zum Stummschalten oder Aktivieren des Mikrofons.", "Raccourci global pour couper ou réactiver votre micro en vocal.", "Глобальная клавиша для включения или выключения микрофона.", "通話中にマイクのミュート/ミュート解除を切り替えるグローバルショートカット。"),
+    (keybind_recording_prompt, set_keybind_recording_prompt, "Press desired key combination...", "Pressione a combinação de teclas...", "Presiona la combinación de teclas...", "Tastenkombination drücken...", "Appuyez sur la combinaison de touches...", "Нажмите комбинацию клавиш...", "キーの組み合わせを押してください..."),
+    (keybind_btn_record, set_keybind_btn_record, "Record Keybind", "Gravar Atalho", "Grabar Atajo", "Aufnehmen", "Enregistrer", "Записать клавишу", "キーを記録"),
+    (keybind_btn_clear, set_keybind_btn_clear, "Disable", "Desativar", "Desactivar", "Deaktivieren", "Désactiver", "Отключить", "無効化"),
+    (keybind_guide_title, set_keybind_guide_title, "Global Shortcuts", "Atalhos Globais", "Atajos Globales", "Globale Tastenkombinationen", "Raccourcis Globaux", "Глобальные клавиши", "グローバルショートカット"),
+    (keybind_guide_desc, set_keybind_guide_desc, "Keybinds work seamlessly across all applications and games, even when Litecord is in background.", "Os atalhos funcionam em qualquer janela ou jogo em tela cheia, mesmo com o Litecord minimizado.", "Los atajos funcionan en cualquier ventana o juego a pantalla completa, incluso con Litecord minimizado.", "Shortcuts funktionieren auch in Vollbildspielen und im Hintergrund.", "Les raccourcis fonctionnent dans n'importe quel jeu ou application, même en arrière-plan.", "Горячие клавиши работают во всех играх и приложениях, даже когда окно свернуто.", "ゲーム中や最小化時でもバックグラウンドで動作します。"),
+    (keybind_deafen_title, set_keybind_deafen_title, "Toggle Deafen", "Ensurdecer / Desensurdecer", "Ensordecer / Desensordecer", "Taubstellen umschalten", "Assourdir / Désassourdir", "Заглушить / Включить звук", "スピーカーミュート切替"),
+    (keybind_deafen_desc, set_keybind_deafen_desc, "Global shortcut to deafen or undeafen all voice audio and microphone.", "Atalho global para ensurdecer ou desensurdecer todo áudio e microfone.", "Atajo global para ensordecer o reactivar todo el sonido y micrófono.", "Globaler Shortcut zum Deaktivieren von Audio und Mikrofon.", "Raccourci global pour couper tout le son entrant et votre micro.", "Глобальная клавиша для отключения всех звуков и микрофона.", "すべての音声とマイクを遮断するグローバルショートカット。"),
 }
 
 #[cfg(test)]
@@ -330,6 +353,31 @@ pub fn table_for(lang: Language) -> &'static UiStrings {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn settings_view_tr_props_are_all_in_table() {
+        let src =
+            std::fs::read_to_string(concat!(env!("CARGO_MANIFEST_DIR"), "/ui/components/settings_view.slint"))
+                .unwrap();
+        let remaining: Vec<&str> = src
+            .lines()
+            .filter_map(|l| {
+                let l = l.trim();
+                l.starts_with("in property <string> tr_")
+                    .then(|| {
+                        l.trim_start_matches("in property <string> ")
+                            .split(':')
+                            .next()
+                            .unwrap()
+                            .trim()
+                    })
+            })
+            .collect();
+        assert!(
+            remaining.is_empty(),
+            "hand-wired tr_ props left in settings_view.slint: {remaining:?}"
+        );
+    }
 
     #[test]
     fn every_string_exists_in_every_language() {

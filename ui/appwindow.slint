@@ -280,15 +280,7 @@ export component AppWindow inherits Window {
     in-out property <string> tr_replying_to: "Replying to @";
     in-out property <string> tr_chat_placeholder_prefix: "Message ";
     in-out property <string> tr_send: "Send";
-    in-out property <string> tr_settings_title: "Voice & Audio Settings";
     in-out property <string> tr_settings_language_label: "LANGUAGE / IDIOMA";
-    in-out property <string> tr_settings_input_device: "INPUT DEVICE (MICROPHONE)";
-    in-out property <string> tr_settings_output_device: "OUTPUT DEVICE (SPEAKERS / HEADPHONES)";
-    in-out property <string> tr_settings_threshold: "VOICE DETECTION SENSITIVITY (THRESHOLD)";
-    in-out property <string> tr_settings_mic_level: "REAL-TIME MICROPHONE LEVEL";
-    in-out property <string> tr_settings_btn_test_start: "Test Microphone (\"Hear Yourself\")";
-    in-out property <string> tr_settings_btn_test_stop: "Stop Testing (Listening...)";
-    in-out property <string> tr_settings_done: "Done";
     in-out property <string> tr_logout_title: "Sign Out";
     in-out property <string> tr_logout_confirm_prefix: "Do you want to log out from ";
     in-out property <string> tr_cancel: "Cancel";
@@ -300,22 +292,6 @@ export component AppWindow inherits Window {
     in-out property <string> tr_qr_title: "Log in with QR Code";
     in-out property <string> tr_qr_desc: "Scan this with the Discord mobile app to log in instantly.";
     in-out property <string> tr_qr_confirm: "Approve login on your phone!";
-    in-out property <string> tr_settings_tab_voice: "Voice & Audio";
-    in-out property <string> tr_settings_tab_language: "Language";
-    in-out property <string> tr_settings_tab_keybinds: "Keybinds";
-    in-out property <string> tr_settings_tab_video_interface: Tr.settings_tab_video;
-    in-out property <string> tr_settings_tab_security: "Security & E2EE";
-    in-out property <string> tr_settings_tab_network_proxy: "Network & Proxy";
-    in-out property <string> tr_settings_tab_updates: "Updates & About";
-    in-out property <string> tr_keybind_mute_title: "Toggle Mute";
-    in-out property <string> tr_keybind_mute_desc: "Global shortcut to mute or unmute your microphone during voice calls.";
-    in-out property <string> tr_keybind_deafen_title: "Toggle Deafen";
-    in-out property <string> tr_keybind_deafen_desc: "Global shortcut to deafen or undeafen all voice audio and microphone.";
-    in-out property <string> tr_keybind_recording_prompt: "Press desired key combination...";
-    in-out property <string> tr_keybind_btn_record: "Record Keybind";
-    in-out property <string> tr_keybind_btn_clear: "Disable";
-    in-out property <string> tr_keybind_guide_title: "Global Shortcuts";
-    in-out property <string> tr_keybind_guide_desc: "Keybinds work seamlessly across all applications and games, even when Litecord is in background.";
     in-out property <string> keybind_mute_str: "Ctrl+Shift+M";
     in-out property <string> keybind_deafen_str: "Ctrl+Shift+D";
     in-out property <int> recording_keybind_for: 0;
@@ -3088,40 +3064,17 @@ export component AppWindow inherits Window {
 
     // Settings overlay: backend state stays on AppWindow.
     if root.show_settings_modal: SettingsView {
-        tr_settings_title: root.tr_settings_title;
         app_version: root.app_version;
         settings_active_tab <=> root.settings_active_tab;
-        tr_settings_tab_voice: root.tr_settings_tab_voice;
-        tr_settings_tab_language: root.tr_settings_tab_language;
-        tr_settings_tab_keybinds: root.tr_settings_tab_keybinds;
-        tr_settings_tab_video_interface: root.tr_settings_tab_video_interface;
-        tr_settings_tab_security: root.tr_settings_tab_security;
-        tr_settings_tab_network_proxy: root.tr_settings_tab_network_proxy;
-        tr_settings_tab_updates: root.tr_settings_tab_updates;
-        tr_settings_output_device: root.tr_settings_output_device;
         output_devices: root.output_devices;
-        tr_settings_input_device: root.tr_settings_input_device;
         input_devices: root.input_devices;
         mic_volume <=> root.mic_volume;
-        tr_settings_threshold: root.tr_settings_threshold;
         vad_threshold <=> root.vad_threshold;
-        tr_settings_mic_level: root.tr_settings_mic_level;
         mic_level: root.mic_level;
         is_testing_mic: root.is_testing_mic;
-        tr_settings_btn_test_stop: root.tr_settings_btn_test_stop;
-        tr_settings_btn_test_start: root.tr_settings_btn_test_start;
         languages: root.languages;
-        tr_keybind_mute_title: root.tr_keybind_mute_title;
-        tr_keybind_mute_desc: root.tr_keybind_mute_desc;
         recording_keybind_for: root.recording_keybind_for;
-        tr_keybind_recording_prompt: root.tr_keybind_recording_prompt;
         keybind_mute_str: root.keybind_mute_str;
-        tr_keybind_btn_record: root.tr_keybind_btn_record;
-        tr_keybind_btn_clear: root.tr_keybind_btn_clear;
-        tr_keybind_guide_title: root.tr_keybind_guide_title;
-        tr_keybind_guide_desc: root.tr_keybind_guide_desc;
-        tr_keybind_deafen_title: root.tr_keybind_deafen_title;
-        tr_keybind_deafen_desc: root.tr_keybind_deafen_desc;
         keybind_deafen_str: root.keybind_deafen_str;
         video_encoder_options: root.video_encoder_options;
         gpu_selection_available: root.gpu_selection_available;
@@ -3148,7 +3101,6 @@ export component AppWindow inherits Window {
         proxy_test_is_success: root.proxy_test_is_success;
         update_check_feedback: root.update_check_feedback;
         is_checking_update: root.is_checking_update;
-        tr_settings_done: root.tr_settings_done;
         close_settings => { root.close_settings(); }
         select_output_device(arg0) => { root.select_output_device(arg0); }
         select_input_device(arg0) => { root.select_input_device(arg0); }

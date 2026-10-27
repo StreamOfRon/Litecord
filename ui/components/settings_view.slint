@@ -24,40 +24,17 @@ export struct AudioDeviceItem {
 }
 
 export component SettingsView inherits Rectangle {
-    in property <string> tr_settings_title;
     in property <string> app_version;
     in-out property <int> settings_active_tab;
-    in property <string> tr_settings_tab_voice;
-    in property <string> tr_settings_tab_language;
-    in property <string> tr_settings_tab_keybinds;
-    in property <string> tr_settings_tab_video_interface;
-    in property <string> tr_settings_tab_security;
-    in property <string> tr_settings_tab_network_proxy;
-    in property <string> tr_settings_tab_updates;
-    in property <string> tr_settings_output_device;
     in property <[AudioDeviceItem]> output_devices;
-    in property <string> tr_settings_input_device;
     in property <[AudioDeviceItem]> input_devices;
     in-out property <float> mic_volume;
-    in property <string> tr_settings_threshold;
     in-out property <float> vad_threshold;
-    in property <string> tr_settings_mic_level;
     in property <float> mic_level;
     in property <bool> is_testing_mic;
-    in property <string> tr_settings_btn_test_stop;
-    in property <string> tr_settings_btn_test_start;
     in property <[LanguageItem]> languages;
-    in property <string> tr_keybind_mute_title;
-    in property <string> tr_keybind_mute_desc;
     in property <int> recording_keybind_for;
-    in property <string> tr_keybind_recording_prompt;
     in property <string> keybind_mute_str;
-    in property <string> tr_keybind_btn_record;
-    in property <string> tr_keybind_btn_clear;
-    in property <string> tr_keybind_guide_title;
-    in property <string> tr_keybind_guide_desc;
-    in property <string> tr_keybind_deafen_title;
-    in property <string> tr_keybind_deafen_desc;
     in property <string> keybind_deafen_str;
     in property <[SettingOptionItem]> video_encoder_options;
     in property <bool> gpu_selection_available;
@@ -84,7 +61,6 @@ export component SettingsView inherits Rectangle {
     in property <bool> proxy_test_is_success;
     in property <string> update_check_feedback;
     in property <bool> is_checking_update;
-    in property <string> tr_settings_done;
 
     callback close_settings();
     callback select_output_device(string);
@@ -161,7 +137,7 @@ export component SettingsView inherits Rectangle {
                     }
 
                     Text {
-                        text: root.tr_settings_title;
+                        text: Tr.settings_title;
                         color: AppTheme.text-strong;
                         font-size: 15px;
                         font-weight: 700;
@@ -265,7 +241,7 @@ export component SettingsView inherits Rectangle {
                                 }
 
                                 Text {
-                                    text: root.tr_settings_tab_voice;
+                                    text: Tr.settings_tab_voice;
                                     color: root.settings_active_tab == 0 ? AppTheme.text-strong : AppTheme.text-primary;
                                     font-size: 13px;
                                     font-weight: root.settings_active_tab == 0 ? 700 : 500;
@@ -313,7 +289,7 @@ export component SettingsView inherits Rectangle {
                                 }
 
                                 Text {
-                                    text: root.tr_settings_tab_language;
+                                    text: Tr.settings_tab_language;
                                     color: root.settings_active_tab == 1 ? AppTheme.text-strong : AppTheme.text-primary;
                                     font-size: 13px;
                                     font-weight: root.settings_active_tab == 1 ? 700 : 500;
@@ -361,7 +337,7 @@ export component SettingsView inherits Rectangle {
                                 }
 
                                 Text {
-                                    text: root.tr_settings_tab_keybinds;
+                                    text: Tr.settings_tab_keybinds;
                                     color: root.settings_active_tab == 2 ? AppTheme.text-strong : AppTheme.text-primary;
                                     font-size: 13px;
                                     font-weight: root.settings_active_tab == 2 ? 700 : 500;
@@ -409,7 +385,7 @@ export component SettingsView inherits Rectangle {
                                 }
 
                                 Text {
-                                    text: root.tr_settings_tab_video_interface;
+                                    text: Tr.settings_tab_video;
                                     color: root.settings_active_tab == 5 ? AppTheme.text-strong : AppTheme.text-primary;
                                     font-size: 13px;
                                     font-weight: root.settings_active_tab == 5 ? 700 : 500;
@@ -457,7 +433,7 @@ export component SettingsView inherits Rectangle {
                                 }
 
                                 Text {
-                                    text: root.tr_settings_tab_security;
+                                    text: Tr.settings_tab_security;
                                     color: root.settings_active_tab == 3 ? AppTheme.text-strong : AppTheme.text-primary;
                                     font-size: 13px;
                                     font-weight: root.settings_active_tab == 3 ? 700 : 500;
@@ -505,7 +481,7 @@ export component SettingsView inherits Rectangle {
                                 }
 
                                 Text {
-                                    text: root.tr_settings_tab_network_proxy;
+                                    text: Tr.settings_tab_network_proxy;
                                     color: root.settings_active_tab == 6 ? AppTheme.text-strong : AppTheme.text-primary;
                                     font-size: 13px;
                                     font-weight: root.settings_active_tab == 6 ? 700 : 500;
@@ -553,7 +529,7 @@ export component SettingsView inherits Rectangle {
                                 }
 
                                 Text {
-                                    text: root.tr_settings_tab_updates;
+                                    text: Tr.settings_tab_updates;
                                     color: root.settings_active_tab == 4 ? AppTheme.text-strong : AppTheme.text-primary;
                                     font-size: 13px;
                                     font-weight: root.settings_active_tab == 4 ? 700 : 500;
@@ -655,7 +631,7 @@ export component SettingsView inherits Rectangle {
                                                     }
                                                 }
                                                 Text {
-                                                    text: root.tr_settings_output_device;
+                                                    text: Tr.settings_output_device;
                                                     color: AppTheme.text-secondary;
                                                     font-size: 11px;
                                                     font-weight: 700;
@@ -791,7 +767,7 @@ export component SettingsView inherits Rectangle {
                                                     }
                                                 }
                                                 Text {
-                                                    text: root.tr_settings_input_device;
+                                                    text: Tr.settings_input_device;
                                                     color: AppTheme.text-secondary;
                                                     font-size: 11px;
                                                     font-weight: 700;
@@ -1061,7 +1037,7 @@ export component SettingsView inherits Rectangle {
                                                     }
                                                 }
                                                 Text {
-                                                    text: root.tr_settings_threshold;
+                                                    text: Tr.settings_threshold;
                                                     color: AppTheme.text-secondary;
                                                     font-size: 11px;
                                                     font-weight: 700;
@@ -1195,7 +1171,7 @@ export component SettingsView inherits Rectangle {
                                                     }
                                                 }
                                                 Text {
-                                                    text: root.tr_settings_mic_level;
+                                                    text: Tr.settings_mic_level;
                                                     color: AppTheme.text-secondary;
                                                     font-size: 11px;
                                                     font-weight: 700;
@@ -1273,7 +1249,7 @@ export component SettingsView inherits Rectangle {
                                                 padding-top: 2px;
                                                 Button {
                                                     icon: root.is_testing_mic ? @image-url("../../assets/microphone.svg") : @image-url("../../assets/headphones.svg");
-                                                    text: root.is_testing_mic ? root.tr_settings_btn_test_stop : root.tr_settings_btn_test_start;
+                                                    text: root.is_testing_mic ? Tr.settings_btn_test_stop : Tr.settings_btn_test_start;
                                                     primary: root.is_testing_mic;
                                                     clicked => { root.toggle_test_mic(); }
                                                 }
@@ -1633,7 +1609,7 @@ export component SettingsView inherits Rectangle {
                                                     }
                                                 }
                                                 Text {
-                                                    text: root.tr_keybind_mute_title;
+                                                    text: Tr.keybind_mute_title;
                                                     color: AppTheme.text-strong;
                                                     font-size: 13px;
                                                     font-weight: 700;
@@ -1643,7 +1619,7 @@ export component SettingsView inherits Rectangle {
                                             }
 
                                             Text {
-                                                text: root.tr_keybind_mute_desc;
+                                                text: Tr.keybind_mute_desc;
                                                 color: AppTheme.text-muted;
                                                 font-size: 11px;
                                                 wrap: word-wrap;
@@ -1668,7 +1644,7 @@ export component SettingsView inherits Rectangle {
                                                         alignment: center;
 
                                                         Text {
-                                                            text: root.recording_keybind_for == 1 ? root.tr_keybind_recording_prompt : (root.keybind_mute_str != "" ? root.keybind_mute_str : Tr.keybind_none);
+                                                            text: root.recording_keybind_for == 1 ? Tr.keybind_recording_prompt : (root.keybind_mute_str != "" ? root.keybind_mute_str : Tr.keybind_none);
                                                             color: root.recording_keybind_for == 1 ? AppTheme.warning : (root.keybind_mute_str != "" ? AppTheme.text-strong : AppTheme.text-subtle);
                                                             font-size: 12px;
                                                             font-weight: 700;
@@ -1687,7 +1663,7 @@ export component SettingsView inherits Rectangle {
                                                     HorizontalLayout {
                                                         alignment: center;
                                                         Text {
-                                                            text: root.recording_keybind_for == 1 ? Tr.recording : root.tr_keybind_btn_record;
+                                                            text: root.recording_keybind_for == 1 ? Tr.recording : Tr.keybind_btn_record;
                                                             color: root.recording_keybind_for == 1 ? AppTheme.text-on-warning : AppTheme.text-on-accent;
                                                             font-size: 12px;
                                                             font-weight: 700;
@@ -1717,7 +1693,7 @@ export component SettingsView inherits Rectangle {
                                                     HorizontalLayout {
                                                         alignment: center;
                                                         Text {
-                                                            text: root.tr_keybind_btn_clear;
+                                                            text: Tr.keybind_btn_clear;
                                                             color: AppTheme.text-primary;
                                                             font-size: 12px;
                                                             font-weight: 600;
@@ -1759,7 +1735,7 @@ export component SettingsView inherits Rectangle {
                                                     }
                                                 }
                                                 Text {
-                                                    text: root.tr_keybind_guide_title;
+                                                    text: Tr.keybind_guide_title;
                                                     color: AppTheme.accent;
                                                     font-size: 12px;
                                                     font-weight: 700;
@@ -1769,7 +1745,7 @@ export component SettingsView inherits Rectangle {
                                             }
 
                                             Text {
-                                                text: root.tr_keybind_guide_desc;
+                                                text: Tr.keybind_guide_desc;
                                                 color: AppTheme.text-muted;
                                                 font-size: 11px;
                                                 wrap: word-wrap;
@@ -1803,7 +1779,7 @@ export component SettingsView inherits Rectangle {
                                                     }
                                                 }
                                                 Text {
-                                                    text: root.tr_keybind_deafen_title;
+                                                    text: Tr.keybind_deafen_title;
                                                     color: AppTheme.text-strong;
                                                     font-size: 13px;
                                                     font-weight: 700;
@@ -1813,7 +1789,7 @@ export component SettingsView inherits Rectangle {
                                             }
 
                                             Text {
-                                                text: root.tr_keybind_deafen_desc;
+                                                text: Tr.keybind_deafen_desc;
                                                 color: AppTheme.text-muted;
                                                 font-size: 11px;
                                                 wrap: word-wrap;
@@ -1838,7 +1814,7 @@ export component SettingsView inherits Rectangle {
                                                         alignment: center;
 
                                                         Text {
-                                                            text: root.recording_keybind_for == 2 ? root.tr_keybind_recording_prompt : (root.keybind_deafen_str != "" ? root.keybind_deafen_str : Tr.keybind_none);
+                                                            text: root.recording_keybind_for == 2 ? Tr.keybind_recording_prompt : (root.keybind_deafen_str != "" ? root.keybind_deafen_str : Tr.keybind_none);
                                                             color: root.recording_keybind_for == 2 ? AppTheme.warning : (root.keybind_deafen_str != "" ? AppTheme.text-strong : AppTheme.text-subtle);
                                                             font-size: 12px;
                                                             font-weight: 700;
@@ -1857,7 +1833,7 @@ export component SettingsView inherits Rectangle {
                                                     HorizontalLayout {
                                                         alignment: center;
                                                         Text {
-                                                            text: root.recording_keybind_for == 2 ? Tr.recording : root.tr_keybind_btn_record;
+                                                            text: root.recording_keybind_for == 2 ? Tr.recording : Tr.keybind_btn_record;
                                                             color: root.recording_keybind_for == 2 ? AppTheme.text-on-warning : AppTheme.text-on-accent;
                                                             font-size: 12px;
                                                             font-weight: 700;
@@ -1887,7 +1863,7 @@ export component SettingsView inherits Rectangle {
                                                     HorizontalLayout {
                                                         alignment: center;
                                                         Text {
-                                                            text: root.tr_keybind_btn_clear;
+                                                            text: Tr.keybind_btn_clear;
                                                             color: AppTheme.text-primary;
                                                             font-size: 12px;
                                                             font-weight: 600;
@@ -3699,7 +3675,7 @@ export component SettingsView inherits Rectangle {
                     VerticalLayout {
                         alignment: center;
                         Button {
-                            text: root.tr_settings_done;
+                            text: Tr.settings_done;
                             primary: true;
                             clicked => { root.close_settings(); }
                         }
