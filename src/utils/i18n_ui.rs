@@ -443,6 +443,18 @@ mod tests {
     }
 
 
+
+    #[test]
+    fn no_duplicate_ui_keys() {
+        // The Task-4 sweep introduced duplicate row keys once (cancel) — this
+        // contract keeps the table single-keyed (branched Whitespace struct).
+        let mut seen: Vec<&str> = Vec::new();
+        for (key, _) in entries() {
+            assert!(!seen.contains(&key), "duplicate ui_strings key: {key}");
+            seen.push(key);
+        }
+    }
+
     #[test]
     fn proxy_alert_strings_exist_for_every_language() {
         let keys = [

@@ -71,9 +71,13 @@ def classify() -> dict[str, list[tuple[str, int, str]]]:
         for lineno, line in enumerate(path.read_text(errors="replace").splitlines(), 1):
             prop = SLINT_TR_PROP.match(line)
             if prop:
-                rows["1. tr_* hand-wired (Slint properties fed by old Translations)"].append(
-                    (str(rel), lineno, prop.group(1))
-                )
+                # tr_stream_quality is a dynamic runtime value (resolution+fps
+                # set from src/main.rs), not a translated string — same exempt
+                # as the guard test in src/utils/i18n_ui.rs.
+                if prop.group(1) != "tr_stream_quality":
+                    rows["1. tr_* hand-wired (Slint properties fed by old Translations)"].append(
+                        (str(rel), lineno, prop.group(1))
+                    )
                 continue
             is_text_line = "text:" in line and "//" not in line.split("text:")[0]
             m = SLINT_TEXT.search(line) if is_text_line else None
