@@ -93,8 +93,8 @@ ui_strings! {
     (open, set_open, "Open", "Abrir", "Abrir", "Öffnen", "Ouvrir", "Открыть", "開く"),
     (direct_camera, set_direct_camera, "Direct Camera Stream", "Transmissão Direta de Câmera", "Transmisión directa de cámara", "Direkte Kameraübertragung", "Diffusion directe de la caméra", "Прямая трансляция с камеры", "カメラを直接配信"),
     (direct_camera_desc, set_direct_camera_desc, "Webcam video only (no system audio capture)", "Apenas vídeo da webcam (sem captura de áudio do sistema)", "Solo vídeo de la webcam (sin captura de audio del sistema)", "Nur Webcam-Video (ohne Systemaudio-Aufnahme)", "Vidéo de la webcam uniquement (sans capture de l'audio système)", "Только видео с веб-камеры (без захвата системного звука)", "ウェブカメラの映像のみ (システム音声はキャプチャしません)"),
+    // dedupe: legacy Translations PT said "Voltar"; keeping the existing table row.
     (cancel, set_cancel, "Cancel", "Cancelar", "Cancelar", "Abbrechen", "Annuler", "Отмена", "キャンセル"),
-    (start_stream, set_start_stream, "Stream", "Transmitir", "Transmitir", "Übertragen", "Diffuser", "Транслировать", "配信"),
     (incoming_call, set_incoming_call, "Incoming voice call", "Chamada de voz recebida", "Llamada de voz entrante", "Eingehender Sprachanruf", "Appel vocal entrant", "Входящий голосовой звонок", "音声通話の着信"),
     (answer, set_answer, "Answer", "Atender", "Contestar", "Annehmen", "Répondre", "Ответить", "応答"),
     (decline, set_decline, "Decline", "Recusar", "Rechazar", "Ablehnen", "Refuser", "Отклонить", "拒否"),
@@ -334,6 +334,12 @@ ui_strings! {
     (proxy_socks_desc, set_proxy_socks_desc, "SOCKS5 tunnel compatible with Tor, Shadowsocks and SSH.", "Túnel SOCKS5 compatível com Tor, Shadowsocks e SSH.", "Túnel SOCKS5 compatible con Tor, Shadowsocks y SSH.", "SOCKS5-Tunnel, kompatibel mit Tor, Shadowsocks und SSH.", "Tunnel SOCKS5 compatible Tor, Shadowsocks et SSH.", "Туннель SOCKS5 совместим с Tor, Shadowsocks и SSH.", "Tor・Shadowsocks・SSH対応のSOCKS5トンネル。"), // machine TODO
     (proxy_system_name, set_proxy_system_name, "System proxy", "Proxy do Sistema", "Proxy del sistema", "Systemproxy", "Proxy système", "Системный прокси", "システムプロキシ"), // machine TODO
     (proxy_system_desc, set_proxy_system_desc, "Detects the system's global proxy automatically.", "Detecta automaticamente o proxy global do sistema.", "Detecta automáticamente el proxy global del sistema.", "Erkennt den globalen Systemproxy automatisch.", "Détecte automatiquement le proxy global du système.", "Автоматически определяет системный прокси.", "システムのグローバルプロキシを自動検出します。"), // machine TODO
+    // Windows-only capture/loopback wording (distinct from the unix arms) and
+    // device-picker placeholders for empty enumerations.
+    (vcap_gdi_auto_desc, set_vcap_gdi_auto_desc, "Tries PrintWindow for DirectX windows, using BitBlt GDI for the desktop and as fallback.", "Tenta PrintWindow para janelas DirectX e usa BitBlt GDI para desktop e fallback.", "Intenta PrintWindow para ventanas DirectX y usa BitBlt GDI para escritorio y reserva.", "Versucht PrintWindow für DirectX-Fenster und nutzt BitBlt GDI für den Desktop und als Fallback.", "Essaie PrintWindow pour les fenêtres DirectX et utilise BitBlt GDI pour le bureau en repli.", "Пробует PrintWindow для окон DirectX и использует BitBlt GDI для рабочего стола, как резерв.", "DirectXウィンドウにPrintWindowを試し、デスクトップにはBitBlt GDIをフォールバックとして使用します。"),
+    (aloop_cpal_win_desc, set_aloop_cpal_win_desc, "Direct capture from the operating system's default output endpoint.", "Captura direta do endpoint de saída padrão do sistema operacional.", "Captura directa del endpoint de salida predeterminado del sistema operativo.", "Direkte Aufnahme vom Standard-Ausgabe-Endpoint des Betriebssystems.", "Capture directe de l'endpoint de sortie par défaut du système.", "Прямой захват с выходного endpoint системы по умолчанию.", "OSのデフォルト出力endpointからの直接キャプチャ。"),
+    (device_default_input, set_device_default_input, "System Default Microphone", "Microfone Padrão do Sistema", "Micrófono predeterminado del sistema", "Systemstandardmikrofon", "Micro par défaut du système", "Микрофон по умолчанию", "システムの既定マイク"), // machine TODO
+    (device_default_output, set_device_default_output, "System Default Speakers", "Alto-falantes Padrão do Sistema", "Altavoces predeterminados del sistema", "Systemstandardlautsprecher", "Haut-parleurs par défaut du système", "Динамики по умолчанию", "システムの既定スピーカー"), // machine TODO
     (proxy_test_success, set_proxy_test_success, "Proxy test successful! Latency: {}ms (Status: {})", "Conexão bem-sucedida! Latência: {}ms (Status: {})", "¡Conexión correcta! Latencia: {}ms (Estado: {})", "Verbindung erfolgreich! Latenz: {}ms (Status: {})", "Connexion réussie ! Latence : {}ms (Statut : {})", "Соединение успешно! Задержка: {} мс (Статус: {})", "接続成功！レイテンシ: {}ms (ステータス: {})"), // machine TODO
     (proxy_test_http_status, set_proxy_test_http_status, "Proxy responded in {}ms, but with HTTP status {}", "Proxy respondeu em {}ms, mas com status HTTP {}", "El proxy respondió en {}ms, pero con estado HTTP {}", "Proxy antwortete in {}ms, aber mit HTTP-Status {}", "Le proxy a répondu en {}ms, mais avec le statut HTTP {}", "Прокси ответил за {} мс, но со статусом HTTP {}", "プロキシは {}ms で応答しましたが、HTTPステータスは {} です"), // machine TODO
     (proxy_test_failed, set_proxy_test_failed, "Failed to connect via proxy: {}", "Falha ao conectar via Proxy: {}", "Fallo al conectar vía proxy: {}", "Verbindung über Proxy fehlgeschlagen: {}", "Échec de connexion via le proxy : {}", "Не удалось подключиться через прокси: {}", "プロキシ経由で接続できませんでした: {}"), // machine TODO
@@ -483,6 +489,22 @@ mod tests {
 
 
     #[test]
+    fn device_default_rows_en_no_pt() {
+        let keys = ["device_default_input", "device_default_output"];
+        let entries = entries();
+        for key in keys {
+            let row = entries.iter().find(|(k, _)| *k == key)
+                .unwrap_or_else(|| panic!("missing device row: {key}"));
+            for (i, text) in row.1.iter().enumerate() {
+                assert!(!text.trim().is_empty(), "{key}: empty text for {}", LANGUAGES[i]);
+            }
+            for ch in ['ã', 'õ', 'ç'] {
+                assert!(!row.1[0].contains(ch), "{key}: PT-only char in EN fallback: {:?}", row.1[0]);
+            }
+        }
+    }
+
+    #[test]
     fn proxy_mode_option_rows_en_no_pt() {
         let keys = [
             "proxy_off_name", "proxy_off_desc", "proxy_http_desc",
@@ -508,9 +530,9 @@ mod tests {
         let keys = [
             "enc_auto_desc", "enc_nvenc_desc", "enc_ffmpeg_desc", "enc_openh264_desc",
             "vcap_auto_desc", "vcap_portal_desc", "vcap_x11_desc",
-            "vcap_printwin_desc", "vcap_bitblt_desc",
+            "vcap_printwin_desc", "vcap_bitblt_desc", "vcap_gdi_auto_desc",
             "aloop_auto_desc", "aloop_pulsesrc_desc", "aloop_cpal_desc",
-            "aloop_wasapi_desc", "aloop_wasapi2_desc",
+            "aloop_wasapi_desc", "aloop_wasapi2_desc", "aloop_cpal_win_desc",
         ];
         let entries = entries();
         for key in keys {

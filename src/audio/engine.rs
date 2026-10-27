@@ -95,11 +95,11 @@ pub fn enumerate_audio_devices() -> (Vec<String>, Vec<String>) {
     }
 
     if inputs.is_empty() {
-        inputs.push("Microfone Padrão do Sistema".to_string());
+        inputs.push(crate::utils::i18n_ui::ui_text().device_default_input.to_string());
     }
 
     if outputs.is_empty() {
-        outputs.push("Alto-falantes Padrão do Sistema".to_string());
+        outputs.push(crate::utils::i18n_ui::ui_text().device_default_output.to_string());
     }
 
     let result = (inputs, outputs);

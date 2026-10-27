@@ -218,9 +218,12 @@ pub fn apply_i18n_translations(ui: &AppWindow, lang: i18n::Language) {
 
 
     ui.set_current_language_code(lang.code().into());
-    crate::utils::tray::set_tray_texts();
     i18n_ui::set_current(resolved);
     i18n_ui::apply_to_window(ui, i18n_ui::table_for(resolved));
+    // Relabel the tray AFTER the current-language flip: set_tray_texts reads
+    // o's current table, so placing it earlier captured the pre-switch strings
+    // (review Finding 1).
+    crate::utils::tray::set_tray_texts();
 
     let lang_items: Vec<LanguageItem> = i18n::Language::all_available().iter().map(|&l| {
         let (display, native) = l.display_info();
@@ -331,7 +334,7 @@ pub fn populate_video_interface_settings(ui: &AppWindow) {
             SettingOptionItem {
                 id: "auto".into(),
                 name: text.gpu_auto.into(),
-                desc: text.vcap_printwin_desc.into(),
+                desc: text.vcap_gdi_auto_desc.into(),
                 is_selected: vcap == "auto",
             },
             SettingOptionItem {
@@ -393,7 +396,7 @@ pub fn populate_video_interface_settings(ui: &AppWindow) {
             SettingOptionItem {
                 id: "cpal".into(),
                 name: "CPAL WASAPI Loopback".into(),
-                desc: text.aloop_cpal_desc.into(),
+                desc: text.aloop_cpal_win_desc.into(),
                 is_selected: aloop == "cpal",
             },
         ]
