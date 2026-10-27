@@ -10,8 +10,9 @@ edit the script and re-run. Checked rows belong to a tracking task in
 |---|---|---|
 | [ ] | src/audio/engine.rs:39 | info!("Buffer de voz Linux aceito: {} frames ({})", frames, if input { "entrada" } else {  |
 | [ ] | src/audio/engine.rs:43 | log::warn!("Buffer de voz Linux de {} frames recusado ({error}); usando padrão do driver", |
-| [ ] | src/audio/engine.rs:171 | log::warn!("🎙️ Não foi possível abrir o microfone."); |
-| [ ] | src/audio/engine.rs:199 | info!("🧪 [TEST MIC] Capturando a saída padrão por loopback como microfone: {}", out.name() |
+| [ ] | src/audio/engine.rs:170 | info!("🧪 [TEST MIC] Tom sintético no lugar do microfone."); |
+| [ ] | src/audio/engine.rs:184 | log::warn!("🎙️ Não foi possível abrir o microfone."); |
+| [ ] | src/audio/engine.rs:212 | info!("🧪 [TEST MIC] Capturando a saída padrão por loopback como microfone: {}", out.name() |
 | [ ] | src/audio/sound_effects.rs:42 | warn!("⚠️ [SOUND EFFECTS] Falha na reprodução CPAL ({:?}), tentando fallback nativo...", e |
 | [ ] | src/audio/wasapi_loopback.rs:288 | info!("🛡️ [WASAPI LOOPBACK] Configurando captura de áudio excluindo PID do Litecord ({}) d |
 | [ ] | src/auth/remote_auth.rs:133 | info!("📱 Iniciando sessão de Login por QR Code (Discord Remote Auth v2)..."); |
@@ -102,81 +103,89 @@ edit the script and re-run. Checked rows belong to a tracking task in
 | [ ] | src/encoder/nvenc.rs:79 | warn!("⚠️ [EMBEDDED FFMPEG] Falha ao criar diretório {}: {}", target_dir.display(), e); |
 | [ ] | src/encoder/nvenc.rs:106 | info!("📦 [EMBEDDED FFMPEG] Dependências FFmpeg autônomas verificadas em: {}", target_dir.d |
 | [ ] | src/encoder/nvenc.rs:636 | println!("⚠️ NVENC indisponível no ambiente de teste: {}", e); |
-| [ ] | src/encoder/wmf.rs:102 | warn!("⚠️ [WMF GPU ENGINE] '{}' indisponível: {}", name, e); |
-| [ ] | src/encoder/wmf.rs:144 | warn!("⚠️ [WMF GPU ENGINE] '{}' indisponível para texturas: {}", name, e); |
-| [ ] | src/encoder/wmf.rs:332 | warn!("⚠️ [WMF GPU ENGINE] Não foi possível mudar para {}x{}: {}", w, h, e); |
-| [ ] | src/gateway/client.rs:218 | warn!("⚠️ [VOICE WATCHDOG] Detectado estado fantasma/timeout na Gateway! Forçando reset OP |
-| [ ] | src/gateway/client.rs:263 | info!("Reconectando à Gateway v9 do Discord para retomar a sessão..."); |
-| [ ] | src/gateway/client.rs:270 | info!("Conexão WebSocket estabelecida com sucesso!"); |
-| [ ] | src/gateway/client.rs:294 | warn!("🤖 [AUTOMATION] Conexão com a Gateway abandonada (teste de queda)"); |
-| [ ] | src/gateway/client.rs:395 | info!("🔁 [GATEWAY] Discord pediu reconexão; a sessão será retomada."); |
-| [ ] | src/gateway/client.rs:401 | warn!("⚠️ [GATEWAY] Sessão inválida; será aberta uma nova."); |
-| [ ] | src/gateway/client.rs:405 | warn!("⚠️ [GATEWAY] Sessão inválida, mas ainda retomável."); |
-| [ ] | src/gateway/client.rs:420 | info!("✅ [GATEWAY] Sessão retomada; chamada de voz e transmissão continuam."); |
-| [ ] | src/gateway/client.rs:428 | warn!("Gateway fechou a conexão (Close Frame): {:?}", close_frame); |
-| [ ] | src/gateway/client.rs:446 | warn!("⚠️ [GATEWAY] Conexão com o Discord perdida. Tentando reconectar automaticamente em  |
-| [ ] | src/gateway/client.rs:526 | info!("📌 [READY] Pré-carregado estado de voz: User {} -> Canal {}", u_id, c_str); |
-| [ ] | src/gateway/client.rs:563 | info!("📌 [READY_SUPPLEMENTAL] Estado de voz pré-carregado: User {} -> Canal {}", u_id, c_s |
-| [ ] | src/gateway/client.rs:589 | info!("📌 [READY_SUPPLEMENTAL] Estado de voz pré-carregado: User {} -> Canal {}", u_id, c_s |
-| [ ] | src/gateway/client.rs:736 | info!("🚪 [VOICE_STATE_UPDATE] Saída do canal de voz confirmada pelo Discord."); |
-| [ ] | src/gateway/client.rs:738 | info!("🛡️ [VOICE_STATE_UPDATE] Ignorando evento de desconexão de outra guild ({:?}) enquan |
-| [ ] | src/gateway/client.rs:975 | info!("📌 [GUILD_CREATE] Pré-carregado estado de voz: User {} -> Canal {}", uid, cid_str); |
+| [ ] | src/encoder/wmf.rs:108 | warn!("⚠️ [WMF GPU ENGINE] '{}' indisponível: {}", name, e); |
+| [ ] | src/encoder/wmf.rs:150 | warn!("⚠️ [WMF GPU ENGINE] '{}' indisponível para texturas: {}", name, e); |
+| [ ] | src/encoder/wmf.rs:340 | warn!("⚠️ [WMF GPU ENGINE] Não foi possível mudar para {}x{}: {}", w, h, e); |
+| [ ] | src/encoder/wmf.rs:395 | warn!("🐢 [WMF GPU ENGINE] Quadro lento: {:.1} ms só esperando o codificador liberar entrad |
+| [ ] | src/encoder/wmf.rs:409 | warn!("🐢 [WMF GPU ENGINE] Quadro lento: {:.1} ms (eventos {:.1} | cópia {:.1} | ProcessInp |
+| [ ] | src/gateway/client.rs:265 | warn!("⚠️ [VOICE WATCHDOG] Detectado estado fantasma/timeout na Gateway! Forçando reset OP |
+| [ ] | src/gateway/client.rs:310 | info!("Reconectando à Gateway v9 do Discord para retomar a sessão..."); |
+| [ ] | src/gateway/client.rs:317 | info!("Conexão WebSocket estabelecida com sucesso!"); |
+| [ ] | src/gateway/client.rs:341 | warn!("🤖 [AUTOMATION] Conexão com a Gateway abandonada (teste de queda)"); |
+| [ ] | src/gateway/client.rs:447 | info!("🔁 [GATEWAY] Discord pediu reconexão; a sessão será retomada."); |
+| [ ] | src/gateway/client.rs:453 | warn!("⚠️ [GATEWAY] Sessão inválida; será aberta uma nova."); |
+| [ ] | src/gateway/client.rs:457 | warn!("⚠️ [GATEWAY] Sessão inválida, mas ainda retomável."); |
+| [ ] | src/gateway/client.rs:472 | info!("✅ [GATEWAY] Sessão retomada; chamada de voz e transmissão continuam."); |
+| [ ] | src/gateway/client.rs:480 | warn!("Gateway fechou a conexão (Close Frame): {:?}", close_frame); |
+| [ ] | src/gateway/client.rs:498 | warn!("⚠️ [GATEWAY] Conexão com o Discord perdida. Tentando reconectar automaticamente em  |
+| [ ] | src/gateway/client.rs:578 | info!("📌 [READY] Pré-carregado estado de voz: User {} -> Canal {}", u_id, c_str); |
+| [ ] | src/gateway/client.rs:615 | info!("📌 [READY_SUPPLEMENTAL] Estado de voz pré-carregado: User {} -> Canal {}", u_id, c_s |
+| [ ] | src/gateway/client.rs:641 | info!("📌 [READY_SUPPLEMENTAL] Estado de voz pré-carregado: User {} -> Canal {}", u_id, c_s |
+| [ ] | src/gateway/client.rs:788 | info!("🚪 [VOICE_STATE_UPDATE] Saída do canal de voz confirmada pelo Discord."); |
+| [ ] | src/gateway/client.rs:790 | info!("🛡️ [VOICE_STATE_UPDATE] Ignorando evento de desconexão de outra guild ({:?}) enquan |
+| [ ] | src/gateway/client.rs:1027 | info!("📌 [GUILD_CREATE] Pré-carregado estado de voz: User {} -> Canal {}", uid, cid_str); |
 | [ ] | src/gateway/types.rs:438 | info!("⚙️ Carregadas configurações de volume e prioridade salvas para {} usuários", map.le |
-| [ ] | src/gateway/voice.rs:62 | info!("🔄 [VOICE GATEWAY] Reconectando à Voice Gateway (sessão {})...", my_session_id); |
-| [ ] | src/gateway/voice.rs:68 | info!("Conexão WebSocket com Voice Gateway estabelecida!"); |
-| [ ] | src/gateway/voice.rs:254 | warn!("Usando fallback HTTP para IP público: {}:{}", my_pub_ip, my_pub_port); |
-| [ ] | src/gateway/voice.rs:263 | error!("CRÍTICO: Não foi possível determinar o IP público local!"); |
-| [ ] | src/gateway/voice.rs:266 | info!("UDP IP Discovery Concluído! IP: {}:{}", my_pub_ip, my_pub_port); |
-| [ ] | src/gateway/voice.rs:311 | info!("🎧 Loop UDP de recepção de voz INICIADO (Session ID={})!", rx_session_id); |
-| [ ] | src/gateway/voice.rs:616 | info!("Loop de recepção de voz (ID={}) encerrado.", rx_session_id); |
-| [ ] | src/gateway/voice.rs:653 | warn!("Nenhum dispositivo de saída de áudio encontrado! Aguardando..."); |
-| [ ] | src/gateway/voice.rs:662 | info!("🔊 Dispositivo de saída de áudio disponível novamente."); |
-| [ ] | src/gateway/voice.rs:668 | warn!("Falha ao obter config de saída: {:?}", e); |
-| [ ] | src/gateway/voice.rs:675 | info!("Saída de Áudio (Speaker): {}Hz, {} canal(is), formato={:?} (Dispositivo: {})", |
-| [ ] | src/gateway/voice.rs:856 | |err| { warn!("Erro no stream de saída F32: {:?}", err); }, |
-| [ ] | src/gateway/voice.rs:1013 | |err| { warn!("Erro no stream de saída I16: {:?}", err); }, |
-| [ ] | src/gateway/voice.rs:1018 | warn!("Formato de saída não suportado: {:?}", config.sample_format()); |
-| [ ] | src/gateway/voice.rs:1027 | warn!("Falha ao iniciar stream de saída: {:?}", e); |
-| [ ] | src/gateway/voice.rs:1031 | info!("🔊 Stream de Saída de Áudio (Speaker) ATIVO! Reproduzindo vozes dos outros usuários. |
-| [ ] | src/gateway/voice.rs:1036 | info!("Stream de saída encerrado (sessão expirada)."); |
-| [ ] | src/gateway/voice.rs:1041 | info!("🔄 Dispositivo de saída alterado de '{}' para '{}' durante a chamada! Reconfigurando |
-| [ ] | src/gateway/voice.rs:1048 | warn!("Falha ao criar stream de saída: {:?}", e); |
-| [ ] | src/gateway/voice.rs:1053 | info!("Loop principal de áudio de saída encerrado."); |
-| [ ] | src/gateway/voice.rs:1072 | info!("Chave secreta recebida! Iniciando transmissão de áudio..."); |
-| [ ] | src/gateway/voice.rs:1121 | info!("Sessão de voz antiga (ID={}) encerrada, saindo do loop UDP!", my_session_id); |
-| [ ] | src/gateway/voice.rs:1395 | info!("DAVE OP 19: Enviado OP 5 Speaking para sincronizar SSRC {} na transição de época!", |
-| [ ] | src/gateway/voice.rs:1424 | info!("DAVE OP 22: Enviado OP 5 Speaking para sincronizar SSRC {} na transição de época!", |
-| [ ] | src/gateway/voice.rs:1609 | info!("Voice Gateway conexão fechada pelo servidor: {:?}", frame); |
-| [ ] | src/gateway/voice.rs:1622 | info!("Sessão de voz {} finalizada pelo usuário.", my_session_id); |
-| [ ] | src/gateway/voice.rs:1626 | warn!("⚠️ [VOICE GATEWAY] Conexão com Voice Gateway temporariamente perdida. Reconectando  |
-| [ ] | src/main.rs:430 | info!("[DeepSleep] Restauração acionada via Tray — acordando UI."); |
-| [ ] | src/main.rs:526 | log::warn!("Tentativa de abrir link não-HTTP rejeitada por segurança: {}", url); |
-| [ ] | src/main.rs:530 | info!("Abrindo link seguro no navegador padrão: {}", url); |
-| [ ] | src/main.rs:569 | info!("📺 Desanexando transmissão de vídeo para janela Popout! User ID: {}, Nome: {}", uid, |
-| [ ] | src/main.rs:766 | info!("👻 Modo Intangível ATIVADO no popup (cliques atravessam para os jogos/apps)!"); |
-| [ ] | src/main.rs:768 | info!("🖱️ Modo Intangível DESATIVADO no popup (janela volta a receber cliques)."); |
-| [ ] | src/main.rs:807 | info!("📺 Fechando janela Popout e reanexando transmissão à sala principal!"); |
-| [ ] | src/main.rs:1040 | info!("🛑 Encerrando transmissão de tela P2P..."); |
-| [ ] | src/main.rs:1101 | info!("▶️ Iniciando transmissão P2P (tab={}, screen_idx={}, {} @ {} FPS, hwnd={}, cam={:?} |
-| [ ] | src/main.rs:1228 | info!("🌐 Abrindo navegador em modo de transmissão (sem travas DRM)..."); |
-| [ ] | src/main.rs:1254 | info!("🚀 Navegador para transmissão iniciado com sucesso via {}", exe); |
-| [ ] | src/main.rs:1382 | info!("👁️ Ocultando stream de vídeo do usuário {}", uid); |
-| [ ] | src/main.rs:1409 | info!("👁️ Reexibindo stream de vídeo do usuário {}", uid); |
-| [ ] | src/main.rs:2137 | info!("🧪 [TEST MIC] Botão 'Se Ouvir' alternado para: {}", now_testing); |
-| [ ] | src/main.rs:2155 | info!("🎧 [TEST MIC] Iniciando saída de loopback para: '{}'", cur_output); |
-| [ ] | src/main.rs:2157 | info!("🎧 [TEST MIC] Stream de saída criado com sucesso!"); |
-| [ ] | src/main.rs:2177 | info!("🌐 Idioma alterado para: {:?} (código: {})", selected, code.as_str()); |
-| [ ] | src/main.rs:2186 | info!("⌨️ [KEYBINDS] Modo gravação alterado para target: {}", target); |
-| [ ] | src/main.rs:2474 | info!("Usuário solicitou desconexão da sala de voz..."); |
-| [ ] | src/main.rs:3056 | warn!("⚠️ Erro na sessão de QR Auth: {}", err); |
-| [ ] | src/main.rs:3190 | warn!("Conta {} não encontrada no cofre.", acc_id_str); |
-| [ ] | src/main.rs:3469 | error!("Falha na validação do Token: {}", err_msg); |
-| [ ] | src/main.rs:3569 | warn!("⚠️ Proxy ativo ({}) inacessível no início da aplicação: {}", net.proxy_mode, e); |
-| [ ] | src/main.rs:3628 | info!("Nenhum token salvo em disco. Iniciando sessão de QR Code..."); |
-| [ ] | src/main.rs:4287 | info!("[DeepSleep] Memória RAM compactada e liberada (minimize to tray)!"); |
-| [ ] | src/main.rs:4377 | info!("[DeepSleep] Memória RAM compactada e liberada ao minimizar!"); |
-| [ ] | src/main.rs:4427 | info!("🚪 Desconectando UI do canal de voz (sessão encerrada/deslocada por outro cliente)") |
-| [ ] | src/main.rs:4444 | info!("🧹 [MEMÓRIA] Faxina pós-login concluída."); |
+| [ ] | src/gateway/voice.rs:63 | info!("🔄 [VOICE GATEWAY] Reconectando à Voice Gateway (sessão {})...", my_session_id); |
+| [ ] | src/gateway/voice.rs:69 | info!("Conexão WebSocket com Voice Gateway estabelecida!"); |
+| [ ] | src/gateway/voice.rs:258 | warn!("Usando fallback HTTP para IP público: {}:{}", my_pub_ip, my_pub_port); |
+| [ ] | src/gateway/voice.rs:267 | error!("CRÍTICO: Não foi possível determinar o IP público local!"); |
+| [ ] | src/gateway/voice.rs:270 | info!("UDP IP Discovery Concluído! IP: {}:{}", my_pub_ip, my_pub_port); |
+| [ ] | src/gateway/voice.rs:319 | info!("🎧 Loop UDP de recepção de voz INICIADO (Session ID={})!", rx_session_id); |
+| [ ] | src/gateway/voice.rs:487 | info!("🔓 [DAVE] Tocando pacotes sem DAVE durante a transição para a versão 0 ({} até agora |
+| [ ] | src/gateway/voice.rs:644 | info!("Loop de recepção de voz (ID={}) encerrado.", rx_session_id); |
+| [ ] | src/gateway/voice.rs:682 | warn!("Nenhum dispositivo de saída de áudio encontrado! Aguardando..."); |
+| [ ] | src/gateway/voice.rs:691 | info!("🔊 Dispositivo de saída de áudio disponível novamente."); |
+| [ ] | src/gateway/voice.rs:697 | warn!("Falha ao obter config de saída: {:?}", e); |
+| [ ] | src/gateway/voice.rs:704 | info!("Saída de Áudio (Speaker): {}Hz, {} canal(is), formato={:?} (Dispositivo: {})", |
+| [ ] | src/gateway/voice.rs:898 | warn!("Erro no stream de saída F32: {:?}", err); |
+| [ ] | src/gateway/voice.rs:1070 | warn!("Erro no stream de saída I16: {:?}", err); |
+| [ ] | src/gateway/voice.rs:1077 | warn!("Formato de saída não suportado: {:?}", config.sample_format()); |
+| [ ] | src/gateway/voice.rs:1086 | warn!("Falha ao iniciar stream de saída: {:?}", e); |
+| [ ] | src/gateway/voice.rs:1090 | info!("🔊 Stream de Saída de Áudio (Speaker) ATIVO! Reproduzindo vozes dos outros usuários. |
+| [ ] | src/gateway/voice.rs:1107 | warn!("🔊 Saída de áudio {}: recriando o stream.", |
+| [ ] | src/gateway/voice.rs:1122 | warn!("🧪 [TEST] Stream de saída interrompido (falha simulada do dispositivo)."); |
+| [ ] | src/gateway/voice.rs:1126 | info!("Stream de saída encerrado (sessão expirada)."); |
+| [ ] | src/gateway/voice.rs:1131 | info!("🔄 Dispositivo de saída alterado de '{}' para '{}' durante a chamada! Reconfigurando |
+| [ ] | src/gateway/voice.rs:1138 | warn!("Falha ao criar stream de saída: {:?}", e); |
+| [ ] | src/gateway/voice.rs:1143 | info!("Loop principal de áudio de saída encerrado."); |
+| [ ] | src/gateway/voice.rs:1163 | info!("Chave secreta recebida! Iniciando transmissão de áudio..."); |
+| [ ] | src/gateway/voice.rs:1212 | info!("Sessão de voz antiga (ID={}) encerrada, saindo do loop UDP!", my_session_id); |
+| [ ] | src/gateway/voice.rs:1506 | info!("DAVE OP 19: Enviado OP 5 Speaking para sincronizar SSRC {} na transição de época!", |
+| [ ] | src/gateway/voice.rs:1537 | info!("DAVE OP 22: Enviado OP 5 Speaking para sincronizar SSRC {} na transição de época!", |
+| [ ] | src/gateway/voice.rs:1737 | info!("Voice Gateway conexão fechada pelo servidor: {:?}", frame); |
+| [ ] | src/gateway/voice.rs:1741 | warn!("🔇 [VOICE GATEWAY] Fechamento definitivo ({}): a sessão {} não será reconectada.", c |
+| [ ] | src/gateway/voice.rs:1756 | info!("Sessão de voz {} finalizada pelo usuário.", my_session_id); |
+| [ ] | src/gateway/voice.rs:1764 | warn!("⚠️ [VOICE GATEWAY] Conexão com Voice Gateway temporariamente perdida. Reconectando  |
+| [ ] | src/gateway/voice.rs:1923 | warn!("DAVE: não foi possível recriar a sessão: {:?}", e); |
+| [ ] | src/gateway/voice.rs:1937 | warn!("DAVE: transição {} inválida avisada (op=31) e novo KeyPackage enviado.", transition |
+| [ ] | src/main.rs:456 | info!("[DeepSleep] Restauração acionada via Tray — acordando UI."); |
+| [ ] | src/main.rs:564 | log::warn!("Tentativa de abrir link não-HTTP rejeitada por segurança: {}", url); |
+| [ ] | src/main.rs:568 | info!("Abrindo link seguro no navegador padrão: {}", url); |
+| [ ] | src/main.rs:607 | info!("📺 Desanexando transmissão de vídeo para janela Popout! User ID: {}, Nome: {}", uid, |
+| [ ] | src/main.rs:804 | info!("👻 Modo Intangível ATIVADO no popup (cliques atravessam para os jogos/apps)!"); |
+| [ ] | src/main.rs:806 | info!("🖱️ Modo Intangível DESATIVADO no popup (janela volta a receber cliques)."); |
+| [ ] | src/main.rs:845 | info!("📺 Fechando janela Popout e reanexando transmissão à sala principal!"); |
+| [ ] | src/main.rs:1078 | info!("🛑 Encerrando transmissão de tela P2P..."); |
+| [ ] | src/main.rs:1139 | info!("▶️ Iniciando transmissão P2P (tab={}, screen_idx={}, {} @ {} FPS, hwnd={}, cam={:?} |
+| [ ] | src/main.rs:1267 | info!("🌐 Abrindo navegador em modo de transmissão (sem travas DRM)..."); |
+| [ ] | src/main.rs:1293 | info!("🚀 Navegador para transmissão iniciado com sucesso via {}", exe); |
+| [ ] | src/main.rs:1421 | info!("👁️ Ocultando stream de vídeo do usuário {}", uid); |
+| [ ] | src/main.rs:1448 | info!("👁️ Reexibindo stream de vídeo do usuário {}", uid); |
+| [ ] | src/main.rs:2177 | info!("🧪 [TEST MIC] Botão 'Se Ouvir' alternado para: {}", now_testing); |
+| [ ] | src/main.rs:2195 | info!("🎧 [TEST MIC] Iniciando saída de loopback para: '{}'", cur_output); |
+| [ ] | src/main.rs:2197 | info!("🎧 [TEST MIC] Stream de saída criado com sucesso!"); |
+| [ ] | src/main.rs:2217 | info!("🌐 Idioma alterado para: {:?} (código: {})", selected, code.as_str()); |
+| [ ] | src/main.rs:2226 | info!("⌨️ [KEYBINDS] Modo gravação alterado para target: {}", target); |
+| [ ] | src/main.rs:2544 | info!("Usuário solicitou desconexão da sala de voz..."); |
+| [ ] | src/main.rs:3127 | warn!("⚠️ Erro na sessão de QR Auth: {}", err); |
+| [ ] | src/main.rs:3261 | warn!("Conta {} não encontrada no cofre.", acc_id_str); |
+| [ ] | src/main.rs:3540 | error!("Falha na validação do Token: {}", err_msg); |
+| [ ] | src/main.rs:3640 | warn!("⚠️ Proxy ativo ({}) inacessível no início da aplicação: {}", net.proxy_mode, e); |
+| [ ] | src/main.rs:3699 | info!("Nenhum token salvo em disco. Iniciando sessão de QR Code..."); |
+| [ ] | src/main.rs:4360 | info!("[DeepSleep] Memória RAM compactada e liberada (minimize to tray)!"); |
+| [ ] | src/main.rs:4450 | info!("[DeepSleep] Memória RAM compactada e liberada ao minimizar!"); |
+| [ ] | src/main.rs:4501 | info!("🚪 Desconectando UI do canal de voz (sessão encerrada/deslocada por outro cliente)") |
+| [ ] | src/main.rs:4518 | info!("🧹 [MEMÓRIA] Faxina pós-login concluída."); |
 | [ ] | src/screen_capture/audio_loopback.rs:79 | info!("🔊 [STREAM PLAYBACK] Inicializando subsistema de saída de áudio para stream..."); |
 | [ ] | src/screen_capture/audio_loopback.rs:130 | warn!("⚠️ [STREAM PLAYBACK] Nenhum dispositivo de saída encontrado!"); |
 | [ ] | src/screen_capture/audio_loopback.rs:231 | info!("🔊 [STREAM PLAYBACK] Saída de áudio ATIVA no dispositivo '{}' ({}Hz, {} canais, form |
@@ -189,46 +198,49 @@ edit the script and re-run. Checked rows belong to a tracking task in
 | [ ] | src/screen_capture/audio_loopback.rs:665 | warn!("Formato de áudio não suportado para '{}'", dev_name); |
 | [ ] | src/screen_capture/audio_loopback.rs:685 | warn!("⚠️ [LOOPBACK TX] Falha ao ativar stream de áudio em todos os dispositivos disponíve |
 | [ ] | src/screen_capture/audio_loopback.rs:797 | info!("🔊 [LOOPBACK TX] Captura de áudio da transmissão finalizada."); |
-| [ ] | src/screen_capture/gpu_capture.rs:314 | warn!("⚠️ [CAPTURA GPU] Não foi possível criar o dispositivo na {}: {}", gpu.name, e); |
-| [ ] | src/screen_capture/gpu_capture.rs:336 | Err(e) => warn!("⚠️ [CAPTURA GPU] DXGI indisponível na {} ({}); usando WGC", gpu.name, e), |
-| [ ] | src/screen_capture/gpu_capture.rs:338 | None => warn!("⚠️ [CAPTURA GPU] Monitor não encontrado entre as saídas da {}; usando WGC", |
-| [ ] | src/screen_capture/gpu_capture.rs:344 | warn!("⚠️ [CAPTURA GPU] WGC indisponível na {}: {}", gpu.name, e); |
-| [ ] | src/screen_capture/gpu_capture.rs:415 | warn!("⚠️ [CAPTURA GPU] Duplicação perdida ({}); recriando", e); |
-| [ ] | src/screen_capture/gpu_capture.rs:523 | Err(e) => warn!("⚠️ [CAPTURA GPU] Não foi possível retomar o WGC: {}", e), |
-| [ ] | src/screen_capture/gpu_capture.rs:530 | info!("🖥️ [CAPTURA GPU] Captura WGC pausada: ninguém assistindo e a prévia escondida"); |
-| [ ] | src/screen_capture/gpu_capture.rs:603 | log::debug!("captura: cópia para a memória falhou: {e}"); |
-| [ ] | src/screen_capture/gpu_tx.rs:368 | log::warn!("🎞️ [GPU TX] Transmissão volta a passar pela CPU: {}", why); |
+| [ ] | src/screen_capture/gpu_capture.rs:315 | warn!("⚠️ [CAPTURA GPU] Não foi possível criar o dispositivo na {}: {}", gpu.name, e); |
+| [ ] | src/screen_capture/gpu_capture.rs:338 | Err(e) => warn!("⚠️ [CAPTURA GPU] DXGI indisponível na {} ({}); usando WGC", gpu.name, e), |
+| [ ] | src/screen_capture/gpu_capture.rs:340 | None => warn!("⚠️ [CAPTURA GPU] Monitor não encontrado entre as saídas da {}; usando WGC", |
+| [ ] | src/screen_capture/gpu_capture.rs:346 | warn!("⚠️ [CAPTURA GPU] WGC indisponível na {}: {}", gpu.name, e); |
+| [ ] | src/screen_capture/gpu_capture.rs:376 | info!("ℹ️ [CAPTURA GPU] Windows não aceitou elevar a prioridade de agendamento da {}", gpu |
+| [ ] | src/screen_capture/gpu_capture.rs:477 | warn!("⚠️ [CAPTURA GPU] Duplicação perdida ({}); recriando", e); |
+| [ ] | src/screen_capture/gpu_capture.rs:596 | Err(e) => warn!("⚠️ [CAPTURA GPU] Não foi possível retomar o WGC: {}", e), |
+| [ ] | src/screen_capture/gpu_capture.rs:603 | info!("🖥️ [CAPTURA GPU] Captura WGC pausada: ninguém assistindo e a prévia escondida"); |
+| [ ] | src/screen_capture/gpu_capture.rs:676 | log::debug!("captura: cópia para a memória falhou: {e}"); |
+| [ ] | src/screen_capture/gpu_encode_worker.rs:76 | warn!("🐢 [GPU ENCODE] Último segundo: {} quadros codificados, {} descartados por o codific |
+| [ ] | src/screen_capture/gpu_tx.rs:369 | log::warn!("🎞️ [GPU TX] Transmissão volta a passar pela CPU: {}", why); |
 | [ ] | src/screen_capture/hw_decode/device.rs:32 | log::info!("🎞️ [GPU VIDEO] Dispositivo da GPU liberado (ninguém assiste pela GPU)"); |
 | [ ] | src/screen_capture/manager.rs:195 | info!("🛑 Parando captura e transmissão de tela P2P..."); |
 | [ ] | src/screen_capture/manager.rs:261 | warn!("Transmissão de tela já está em execução."); |
 | [ ] | src/screen_capture/manager.rs:311 | info!("🖥️ Iniciando transmissão P2P H.264 ({}x{} @ {} FPS, screen_idx={}, hwnd={}, cam={:? |
-| [ ] | src/screen_capture/manager.rs:576 | warn!("⚠️ [DXGI GPU] Access Lost (troca de modo D3D11 / UAC), recriando sessão..."); |
-| [ ] | src/screen_capture/manager.rs:583 | warn!("⚠️ [DXGI GPU] Erro na duplicação DXGI ({:?}), tentando recriar...", e); |
-| [ ] | src/screen_capture/manager.rs:610 | warn!("⚠️ [DXGI GPU] DXGI Duplication indisponível para este monitor, iniciando Windows Gr |
-| [ ] | src/screen_capture/manager.rs:659 | info!("📷 [CAMERA WORKER] Buscando câmeras disponíveis na thread dedicada (índice seleciona |
-| [ ] | src/screen_capture/manager.rs:662 | info!("📷 [CAMERA WORKER] {} dispositivo(s) de câmera encontrado(s) no sistema", devs.len() |
-| [ ] | src/screen_capture/manager.rs:696 | info!("📷 [CAMERA WORKER] Câmera '{}' aberta com sucesso ({}x{} @ {} FPS, {:?})!", dev.name |
-| [ ] | src/screen_capture/manager.rs:706 | warn!("⚠️ [CAMERA WORKER] Falha ao abrir câmera '{}' em todos os formatos de pixel testado |
-| [ ] | src/screen_capture/manager.rs:710 | warn!("⚠️ [CAMERA WORKER] Câmera índice {} fora do alcance de dispositivos disponíveis", c |
-| [ ] | src/screen_capture/manager.rs:715 | warn!("⚠️ [CAMERA WORKER] Erro ao listar dispositivos de câmera: {:?}", e); |
-| [ ] | src/screen_capture/manager.rs:999 | info!("📶 [ABR] Taxa da transmissão: {:.1} -> {:.1} Mbps (pior perda entre espectadores: {: |
-| [ ] | src/screen_capture/manager.rs:1011 | info!("👀 [ASSISTIR SOB DEMANDA] {}", if watched { "Alguém começou a assistir: codificando. |
-| [ ] | src/screen_capture/manager.rs:1164 | info!("🖥️ Thread emissora de tela/vídeo finalizada."); |
-| [ ] | src/screen_capture/manager.rs:1219 | info!("🎬 [VIDEO DECODER WORKER] Thread dedicada de decodificação H.264 iniciada com buffer |
-| [ ] | src/screen_capture/manager.rs:1336 | log::info!("✅ [DECODER RECOVERY] IDR/SPS recebido para peer {} — retomando decodificação!" |
-| [ ] | src/screen_capture/manager.rs:1408 | log::info!("🔄 [DECODER RECOVERY] Resetando o decodificador do peer {} após {} falhas conse |
-| [ ] | src/screen_capture/manager.rs:1435 | info!("🎬 [VIDEO DECODER WORKER] Thread de decodificação finalizada."); |
-| [ ] | src/screen_capture/manager.rs:1482 | warn!("Falha ao parsear endereço UDP RX"); |
-| [ ] | src/screen_capture/manager.rs:1736 | info!("🌐 [NAT TRAVERSAL] Porta pública mapeada com sucesso no socket P2P: {}", public_stun |
-| [ ] | src/screen_capture/manager.rs:1763 | info!("📥 [TELEMETRIA RX P2P] {} pacotes nos últimos {:.0}s (último: OP={}, UID={}, IP={})" |
-| [ ] | src/screen_capture/manager.rs:1995 | info!("📡 [AUTO-ATIVAÇÃO STREAM] Usuário {} iniciou transmissão de tela (quadro recebido)!" |
-| [ ] | src/screen_capture/manager.rs:2019 | log::warn!("⚠️ [JITTER BUFFER] Fila de decodificação cheia ({} quadros): {} quadro(s) desc |
-| [ ] | src/screen_capture/manager.rs:2116 | info!("📡 [AUTO-ATIVAÇÃO STREAM FEC] Usuário {} iniciou transmissão de tela (quadro recuper |
-| [ ] | src/screen_capture/manager.rs:2141 | log::warn!("⚠️ [JITTER BUFFER] Fila de decodificação cheia ({} quadros): {} quadro(s) desc |
-| [ ] | src/screen_capture/manager.rs:2183 | info!("👀 [ASSISTIR SOB DEMANDA] UID={} começou a assistir (de {}).", pkt_uid, src_addr); |
-| [ ] | src/screen_capture/manager.rs:2205 | warn!("🚫 [ASSISTIR SOB DEMANDA] Pedido de UID={} ({}) recusado: {:?} ({} desde o último av |
-| [ ] | src/screen_capture/manager.rs:2227 | info!("🔑 [ASSISTIR SOB DEMANDA] Chave da transmissão de UID={} recebida.", pkt_uid); |
-| [ ] | src/screen_capture/manager.rs:2245 | info!("📡 Usuário {} encerrou a transmissão de tela via UDP OP_STOP.", pkt_uid); |
+| [ ] | src/screen_capture/manager.rs:577 | warn!("⚠️ [DXGI GPU] Access Lost (troca de modo D3D11 / UAC), recriando sessão..."); |
+| [ ] | src/screen_capture/manager.rs:584 | warn!("⚠️ [DXGI GPU] Erro na duplicação DXGI ({:?}), tentando recriar...", e); |
+| [ ] | src/screen_capture/manager.rs:611 | warn!("⚠️ [DXGI GPU] DXGI Duplication indisponível para este monitor, iniciando Windows Gr |
+| [ ] | src/screen_capture/manager.rs:660 | info!("📷 [CAMERA WORKER] Buscando câmeras disponíveis na thread dedicada (índice seleciona |
+| [ ] | src/screen_capture/manager.rs:663 | info!("📷 [CAMERA WORKER] {} dispositivo(s) de câmera encontrado(s) no sistema", devs.len() |
+| [ ] | src/screen_capture/manager.rs:697 | info!("📷 [CAMERA WORKER] Câmera '{}' aberta com sucesso ({}x{} @ {} FPS, {:?})!", dev.name |
+| [ ] | src/screen_capture/manager.rs:707 | warn!("⚠️ [CAMERA WORKER] Falha ao abrir câmera '{}' em todos os formatos de pixel testado |
+| [ ] | src/screen_capture/manager.rs:711 | warn!("⚠️ [CAMERA WORKER] Câmera índice {} fora do alcance de dispositivos disponíveis", c |
+| [ ] | src/screen_capture/manager.rs:716 | warn!("⚠️ [CAMERA WORKER] Erro ao listar dispositivos de câmera: {:?}", e); |
+| [ ] | src/screen_capture/manager.rs:1021 | info!("📶 [ABR] Taxa da transmissão: {:.1} -> {:.1} Mbps (pior perda entre espectadores: {: |
+| [ ] | src/screen_capture/manager.rs:1033 | info!("👀 [ASSISTIR SOB DEMANDA] {}", if watched { "Alguém começou a assistir: codificando. |
+| [ ] | src/screen_capture/manager.rs:1175 | warn!("🐢 [TX] Volta do laço de envio levou {:.1} ms (codificação {:.1} ms)", turn_us as f6 |
+| [ ] | src/screen_capture/manager.rs:1213 | info!("🖥️ Thread emissora de tela/vídeo finalizada."); |
+| [ ] | src/screen_capture/manager.rs:1268 | info!("🎬 [VIDEO DECODER WORKER] Thread dedicada de decodificação H.264 iniciada com buffer |
+| [ ] | src/screen_capture/manager.rs:1385 | log::info!("✅ [DECODER RECOVERY] IDR/SPS recebido para peer {} — retomando decodificação!" |
+| [ ] | src/screen_capture/manager.rs:1457 | log::info!("🔄 [DECODER RECOVERY] Resetando o decodificador do peer {} após {} falhas conse |
+| [ ] | src/screen_capture/manager.rs:1484 | info!("🎬 [VIDEO DECODER WORKER] Thread de decodificação finalizada."); |
+| [ ] | src/screen_capture/manager.rs:1531 | warn!("Falha ao parsear endereço UDP RX"); |
+| [ ] | src/screen_capture/manager.rs:1785 | info!("🌐 [NAT TRAVERSAL] Porta pública mapeada com sucesso no socket P2P: {}", public_stun |
+| [ ] | src/screen_capture/manager.rs:1812 | info!("📥 [TELEMETRIA RX P2P] {} pacotes nos últimos {:.0}s (último: OP={}, UID={}, IP={})" |
+| [ ] | src/screen_capture/manager.rs:2044 | info!("📡 [AUTO-ATIVAÇÃO STREAM] Usuário {} iniciou transmissão de tela (quadro recebido)!" |
+| [ ] | src/screen_capture/manager.rs:2068 | log::warn!("⚠️ [JITTER BUFFER] Fila de decodificação cheia ({} quadros): {} quadro(s) desc |
+| [ ] | src/screen_capture/manager.rs:2165 | info!("📡 [AUTO-ATIVAÇÃO STREAM FEC] Usuário {} iniciou transmissão de tela (quadro recuper |
+| [ ] | src/screen_capture/manager.rs:2190 | log::warn!("⚠️ [JITTER BUFFER] Fila de decodificação cheia ({} quadros): {} quadro(s) desc |
+| [ ] | src/screen_capture/manager.rs:2232 | info!("👀 [ASSISTIR SOB DEMANDA] UID={} começou a assistir (de {}).", pkt_uid, src_addr); |
+| [ ] | src/screen_capture/manager.rs:2254 | warn!("🚫 [ASSISTIR SOB DEMANDA] Pedido de UID={} ({}) recusado: {:?} ({} desde o último av |
+| [ ] | src/screen_capture/manager.rs:2276 | info!("🔑 [ASSISTIR SOB DEMANDA] Chave da transmissão de UID={} recebida.", pkt_uid); |
+| [ ] | src/screen_capture/manager.rs:2294 | info!("📡 Usuário {} encerrou a transmissão de tela via UDP OP_STOP.", pkt_uid); |
 | [ ] | src/screen_capture/signaling.rs:129 | info!("🌐 [STUN SYNCHRONOUS RESOLUTION] IP Público WAN mapeado: {}", resolved); |
 | [ ] | src/screen_capture/signaling.rs:179 | warn!("📡 [SIGNALING PRESENÇA] UID={} disse que parou, mas o vídeo dele continua chegando:  |
 | [ ] | src/screen_capture/signaling.rs:271 | info!("🥊 [UDP HOLE PUNCH] Enviando burst de STUN/Punch (10 pacotes) para {} a partir da si |
@@ -261,35 +273,35 @@ edit the script and re-run. Checked rows belong to a tracking task in
 | [ ] | src/screen_capture/video_pipeline.rs:647 | log::warn!("⚠️ [DECODER RX] {} frame(s) descartado(s) por erro/falta de referência desde o |
 | [ ] | src/ui/data_loader.rs:273 | error!("Não foi possível verificar permissões do servidor: {}", err); |
 | [ ] | src/ui/data_loader.rs:276 | error!("Não foi possível verificar permissões do servidor: {}", err); |
-| [ ] | src/ui/data_loader.rs:1037 | info!("Candidato a token recusado pelo Discord ({}). Testando próximo candidato...", err_m |
-| [ ] | src/ui/data_loader.rs:1072 | info!("🔔 Atualização v{} pronta para ser exibida ao usuário!", rel.version); |
+| [ ] | src/ui/data_loader.rs:1041 | info!("Candidato a token recusado pelo Discord ({}). Testando próximo candidato...", err_m |
+| [ ] | src/ui/data_loader.rs:1076 | info!("🔔 Atualização v{} pronta para ser exibida ao usuário!", rel.version); |
 | [ ] | src/ui/gpu_video.rs:42 | log::info!("🎞️ [GPU VIDEO] Camadas de vídeo pela GPU: janela principal {}, popout {}", mai |
 | [ ] | src/ui/gpu_video.rs:130 | log::info!("🎞️ [GPU VIDEO] Transmissão do peer {} exibida direto pela GPU", peer); |
 | [ ] | src/ui/gpu_video.rs:133 | Err(e) => log::warn!("🎞️ [GPU VIDEO] Não foi possível ligar as camadas de vídeo: {:?}", e) |
 | [ ] | src/ui/gpu_video.rs:136 | log::info!("🎞️ [GPU VIDEO] Transmissão volta a ser exibida pela CPU"); |
-| [ ] | src/ui/helpers.rs:728 | warn!("Não foi possível carregar o índice de comandos do servidor {}: {}", guild_id, e); |
+| [ ] | src/ui/helpers.rs:796 | warn!("Não foi possível carregar o índice de comandos do servidor {}: {}", guild_id, e); |
 | [ ] | src/utils/attachment_cache.rs:29 | warn!("Não foi possível criar diretório temporário de imagens: {}", e); |
 | [ ] | src/utils/attachment_cache.rs:300 | log::warn!("Anexo de imagem com dimensões excessivas rejeitado por segurança: {}x{}", w, h |
 | [ ] | src/utils/emoji_cache.rs:42 | warn!("Não foi possível criar diretório de cache de emojis: {}", e); |
-| [ ] | src/utils/emoji_cache.rs:287 | log::warn!("Emoji com dimensões excessivas rejeitado: {}x{}", w, h); |
-| [ ] | src/utils/keybinds.rs:305 | log::warn!("⌨️ [KEYBINDS] Não foi possível registrar a entrada de teclado; atalhos globais |
-| [ ] | src/utils/keybinds.rs:389 | info!("⌨️ [KEYBINDS] Gravação cancelada via ESC"); |
-| [ ] | src/utils/keybinds.rs:519 | log::warn!("⚠️ [KEYBINDS] Nenhum teclado com permissão de leitura em /dev/input/. Atalhos  |
-| [ ] | src/utils/keybinds.rs:565 | info!("⌨️ [KEYBINDS] Gravação cancelada via ESC"); |
-| [ ] | src/utils/keybinds.rs:697 | info!("⌨️ [KEYBINDS] Atalhos globais não suportados nativamente nesta plataforma."); |
+| [ ] | src/utils/emoji_cache.rs:288 | log::warn!("Emoji com dimensões excessivas rejeitado: {}x{}", w, h); |
+| [ ] | src/utils/keybinds.rs:320 | log::warn!("⌨️ [KEYBINDS] Não foi possível registrar a entrada de teclado; atalhos globais |
+| [ ] | src/utils/keybinds.rs:404 | info!("⌨️ [KEYBINDS] Gravação cancelada via ESC"); |
+| [ ] | src/utils/keybinds.rs:539 | log::warn!("⚠️ [KEYBINDS] Nenhum teclado com permissão de leitura em /dev/input/. Atalhos  |
+| [ ] | src/utils/keybinds.rs:585 | info!("⌨️ [KEYBINDS] Gravação cancelada via ESC"); |
+| [ ] | src/utils/keybinds.rs:717 | info!("⌨️ [KEYBINDS] Atalhos globais não suportados nativamente nesta plataforma."); |
 | [ ] | src/utils/network_settings.rs:41 | info!("🌐 Configurações de Rede e Proxy carregadas: modo={}", settings.proxy_mode); |
 | [ ] | src/utils/network_settings.rs:77 | info!("🌐 Configurações de Proxy salvas: modo={}, host={}:{}", settings.proxy_mode, setting |
 | [ ] | src/utils/tray.rs:124 | warn!("Não foi possível inicializar o ícone do System Tray ({:?}), continuando modo janela |
 | [ ] | src/utils/updater.rs:48 | info!("🏷️ Versão {} marcada como ignorada em {}", tag, CONFIG_FILE); |
-| [ ] | src/utils/updater.rs:139 | info!("🔍 Comparando versão local ({}) com a última release do GitHub...", get_local_versio |
-| [ ] | src/utils/updater.rs:188 | info!("Versão remota {} está marcada como ignorada pelo usuário.", tag_name); |
-| [ ] | src/utils/updater.rs:264 | info!("Iniciando download da atualização: {}", download_url); |
-| [ ] | src/utils/updater.rs:319 | info!("Download concluído e validado ({} bytes)! Executando instalador: {:?}", downloaded, |
-| [ ] | src/utils/updater.rs:349 | info!("Instalador agendado com sucesso. Encerrando processo do Litecord para atualização.. |
-| [ ] | src/utils/updater.rs:404 | info!("Download concluído e validado ({} bytes)! Atualizando binário Linux...", downloaded |
-| [ ] | src/utils/video_settings.rs:52 | info!("⚙️ Configurações de Vídeo e Interface carregadas: {:?}", settings); |
+| [ ] | src/utils/updater.rs:144 | info!("🔍 Comparando versão local ({}) com a última release do GitHub...", get_local_versio |
+| [ ] | src/utils/updater.rs:193 | info!("Versão remota {} está marcada como ignorada pelo usuário.", tag_name); |
+| [ ] | src/utils/updater.rs:269 | info!("Iniciando download da atualização: {}", download_url); |
+| [ ] | src/utils/updater.rs:324 | info!("Download concluído e validado ({} bytes)! Executando instalador: {:?}", downloaded, |
+| [ ] | src/utils/updater.rs:354 | info!("Instalador agendado com sucesso. Encerrando processo do Litecord para atualização.. |
+| [ ] | src/utils/updater.rs:409 | info!("Download concluído e validado ({} bytes)! Atualizando binário Linux...", downloaded |
+| [ ] | src/utils/video_settings.rs:99 | info!("⚙️ Configurações de Vídeo e Interface carregadas: {:?}", settings); |
 
-**280 entries.**
+**292 entries.**
 
 ## 3b. hardcoded slint literals (brand/untranslated ASCII, review)
 
@@ -297,17 +309,11 @@ edit the script and re-run. Checked rows belong to a tracking task in
 |---|---|---|
 | [ ] | ui/appwindow.slint:268 | Ctrl+Shift+M |
 | [ ] | ui/appwindow.slint:269 | Ctrl+Shift+D |
-| [ ] | ui/appwindow.slint:368 | System Default Microphone |
-| [ ] | ui/appwindow.slint:369 | System Default Speakers |
-| [ ] | ui/appwindow.slint:1804 | \{Math.round(root.stream_remote_volume * 100)}% |
-| [ ] | ui/appwindow.slint:5105 | \{Math.round(root.stream_volume * 100)}% |
-| [ ] | ui/components/channel_sidebar.slint:265 | \{channel.voice_count} |
-| [ ] | ui/components/settings_view.slint:571 | Native Rust GUI |
-| [ ] | ui/components/settings_view.slint:2749 | MLS RFC 9420 |
-| [ ] | ui/components/settings_view.slint:3272 | Tor & SOCKS5 |
-| [ ] | ui/components/settings_view.slint:3304 | Debugging & Burp |
-| [ ] | ui/components/settings_view.slint:3481 | Litecord Client |
-| [ ] | ui/components/settings_view.slint:3666 | Litecord • Ultra-Fast Native Discord Client |
+| [ ] | ui/appwindow.slint:376 | System Default Microphone |
+| [ ] | ui/appwindow.slint:377 | System Default Speakers |
+| [ ] | ui/appwindow.slint:1815 | \{Math.round(root.stream_remote_volume * 100)}% |
+| [ ] | ui/appwindow.slint:5290 | \{Math.round(root.stream_volume * 100)}% |
+| [ ] | ui/components/channel_sidebar.slint:292 | \{channel.voice_count} |
 | [ ] | ui/components/tr.slint:5 | Voice & Audio Settings |
 | [ ] | ui/components/tr.slint:6 | Voice & Audio |
 | [ ] | ui/components/tr.slint:10 | Updates & About |
@@ -338,226 +344,245 @@ edit the script and re-run. Checked rows belong to a tracking task in
 | [ ] | ui/components/tr.slint:38 | SOCKS5 tunnel compatible with Tor, Shadowsocks and SSH. |
 | [ ] | ui/components/tr.slint:39 | System proxy |
 | [ ] | ui/components/tr.slint:40 | Detects the system's global proxy automatically. |
-| [ ] | ui/components/tr.slint:41 | Proxy test successful! Latency: {}ms (Status: {}) |
-| [ ] | ui/components/tr.slint:42 | Proxy responded in {}ms, but with HTTP status {} |
-| [ ] | ui/components/tr.slint:43 | Failed to connect via proxy: {} |
-| [ ] | ui/components/tr.slint:44 | System proxy connection failed! Click here or the gear at the top to open Settin |
-| [ ] | ui/components/tr.slint:45 | The proxy ({}: {}:{}) is unreachable or refusing connections! Click here or the  |
-| [ ] | ui/components/tr.slint:48 | Sign in to Litecord |
-| [ ] | ui/components/tr.slint:49 | Enter your Discord User Token for direct connection to Gateway v9.\n(Estimated R |
-| [ ] | ui/components/tr.slint:50 | Paste your Discord User Token here... |
-| [ ] | ui/components/tr.slint:51 | Connect to Gateway |
-| [ ] | ui/components/tr.slint:52 | Detect Discord Token |
-| [ ] | ui/components/tr.slint:53 | SERVER CHANNELS |
-| [ ] | ui/components/tr.slint:55 | View Text Chat |
-| [ ] | ui/components/tr.slint:56 | Disconnect Call |
-| [ ] | ui/components/tr.slint:57 | VOICE ROOM PARTICIPANTS |
-| [ ] | ui/components/tr.slint:59 | View Voice Room |
-| [ ] | ui/components/tr.slint:63 | LANGUAGE / IDIOMA |
-| [ ] | ui/components/tr.slint:64 | Sign Out |
-| [ ] | ui/components/tr.slint:65 | Do you want to log out from  |
-| [ ] | ui/components/tr.slint:67 | Sign Out |
-| [ ] | ui/components/tr.slint:69 | Connecting to Voice Channel... |
-| [ ] | ui/components/tr.slint:70 | Authenticating with Voice Gateway v9 and negotiating DAVE E2EE encryption... |
-| [ ] | ui/components/tr.slint:71 | Voice Connected |
-| [ ] | ui/components/tr.slint:72 | Log in with QR Code |
-| [ ] | ui/components/tr.slint:73 | Scan this with the Discord mobile app to log in instantly. |
-| [ ] | ui/components/tr.slint:74 | Approve login on your phone! |
-| [ ] | ui/components/tr.slint:75 | Test Microphone (\"Hear Yourself\") |
-| [ ] | ui/components/tr.slint:76 | Stop Testing (Listening...) |
-| [ ] | ui/components/tr.slint:78 | Toggle Mute |
-| [ ] | ui/components/tr.slint:79 | Global shortcut to mute or unmute your microphone during voice calls. |
-| [ ] | ui/components/tr.slint:80 | Press desired key combination... |
-| [ ] | ui/components/tr.slint:81 | Record Keybind |
-| [ ] | ui/components/tr.slint:83 | Global Shortcuts |
-| [ ] | ui/components/tr.slint:84 | Keybinds work seamlessly across all applications and games, even when Litecord i |
-| [ ] | ui/components/tr.slint:85 | Toggle Deafen |
-| [ ] | ui/components/tr.slint:86 | Global shortcut to deafen or undeafen all voice audio and microphone. |
-| [ ] | ui/components/tr.slint:88 | Share on web |
-| [ ] | ui/components/tr.slint:90 | Stop web |
-| [ ] | ui/components/tr.slint:92 | Copy link |
-| [ ] | ui/components/tr.slint:93 | Link copied |
-| [ ] | ui/components/tr.slint:95 | Re-generate QR Code |
-| [ ] | ui/components/tr.slint:96 | Reduced preview to save resources |
-| [ ] | ui/components/tr.slint:97 | You are streaming |
-| [ ] | ui/components/tr.slint:100 | Disable Intangible |
-| [ ] | ui/components/tr.slint:101 | DISCORD SMART COMMANDS |
-| [ ] | ui/components/tr.slint:102 | Click to autocomplete |
-| [ ] | ui/components/tr.slint:103 | Manage Accounts |
-| [ ] | ui/components/tr.slint:104 | Quickly switch accounts or add a second saved account. |
-| [ ] | ui/components/tr.slint:107 | + Add Another Account |
-| [ ] | ui/components/tr.slint:108 | Sign Out of All Accounts |
-| [ ] | ui/components/tr.slint:109 | New Update Available! |
-| [ ] | ui/components/tr.slint:110 | Don't show again |
-| [ ] | ui/components/tr.slint:111 | Remind Me Later |
-| [ ] | ui/components/tr.slint:112 | Yes, Update |
-| [ ] | ui/components/tr.slint:113 | Share your screen |
-| [ ] | ui/components/tr.slint:114 | Screens / Windows |
-| [ ] | ui/components/tr.slint:118 | No camera / webcam detected on the system. |
-| [ ] | ui/components/tr.slint:119 | STREAM QUALITY |
-| [ ] | ui/components/tr.slint:121 | FRAME RATE (FPS) |
-| [ ] | ui/components/tr.slint:122 | The webcam will stream using your device's native resolution and frame rate. |
-| [ ] | ui/components/tr.slint:123 | Stream Computer / Window Audio |
-| [ ] | ui/components/tr.slint:124 | Includes the app or game sound during the stream |
-| [ ] | ui/components/tr.slint:125 | Streaming Browser (Videos / DRM) |
-| [ ] | ui/components/tr.slint:126 | Opens the browser without black-screen locks to watch with friends |
-| [ ] | ui/components/tr.slint:128 | Direct Camera Stream |
-| [ ] | ui/components/tr.slint:129 | Webcam video only (no system audio capture) |
-| [ ] | ui/components/tr.slint:131 | Incoming voice call |
-| [ ] | ui/components/tr.slint:134 | Litecord - Detached Stream |
-| [ ] | ui/components/tr.slint:136 | Output Device |
-| [ ] | ui/components/tr.slint:137 | For the best positional fidelity and to avoid echo or sound leaking in group cal |
-| [ ] | ui/components/tr.slint:138 | Input Device |
-| [ ] | ui/components/tr.slint:139 | Select your main microphone or headset. We recommend using the default device or |
-| [ ] | ui/components/tr.slint:140 | INPUT VOLUME (MICROPHONE GAIN) |
-| [ ] | ui/components/tr.slint:141 | Microphone Gain |
-| [ ] | ui/components/tr.slint:142 | Adjust your microphone gain. Values above 100% (up to 200%) amplify your voice s |
-| [ ] | ui/components/tr.slint:143 | Sensitivity (VAD) |
-| [ ] | ui/components/tr.slint:144 | Speak normally. Adjust the control so your voice goes past the white mark, while |
-| [ ] | ui/components/tr.slint:145 | Loopback Test |
-| [ ] | ui/components/tr.slint:146 | Lets you hear your processed voice in real time with Litecord's filter through y |
-| [ ] | ui/components/tr.slint:147 | Smart Voice Ducking |
-| [ ] | ui/components/tr.slint:149 | The Opus PLC audio engine automatically lowers other members' sound by 12 dB whe |
-| [ ] | ui/components/tr.slint:150 | Competitive Edge |
-| [ ] | ui/components/tr.slint:151 | Eliminates the cacophony in decisive FPS/MOBA moments, making sure critical call |
-| [ ] | ui/components/tr.slint:152 | SELECT THE CLIENT LANGUAGE |
-| [ ] | ui/components/tr.slint:153 | Instant Switch |
-| [ ] | ui/components/tr.slint:154 | Language changes are applied in real time across all windows without restarting  |
-| [ ] | ui/components/tr.slint:155 | Automatic Detection |
-| [ ] | ui/components/tr.slint:156 | The 'Auto' option detects the default region and language of your operating syst |
-| [ ] | ui/components/tr.slint:157 | Key Tip |
-| [ ] | ui/components/tr.slint:158 | You can use keys such as F1-F12, NumPad keys, or combinations with Ctrl, Shift a |
-| [ ] | ui/components/tr.slint:159 | VIDEO ENCODER (H.264) |
-| [ ] | ui/components/tr.slint:160 | Automatic (recommended) |
-| [ ] | ui/components/tr.slint:161 | Uses the GPU connected to the captured monitor, avoiding transfers between GPUs. |
-| [ ] | ui/components/tr.slint:162 | CPU (OpenH264) |
-| [ ] | ui/components/tr.slint:163 | Compatibility option: encodes in software and uses more CPU. |
-| [ ] | ui/components/tr.slint:164 | DXGI captures this GPU's monitors. WGC captures windows or monitors on another G |
-| [ ] | ui/components/tr.slint:165 | WGC captures on this GPU; the image may be transferred between GPUs. |
-| [ ] | ui/components/tr.slint:166 | Applies to the next screen share. If the selected GPU is unavailable, Automatic  |
-| [ ] | ui/components/tr.slint:167 | Selected GPU unavailable |
-| [ ] | ui/components/tr.slint:168 | Current capture |
-| [ ] | ui/components/tr.slint:169 | GPU processing |
-| [ ] | ui/components/tr.slint:170 | Compatibility mode |
-| [ ] | ui/components/tr.slint:171 | DXGI captures monitors; WGC captures windows or another GPU. The options below a |
-| [ ] | ui/components/tr.slint:172 | Select the GPU or CPU acceleration engine used to encode screen streams. |
-| [ ] | ui/components/tr.slint:174 | Light theme |
-| [ ] | ui/components/tr.slint:175 | Switches the whole interface between the light and dark palettes. |
-| [ ] | ui/components/tr.slint:176 | SCREEN AND WINDOW CAPTURE METHOD |
-| [ ] | ui/components/tr.slint:177 | Defines how Litecord captures the visual content of the operating system. |
-| [ ] | ui/components/tr.slint:178 | STREAM AUDIO (SYSTEM LOOPBACK) |
-| [ ] | ui/components/tr.slint:179 | Defines the technology used to capture the internal sound of games, videos and t |
-| [ ] | ui/components/tr.slint:180 | STREAM NOTICES AND INTERFACE |
-| [ ] | ui/components/tr.slint:181 | Reduced Preview Notice |
-| [ ] | ui/components/tr.slint:182 | Shows the warning pill in your own preview when the stream starts, telling you t |
-| [ ] | ui/components/tr.slint:183 | Performance Monitor (CPU / RAM / GPU) |
-| [ ] | ui/components/tr.slint:184 | Network diagnostics |
-| [ ] | ui/components/tr.slint:185 | Checks whether screen sharing with someone on another network can connect direct |
-| [ ] | ui/components/tr.slint:186 | Test network |
-| [ ] | ui/components/tr.slint:188 | Copy report |
-| [ ] | ui/components/tr.slint:190 | Your network allows direct connections: screen sharing with other networks shoul |
-| [ ] | ui/components/tr.slint:191 | Your router or provider uses symmetric NAT: screen sharing across the internet m |
-| [ ] | ui/components/tr.slint:192 | Your provider shows a different public address per server (carrier-grade NAT): s |
-| [ ] | ui/components/tr.slint:193 | No test server answered: UDP looks blocked on this network, so screen sharing ac |
-| [ ] | ui/components/tr.slint:194 | The signaling server did not answer, so peers cannot find each other over the in |
-| [ ] | ui/components/tr.slint:195 | GPU rendering |
-| [ ] | ui/components/tr.slint:196 | Draws the interface with the graphics card. Off (default), the CPU draws it, whi |
-| [ ] | ui/components/tr.slint:197 | Shows live RAM, CPU and GPU usage in the application title bar next to the setti |
-| [ ] | ui/components/tr.slint:198 | E2EE Video & Sound Encryption |
-| [ ] | ui/components/tr.slint:199 | AES-256-GCM ACTIVE |
-| [ ] | ui/components/tr.slint:200 | Every 60 FPS frame and the loopback audio are encrypted with 256-bit symmetric k |
-| [ ] | ui/components/tr.slint:201 | Wi-Fi & LAN Protection |
-| [ ] | ui/components/tr.slint:202 | Prevents anyone on the same router from capturing your stream with packet analyz |
-| [ ] | ui/components/tr.slint:203 | Windows DPAPI Credential Vault |
-| [ ] | ui/components/tr.slint:205 | Your Discord token is stored with native CryptProtectData encryption bound to yo |
-| [ ] | ui/components/tr.slint:206 | Stealer Immunity |
-| [ ] | ui/components/tr.slint:207 | Unauthorized scripts and malware cannot steal your session because the cryptogra |
-| [ ] | ui/components/tr.slint:208 | Official Discord Voice (DAVE Protocol) |
-| [ ] | ui/components/tr.slint:209 | End-to-end encrypted voice communication with Discord's official voice servers,  |
-| [ ] | ui/components/tr.slint:210 | Zero Intermediaries |
-| [ ] | ui/components/tr.slint:211 | Connections are 100% direct to the Discord API. There are no third-party servers |
-| [ ] | ui/components/tr.slint:212 | Proxy Connection Mode |
-| [ ] | ui/components/tr.slint:213 | Proxy Address and Authentication |
-| [ ] | ui/components/tr.slint:214 | Server / Host IP: |
-| [ ] | ui/components/tr.slint:216 | User (Optional): |
-| [ ] | ui/components/tr.slint:217 | Password (Optional): |
-| [ ] | ui/components/tr.slint:218 | Save and Apply |
-| [ ] | ui/components/tr.slint:219 | Bypass Blocks |
-| [ ] | ui/components/tr.slint:220 | Lets you get around firewalls and DNS blocks at schools or companies. |
-| [ ] | ui/components/tr.slint:221 | Compatible with Tor's port 9050 and local SSH tunnels to anonymize your IP. |
-| [ ] | ui/components/tr.slint:222 | Point to 127.0.0.1:8080 to inspect REST API requests. |
-| [ ] | ui/components/tr.slint:223 | Gaming Performance |
-| [ ] | ui/components/tr.slint:224 | With the proxy disabled, the impact is 0%. Voice and video keep direct UDP route |
-| [ ] | ui/components/tr.slint:225 | Official Release Channel |
-| [ ] | ui/components/tr.slint:226 | Updates are checked directly in the GitHub repository with domain signature vali |
-| [ ] | ui/components/tr.slint:227 | Native Rust Performance |
-| [ ] | ui/components/tr.slint:228 | • CPU usage: < 0.1% when idle (0.0% in DeepSleep mode in the tray)\n• RAM: ~32 M |
-| [ ] | ui/components/tr.slint:229 | DeepSleep Mode |
-| [ ] | ui/components/tr.slint:230 | When minimized to the tray, the interface freezes its rendering to guarantee 100 |
-| [ ] | ui/components/tr.slint:232 | Video & Interface |
-| [ ] | ui/components/tr.slint:233 | Stop Streaming |
-| [ ] | ui/components/tr.slint:234 | Watching Stream |
-| [ ] | ui/components/tr.slint:236 | Waiting for Access Token... |
-| [ ] | ui/components/tr.slint:237 | Not connected |
-| [ ] | ui/components/tr.slint:238 | Select a channel |
-| [ ] | ui/components/tr.slint:239 | Downloading update... |
-| [ ] | ui/components/tr.slint:240 | Comparing local version with GitHub... |
-| [ ] | ui/components/tr.slint:241 | Proxy settings saved successfully! |
-| [ ] | ui/components/tr.slint:242 | Testing connection through proxy... |
-| [ ] | ui/components/tr.slint:243 | The QR Code session expired or was cancelled on the phone. Click Generate QR to  |
-| [ ] | ui/components/tr.slint:244 | Discord required a Captcha verification for the QR Code. Please paste your Token |
-| [ ] | ui/components/tr.slint:245 | You signed out. Enter your token or scan the QR Code. |
-| [ ] | ui/components/tr.slint:246 | Connection failed via Proxy ({}) |
-| [ ] | ui/components/tr.slint:247 | Auto-connecting to Gateway v9... |
-| [ ] | ui/components/tr.slint:248 | Permissions unavailable |
-| [ ] | ui/components/tr.slint:249 | Failed to check permissions. Select the server again to try. |
-| [ ] | ui/components/tr.slint:250 | No accessible text channel |
-| [ ] | ui/components/tr.slint:251 | Press Enter to run  |
-| [ ] | ui/components/tr.slint:252 | Type the value for  |
-| [ ] | ui/components/tr.slint:253 | Press Enter or Send to run  |
-| [ ] | ui/components/tr.slint:255 | Welcome to Litecord! Your servers will load in the sidebar on the left. |
-| [ ] | ui/components/tr.slint:258 | Mic active |
-| [ ] | ui/components/tr.slint:260 | A new version of Litecord with improvements and fixes is ready to install. Updat |
-| [ ] | ui/components/tr.slint:261 | Screen / Window |
-| [ ] | ui/components/tr.slint:262 | Native system portal |
-| [ ] | ui/components/tr.slint:266 | Play music, audio or a playlist (YouTube/Spotify/SoundCloud) |
-| [ ] | ui/components/tr.slint:267 | /play <name or link> |
-| [ ] | ui/components/tr.slint:268 | Song name or YouTube/Spotify/SoundCloud link |
-| [ ] | ui/components/tr.slint:269 | Skip to the next track in the queue |
-| [ ] | ui/components/tr.slint:270 | Stop the bot's playback and clear the queue |
-| [ ] | ui/components/tr.slint:271 | Pause the song that is playing |
-| [ ] | ui/components/tr.slint:272 | Resume the paused playback |
-| [ ] | ui/components/tr.slint:273 | Show the list of songs in the queue |
-| [ ] | ui/components/tr.slint:274 | Show details of the song playing right now |
-| [ ] | ui/components/tr.slint:275 | Adjust the bot's playback volume |
-| [ ] | ui/components/tr.slint:276 | Volume from 1 to 100 |
-| [ ] | ui/components/tr.slint:277 | Enable or disable repeat for the song or queue |
-| [ ] | ui/components/tr.slint:278 | Mode: track, queue or off |
-| [ ] | ui/components/tr.slint:279 | Shuffle the song queue |
-| [ ] | ui/components/tr.slint:280 | Search for and show the lyrics of the current song |
-| [ ] | ui/components/tr.slint:281 | Song name (optional) |
-| [ ] | ui/components/tr.slint:282 | Keep the bot connected 24/7 in the voice channel |
-| [ ] | ui/components/tr.slint:283 | Show the bot's help menu and commands |
-| [ ] | ui/components/tr.slint:284 | Check the latency and response time |
-| [ ] | ui/components/tr.slint:285 | Clear recent messages in the channel |
-| [ ] | ui/components/tr.slint:286 | /clear <amount> |
-| [ ] | ui/components/tr.slint:287 | Number of messages to delete |
-| [ ] | ui/components/tr.slint:288 | Show a user's enlarged avatar |
-| [ ] | ui/components/tr.slint:289 | /avatar [@user] |
-| [ ] | ui/components/tr.slint:290 | Discord user |
-| [ ] | ui/components/tr.slint:291 | View detailed information about a user's account |
-| [ ] | ui/components/tr.slint:292 | /userinfo [@user] |
-| [ ] | ui/components/tr.slint:293 | View statistics and information about the current server |
-| [ ] | ui/components/tr.slint:296 | None / Disabled |
-| [ ] | ui/components/tr.slint:299 | Test Proxy |
-| [ ] | ui/components/tr.slint:301 | Check for Updates |
-| [ ] | ui/components/tr.slint:302 | Loading older messages... |
-| [ ] | ui/components/tr.slint:303 | Load older messages |
-| [ ] | ui/components/tr.slint:305 | Download Image ( |
-| [ ] | ui/components/tr.slint:306 | Download Image |
-| [ ] | ui/components/tr.slint:311 | just now |
+| [ ] | ui/components/tr.slint:41 | Tries PrintWindow for DirectX windows, using BitBlt GDI for the desktop and as f |
+| [ ] | ui/components/tr.slint:42 | Direct capture from the operating system's default output endpoint. |
+| [ ] | ui/components/tr.slint:43 | System Default Microphone |
+| [ ] | ui/components/tr.slint:44 | System Default Speakers |
+| [ ] | ui/components/tr.slint:45 | Proxy test successful! Latency: {}ms (Status: {}) |
+| [ ] | ui/components/tr.slint:46 | Proxy responded in {}ms, but with HTTP status {} |
+| [ ] | ui/components/tr.slint:47 | Failed to connect via proxy: {} |
+| [ ] | ui/components/tr.slint:48 | System proxy connection failed! Click here or the gear at the top to open Settin |
+| [ ] | ui/components/tr.slint:49 | The proxy ({}: {}:{}) is unreachable or refusing connections! Click here or the  |
+| [ ] | ui/components/tr.slint:52 | Sign in to Litecord |
+| [ ] | ui/components/tr.slint:53 | Enter your Discord User Token for direct connection to Gateway v9.\n(Estimated R |
+| [ ] | ui/components/tr.slint:54 | Paste your Discord User Token here... |
+| [ ] | ui/components/tr.slint:55 | Connect to Gateway |
+| [ ] | ui/components/tr.slint:56 | Detect Discord Token |
+| [ ] | ui/components/tr.slint:57 | SERVER CHANNELS |
+| [ ] | ui/components/tr.slint:59 | View Text Chat |
+| [ ] | ui/components/tr.slint:60 | Disconnect Call |
+| [ ] | ui/components/tr.slint:61 | VOICE ROOM PARTICIPANTS |
+| [ ] | ui/components/tr.slint:63 | View Voice Room |
+| [ ] | ui/components/tr.slint:67 | LANGUAGE / IDIOMA |
+| [ ] | ui/components/tr.slint:68 | Sign Out |
+| [ ] | ui/components/tr.slint:69 | Do you want to log out from  |
+| [ ] | ui/components/tr.slint:71 | Sign Out |
+| [ ] | ui/components/tr.slint:73 | Connecting to Voice Channel... |
+| [ ] | ui/components/tr.slint:74 | Authenticating with Voice Gateway v9 and negotiating DAVE E2EE encryption... |
+| [ ] | ui/components/tr.slint:75 | Voice Connected |
+| [ ] | ui/components/tr.slint:76 | Log in with QR Code |
+| [ ] | ui/components/tr.slint:77 | Scan this with the Discord mobile app to log in instantly. |
+| [ ] | ui/components/tr.slint:78 | Approve login on your phone! |
+| [ ] | ui/components/tr.slint:79 | Test Microphone (\"Hear Yourself\") |
+| [ ] | ui/components/tr.slint:80 | Stop Testing (Listening...) |
+| [ ] | ui/components/tr.slint:82 | Toggle Mute |
+| [ ] | ui/components/tr.slint:83 | Global shortcut to mute or unmute your microphone during voice calls. |
+| [ ] | ui/components/tr.slint:84 | Press desired key combination... |
+| [ ] | ui/components/tr.slint:85 | Record Keybind |
+| [ ] | ui/components/tr.slint:87 | Global Shortcuts |
+| [ ] | ui/components/tr.slint:88 | Keybinds work seamlessly across all applications and games, even when Litecord i |
+| [ ] | ui/components/tr.slint:89 | Toggle Deafen |
+| [ ] | ui/components/tr.slint:90 | Global shortcut to deafen or undeafen all voice audio and microphone. |
+| [ ] | ui/components/tr.slint:92 | Share on web |
+| [ ] | ui/components/tr.slint:94 | Stop web |
+| [ ] | ui/components/tr.slint:96 | Copy link |
+| [ ] | ui/components/tr.slint:97 | Link copied |
+| [ ] | ui/components/tr.slint:98 | Watch on the web |
+| [ ] | ui/components/tr.slint:99 | Anyone with this link can watch in a browser, up to 3 at a time. |
+| [ ] | ui/components/tr.slint:103 | Re-generate QR Code |
+| [ ] | ui/components/tr.slint:104 | Reduced preview to save resources |
+| [ ] | ui/components/tr.slint:105 | You are streaming |
+| [ ] | ui/components/tr.slint:108 | Disable Intangible |
+| [ ] | ui/components/tr.slint:109 | DISCORD SMART COMMANDS |
+| [ ] | ui/components/tr.slint:110 | Click to autocomplete |
+| [ ] | ui/components/tr.slint:111 | Manage Accounts |
+| [ ] | ui/components/tr.slint:112 | Quickly switch accounts or add a second saved account. |
+| [ ] | ui/components/tr.slint:115 | + Add Another Account |
+| [ ] | ui/components/tr.slint:116 | Sign Out of All Accounts |
+| [ ] | ui/components/tr.slint:117 | New Update Available! |
+| [ ] | ui/components/tr.slint:118 | Don't show again |
+| [ ] | ui/components/tr.slint:119 | Remind Me Later |
+| [ ] | ui/components/tr.slint:120 | Yes, Update |
+| [ ] | ui/components/tr.slint:121 | Share your screen |
+| [ ] | ui/components/tr.slint:122 | Screens / Windows |
+| [ ] | ui/components/tr.slint:126 | No camera / webcam detected on the system. |
+| [ ] | ui/components/tr.slint:127 | STREAM QUALITY |
+| [ ] | ui/components/tr.slint:129 | FRAME RATE (FPS) |
+| [ ] | ui/components/tr.slint:130 | The webcam will stream using your device's native resolution and frame rate. |
+| [ ] | ui/components/tr.slint:131 | Stream Computer / Window Audio |
+| [ ] | ui/components/tr.slint:132 | Includes the app or game sound during the stream |
+| [ ] | ui/components/tr.slint:133 | Streaming Browser (Videos / DRM) |
+| [ ] | ui/components/tr.slint:134 | Opens the browser without black-screen locks to watch with friends |
+| [ ] | ui/components/tr.slint:136 | Direct Camera Stream |
+| [ ] | ui/components/tr.slint:137 | Webcam video only (no system audio capture) |
+| [ ] | ui/components/tr.slint:139 | Incoming voice call |
+| [ ] | ui/components/tr.slint:142 | Litecord - Detached Stream |
+| [ ] | ui/components/tr.slint:144 | Output Device |
+| [ ] | ui/components/tr.slint:145 | For the best positional fidelity and to avoid echo or sound leaking in group cal |
+| [ ] | ui/components/tr.slint:146 | Input Device |
+| [ ] | ui/components/tr.slint:147 | Select your main microphone or headset. We recommend using the default device or |
+| [ ] | ui/components/tr.slint:148 | INPUT VOLUME (MICROPHONE GAIN) |
+| [ ] | ui/components/tr.slint:149 | Microphone Gain |
+| [ ] | ui/components/tr.slint:150 | Adjust your microphone gain. Values above 100% (up to 200%) amplify your voice s |
+| [ ] | ui/components/tr.slint:151 | Sensitivity (VAD) |
+| [ ] | ui/components/tr.slint:152 | Speak normally. Adjust the control so your voice goes past the white mark, while |
+| [ ] | ui/components/tr.slint:153 | Loopback Test |
+| [ ] | ui/components/tr.slint:154 | Lets you hear your processed voice in real time with Litecord's filter through y |
+| [ ] | ui/components/tr.slint:155 | Smart Voice Ducking |
+| [ ] | ui/components/tr.slint:157 | The Opus PLC audio engine automatically lowers other members' sound by 12 dB whe |
+| [ ] | ui/components/tr.slint:158 | Competitive Edge |
+| [ ] | ui/components/tr.slint:159 | Eliminates the cacophony in decisive FPS/MOBA moments, making sure critical call |
+| [ ] | ui/components/tr.slint:160 | VOICE PROCESSING |
+| [ ] | ui/components/tr.slint:161 | Noise Suppression |
+| [ ] | ui/components/tr.slint:162 | Filter background noise from your microphone using advanced deep learning or sta |
+| [ ] | ui/components/tr.slint:163 | Echo Cancellation |
+| [ ] | ui/components/tr.slint:164 | Prevents audio from your speakers from leaking back into your microphone (AEC). |
+| [ ] | ui/components/tr.slint:165 | Automatic Gain Control (AGC) |
+| [ ] | ui/components/tr.slint:166 | Automatically normalizes and boosts your microphone volume to prevent sudden cli |
+| [ ] | ui/components/tr.slint:167 | SELECT THE CLIENT LANGUAGE |
+| [ ] | ui/components/tr.slint:168 | Instant Switch |
+| [ ] | ui/components/tr.slint:169 | Language changes are applied in real time across all windows without restarting  |
+| [ ] | ui/components/tr.slint:170 | Automatic Detection |
+| [ ] | ui/components/tr.slint:171 | The 'Auto' option detects the default region and language of your operating syst |
+| [ ] | ui/components/tr.slint:172 | Key Tip |
+| [ ] | ui/components/tr.slint:173 | You can use keys such as F1-F12, NumPad keys, or combinations with Ctrl, Shift a |
+| [ ] | ui/components/tr.slint:174 | VIDEO ENCODER (H.264) |
+| [ ] | ui/components/tr.slint:175 | Automatic (recommended) |
+| [ ] | ui/components/tr.slint:176 | Uses the GPU connected to the captured monitor, avoiding transfers between GPUs. |
+| [ ] | ui/components/tr.slint:177 | CPU (OpenH264) |
+| [ ] | ui/components/tr.slint:178 | Compatibility option: encodes in software and uses more CPU. |
+| [ ] | ui/components/tr.slint:179 | DXGI captures this GPU's monitors. WGC captures windows or monitors on another G |
+| [ ] | ui/components/tr.slint:180 | WGC captures on this GPU; the image may be transferred between GPUs. |
+| [ ] | ui/components/tr.slint:181 | Applies to the next screen share. If the selected GPU is unavailable, Automatic  |
+| [ ] | ui/components/tr.slint:182 | Selected GPU unavailable |
+| [ ] | ui/components/tr.slint:183 | Current capture |
+| [ ] | ui/components/tr.slint:184 | GPU processing |
+| [ ] | ui/components/tr.slint:185 | Compatibility mode |
+| [ ] | ui/components/tr.slint:186 | DXGI captures monitors; WGC captures windows or another GPU. The options below a |
+| [ ] | ui/components/tr.slint:187 | Select the GPU or CPU acceleration engine used to encode screen streams. |
+| [ ] | ui/components/tr.slint:189 | Light theme |
+| [ ] | ui/components/tr.slint:190 | Switches the whole interface between the light and dark palettes. |
+| [ ] | ui/components/tr.slint:191 | SCREEN AND WINDOW CAPTURE METHOD |
+| [ ] | ui/components/tr.slint:192 | Defines how Litecord captures the visual content of the operating system. |
+| [ ] | ui/components/tr.slint:193 | STREAM AUDIO (SYSTEM LOOPBACK) |
+| [ ] | ui/components/tr.slint:194 | Defines the technology used to capture the internal sound of games, videos and t |
+| [ ] | ui/components/tr.slint:195 | STREAM NOTICES AND INTERFACE |
+| [ ] | ui/components/tr.slint:196 | Reduced Preview Notice |
+| [ ] | ui/components/tr.slint:197 | Shows the warning pill in your own preview when the stream starts, telling you t |
+| [ ] | ui/components/tr.slint:198 | Performance Monitor (CPU / RAM / GPU) |
+| [ ] | ui/components/tr.slint:199 | Network diagnostics |
+| [ ] | ui/components/tr.slint:200 | Checks whether screen sharing with someone on another network can connect direct |
+| [ ] | ui/components/tr.slint:201 | Test network |
+| [ ] | ui/components/tr.slint:203 | Copy report |
+| [ ] | ui/components/tr.slint:205 | Your network allows direct connections: screen sharing with other networks shoul |
+| [ ] | ui/components/tr.slint:206 | Your router or provider uses symmetric NAT: screen sharing across the internet m |
+| [ ] | ui/components/tr.slint:207 | Your provider shows a different public address per server (carrier-grade NAT): s |
+| [ ] | ui/components/tr.slint:208 | No test server answered: UDP looks blocked on this network, so screen sharing ac |
+| [ ] | ui/components/tr.slint:209 | The signaling server did not answer, so peers cannot find each other over the in |
+| [ ] | ui/components/tr.slint:210 | GPU rendering |
+| [ ] | ui/components/tr.slint:211 | Draws the interface with the graphics card. Off (default), the CPU draws it, whi |
+| [ ] | ui/components/tr.slint:212 | Shows live RAM, CPU and GPU usage in the application title bar next to the setti |
+| [ ] | ui/components/tr.slint:213 | E2EE Video & Sound Encryption |
+| [ ] | ui/components/tr.slint:214 | AES-256-GCM ACTIVE |
+| [ ] | ui/components/tr.slint:215 | Every 60 FPS frame and the loopback audio are encrypted with 256-bit symmetric k |
+| [ ] | ui/components/tr.slint:216 | Wi-Fi & LAN Protection |
+| [ ] | ui/components/tr.slint:217 | Prevents anyone on the same router from capturing your stream with packet analyz |
+| [ ] | ui/components/tr.slint:218 | Windows DPAPI Credential Vault |
+| [ ] | ui/components/tr.slint:220 | Your Discord token is stored with native CryptProtectData encryption bound to yo |
+| [ ] | ui/components/tr.slint:221 | Stealer Immunity |
+| [ ] | ui/components/tr.slint:222 | Unauthorized scripts and malware cannot steal your session because the cryptogra |
+| [ ] | ui/components/tr.slint:223 | Official Discord Voice (DAVE Protocol) |
+| [ ] | ui/components/tr.slint:224 | End-to-end encrypted voice communication with Discord's official voice servers,  |
+| [ ] | ui/components/tr.slint:226 | Chat and calls go straight to Discord. Litecord's own server only puts screen-sh |
+| [ ] | ui/components/tr.slint:227 | Proxy Connection Mode |
+| [ ] | ui/components/tr.slint:228 | Proxy Address and Authentication |
+| [ ] | ui/components/tr.slint:229 | Server / Host IP: |
+| [ ] | ui/components/tr.slint:231 | User (Optional): |
+| [ ] | ui/components/tr.slint:232 | Password (Optional): |
+| [ ] | ui/components/tr.slint:233 | Save and Apply |
+| [ ] | ui/components/tr.slint:234 | Bypass Blocks |
+| [ ] | ui/components/tr.slint:235 | Lets you get around firewalls and DNS blocks at schools or companies. |
+| [ ] | ui/components/tr.slint:236 | Compatible with Tor's port 9050 and local SSH tunnels to anonymize your IP. |
+| [ ] | ui/components/tr.slint:237 | Point to 127.0.0.1:8080 to inspect REST API requests. |
+| [ ] | ui/components/tr.slint:238 | Gaming Performance |
+| [ ] | ui/components/tr.slint:239 | With the proxy disabled, the impact is 0%. Voice and video keep direct UDP route |
+| [ ] | ui/components/tr.slint:240 | Official Release Channel |
+| [ ] | ui/components/tr.slint:241 | Updates are checked directly in the GitHub repository with domain signature vali |
+| [ ] | ui/components/tr.slint:242 | Native Rust Performance |
+| [ ] | ui/components/tr.slint:243 | • CPU usage: < 0.1% when idle (0.0% in DeepSleep mode in the tray)\n• RAM: ~32 M |
+| [ ] | ui/components/tr.slint:244 | DeepSleep Mode |
+| [ ] | ui/components/tr.slint:245 | When minimized to the tray, the interface freezes its rendering to guarantee 100 |
+| [ ] | ui/components/tr.slint:247 | Video & Interface |
+| [ ] | ui/components/tr.slint:248 | Stop Streaming |
+| [ ] | ui/components/tr.slint:249 | Watching Stream |
+| [ ] | ui/components/tr.slint:251 | Waiting for Access Token... |
+| [ ] | ui/components/tr.slint:252 | Not connected |
+| [ ] | ui/components/tr.slint:253 | Select a channel |
+| [ ] | ui/components/tr.slint:254 | Downloading update... |
+| [ ] | ui/components/tr.slint:255 | Comparing local version with GitHub... |
+| [ ] | ui/components/tr.slint:256 | Proxy settings saved successfully! |
+| [ ] | ui/components/tr.slint:257 | Testing connection through proxy... |
+| [ ] | ui/components/tr.slint:258 | The QR Code session expired or was cancelled on the phone. Click Generate QR to  |
+| [ ] | ui/components/tr.slint:259 | Discord required a Captcha verification for the QR Code. Please paste your Token |
+| [ ] | ui/components/tr.slint:260 | You signed out. Enter your token or scan the QR Code. |
+| [ ] | ui/components/tr.slint:261 | Connection failed via Proxy ({}) |
+| [ ] | ui/components/tr.slint:262 | Auto-connecting to Gateway v9... |
+| [ ] | ui/components/tr.slint:263 | Permissions unavailable |
+| [ ] | ui/components/tr.slint:264 | Failed to check permissions. Select the server again to try. |
+| [ ] | ui/components/tr.slint:265 | No accessible text channel |
+| [ ] | ui/components/tr.slint:266 | Press Enter to run  |
+| [ ] | ui/components/tr.slint:267 | Type the value for  |
+| [ ] | ui/components/tr.slint:268 | Press Enter or Send to run  |
+| [ ] | ui/components/tr.slint:270 | Welcome to Litecord! Your servers will load in the sidebar on the left. |
+| [ ] | ui/components/tr.slint:273 | Mic active |
+| [ ] | ui/components/tr.slint:275 | A new version of Litecord with improvements and fixes is ready to install. Updat |
+| [ ] | ui/components/tr.slint:276 | Screen / Window |
+| [ ] | ui/components/tr.slint:277 | Native system portal |
+| [ ] | ui/components/tr.slint:281 | Play music, audio or a playlist (YouTube/Spotify/SoundCloud) |
+| [ ] | ui/components/tr.slint:282 | /play <name or link> |
+| [ ] | ui/components/tr.slint:283 | Song name or YouTube/Spotify/SoundCloud link |
+| [ ] | ui/components/tr.slint:284 | Skip to the next track in the queue |
+| [ ] | ui/components/tr.slint:285 | Stop the bot's playback and clear the queue |
+| [ ] | ui/components/tr.slint:286 | Pause the song that is playing |
+| [ ] | ui/components/tr.slint:287 | Resume the paused playback |
+| [ ] | ui/components/tr.slint:288 | Show the list of songs in the queue |
+| [ ] | ui/components/tr.slint:289 | Show details of the song playing right now |
+| [ ] | ui/components/tr.slint:290 | Adjust the bot's playback volume |
+| [ ] | ui/components/tr.slint:291 | Volume from 1 to 100 |
+| [ ] | ui/components/tr.slint:292 | Enable or disable repeat for the song or queue |
+| [ ] | ui/components/tr.slint:293 | Mode: track, queue or off |
+| [ ] | ui/components/tr.slint:294 | Shuffle the song queue |
+| [ ] | ui/components/tr.slint:295 | Search for and show the lyrics of the current song |
+| [ ] | ui/components/tr.slint:296 | Song name (optional) |
+| [ ] | ui/components/tr.slint:297 | Keep the bot connected 24/7 in the voice channel |
+| [ ] | ui/components/tr.slint:298 | Show the bot's help menu and commands |
+| [ ] | ui/components/tr.slint:299 | Check the latency and response time |
+| [ ] | ui/components/tr.slint:300 | Clear recent messages in the channel |
+| [ ] | ui/components/tr.slint:301 | /clear <amount> |
+| [ ] | ui/components/tr.slint:302 | Number of messages to delete |
+| [ ] | ui/components/tr.slint:303 | Show a user's enlarged avatar |
+| [ ] | ui/components/tr.slint:304 | /avatar [@user] |
+| [ ] | ui/components/tr.slint:305 | Discord user |
+| [ ] | ui/components/tr.slint:306 | View detailed information about a user's account |
+| [ ] | ui/components/tr.slint:307 | /userinfo [@user] |
+| [ ] | ui/components/tr.slint:308 | View statistics and information about the current server |
+| [ ] | ui/components/tr.slint:311 | None / Disabled |
+| [ ] | ui/components/tr.slint:314 | Test Proxy |
+| [ ] | ui/components/tr.slint:316 | Check for Updates |
+| [ ] | ui/components/tr.slint:317 | Loading older messages... |
+| [ ] | ui/components/tr.slint:318 | Load older messages |
+| [ ] | ui/components/tr.slint:320 | Download Image ( |
+| [ ] | ui/components/tr.slint:321 | Download Image |
+| [ ] | ui/components/tr.slint:326 | just now |
+| [ ] | ui/components/tr.slint:329 | Appearance and language |
+| [ ] | ui/components/tr.slint:330 | Privacy and about |
+| [ ] | ui/components/tr.slint:332 | Change these only if the stream freezes or goes black. Automatic tries each opti |
+| [ ] | ui/components/tr.slint:333 | How your data is protected |
+| [ ] | ui/components/tr.slint:335 | Loading invite… |
+| [ ] | ui/components/tr.slint:338 | View event |
+| [ ] | ui/components/tr.slint:339 | Happening now |
 
-**261 entries.**
+**274 entries.**
 
 ## 6. Whitelist
 
