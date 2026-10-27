@@ -227,6 +227,7 @@ pub fn apply_i18n_translations(ui: &AppWindow, lang: i18n::Language) {
     };
 
     ui.set_current_language_code(lang.code().into());
+    crate::utils::tray::set_tray_texts();
     i18n_ui::set_current(resolved);
     i18n_ui::apply_to_window(ui, i18n_ui::table_for(resolved));
 

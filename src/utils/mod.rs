@@ -1,5 +1,6 @@
 #![allow(unused_imports)]
 
+pub mod app_paths;
 pub mod logger;
 pub mod i18n;
 pub mod i18n_ui;
