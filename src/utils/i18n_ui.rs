@@ -1,4 +1,4 @@
-//! UI strings that are not part of the older `i18n::Translations` table.
+//! All UI strings (single translation pipeline).
 //!
 //! One row per string: English, Portuguese, Spanish, German, French, Russian, Japanese.
 //! The values are pushed into the Slint `Tr` global when the language changes.
@@ -326,6 +326,14 @@ ui_strings! {
     (aloop_cpal_desc, set_aloop_cpal_desc, "Standard capture via the CPAL audio interface.", "Captura padrão via interface de áudio CPAL.", "Captura estándar vía la interfaz de audio CPAL.", "Standard-Aufnahme über die CPAL-Audioschnittstelle.", "Capture standard via l'interface audio CPAL.", "Стандартный захват через аудиоинтерфейс CPAL.", "CPALオーディオインターフェース経由の標準キャプチャ。"),
     (aloop_wasapi_desc, set_aloop_wasapi_desc, "Native capture that removes friends' voices and Litecord sounds from your stream.", "Captura nativa que remove vozes dos amigos e sons do Litecord da sua transmissão.", "Captura nativa que elimina las voces de amigos y sonidos de Litecord de tu direct en local.", "Nativaufnahme, das Stimmen von Freunden und Litecord-Sounds aus dem Stream entfernt.", "Capture native qui supprime les voix des amis et les sons de Litecord du direct.", "Нативный захват убирает голоса друзей и звуки Litecord из вашей трансляции.", "ネイティブキャプチャは、通話相手の声とLitecordのサウンドを配信に混ぜません。"),
     (aloop_wasapi2_desc, set_aloop_wasapi2_desc, "Process-isolated WASAPI capture (excludes Litecord audio from the stream).", "Captura com isolamento de processo WASAPI (exclui o Litecord do áudio da stream).", "Captura WASAPI con aislamiento de proceso (excluye el audio de Litecord del local en directo).", "Prozessisolierter WASAPI-Capture (Litecord-Audio bleibt draußen).", "Capture WASAPI isolée par processus (exclut l'audio de Litecord du direct).", "WASAPI с изоляцией процесса (Litecord не попадает в трансляцию).", "プロセス分離WASAPIキャプチャ（Litecordの音声は配信に含まれません）。"),
+    // Proxy connection-mode option rows (Network & Proxy tab). Machine
+    // translations pending native review.
+    (proxy_off_name, set_proxy_off_name, "Disabled (direct connection)", "Desativado (Conexão Direta)", "Desactivado (conexión directa)", "Aus (direkte Verbindung)", "Désactivé (connexion directe)", "Отключено (прямое подключение)", "無効（直接接続）"), // machine TODO
+    (proxy_off_desc, set_proxy_off_desc, "Direct connection to Discord's servers (default).", "Conexão direta aos servidores do Discord (Padrão).", "Conexión directa a los servidores de Discord (predeterminado).", "Direkte Verbindung zu den Discord-Servern (Standard).", "Connexion directe aux serveurs de Discord (par défaut).", "Прямое подключение к серверам Discord (по умолчанию).", "Discordサーバーへの直接接続（デフォルト）。"), // machine TODO
+    (proxy_http_desc, set_proxy_http_desc, "HTTP CONNECT tunnel for restricted networks and proxies.", "Túnel HTTP CONNECT para redes restritas e proxies.", "Túnel HTTP CONNECT para redes restringidas y servidores proxy.", "HTTP-CONNECT-Tunnel für eingeschränkte Netze und Proxies.", "Tunnel HTTP CONNECT pour les réseaux restreints et les proxys.", "Туннель HTTP CONNECT для ограниченных сетей и прокси.", "制限ネットワークとプロキシ向けのHTTP CONNECTトンネル。"), // machine TODO
+    (proxy_socks_desc, set_proxy_socks_desc, "SOCKS5 tunnel compatible with Tor, Shadowsocks and SSH.", "Túnel SOCKS5 compatível com Tor, Shadowsocks e SSH.", "Túnel SOCKS5 compatible con Tor, Shadowsocks y SSH.", "SOCKS5-Tunnel, kompatibel mit Tor, Shadowsocks und SSH.", "Tunnel SOCKS5 compatible Tor, Shadowsocks et SSH.", "Туннель SOCKS5 совместим с Tor, Shadowsocks и SSH.", "Tor・Shadowsocks・SSH対応のSOCKS5トンネル。"), // machine TODO
+    (proxy_system_name, set_proxy_system_name, "System proxy", "Proxy do Sistema", "Proxy del sistema", "Systemproxy", "Proxy système", "Системный прокси", "システムプロキシ"), // machine TODO
+    (proxy_system_desc, set_proxy_system_desc, "Detects the system's global proxy automatically.", "Detecta automaticamente o proxy global do sistema.", "Detecta automáticamente el proxy global del sistema.", "Erkennt den globalen Systemproxy automatisch.", "Détecte automatiquement le proxy global du système.", "Автоматически определяет системный прокси.", "システムのグローバルプロキシを自動検出します。"), // machine TODO
     (proxy_test_success, set_proxy_test_success, "Proxy test successful! Latency: {}ms (Status: {})", "Conexão bem-sucedida! Latência: {}ms (Status: {})", "¡Conexión correcta! Latencia: {}ms (Estado: {})", "Verbindung erfolgreich! Latenz: {}ms (Status: {})", "Connexion réussie ! Latence : {}ms (Statut : {})", "Соединение успешно! Задержка: {} мс (Статус: {})", "接続成功！レイテンシ: {}ms (ステータス: {})"), // machine TODO
     (proxy_test_http_status, set_proxy_test_http_status, "Proxy responded in {}ms, but with HTTP status {}", "Proxy respondeu em {}ms, mas com status HTTP {}", "El proxy respondió en {}ms, pero con estado HTTP {}", "Proxy antwortete in {}ms, aber mit HTTP-Status {}", "Le proxy a répondu en {}ms, mais avec le statut HTTP {}", "Прокси ответил за {} мс, но со статусом HTTP {}", "プロキシは {}ms で応答しましたが、HTTPステータスは {} です"), // machine TODO
     (proxy_test_failed, set_proxy_test_failed, "Failed to connect via proxy: {}", "Falha ao conectar via Proxy: {}", "Fallo al conectar vía proxy: {}", "Verbindung über Proxy fehlgeschlagen: {}", "Échec de connexion via le proxy : {}", "Не удалось подключиться через прокси: {}", "プロキシ経由で接続できませんでした: {}"), // machine TODO
@@ -472,6 +480,26 @@ mod tests {
         }
     }
 
+
+
+    #[test]
+    fn proxy_mode_option_rows_en_no_pt() {
+        let keys = [
+            "proxy_off_name", "proxy_off_desc", "proxy_http_desc",
+            "proxy_socks_desc", "proxy_system_name", "proxy_system_desc",
+        ];
+        let entries = entries();
+        for key in keys {
+            let row = entries.iter().find(|(k, _)| *k == key)
+                .unwrap_or_else(|| panic!("missing proxy-mode row: {key}"));
+            for (i, text) in row.1.iter().enumerate() {
+                assert!(!text.trim().is_empty(), "{key}: empty text for {}", LANGUAGES[i]);
+            }
+            for ch in ['ã', 'õ', 'ç'] {
+                assert!(!row.1[0].contains(ch), "{key}: PT-only char in EN fallback: {:?}", row.1[0]);
+            }
+        }
+    }
 
     #[test]
     fn video_interface_option_rows_en_no_pt() {

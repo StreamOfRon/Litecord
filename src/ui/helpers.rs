@@ -216,15 +216,6 @@ pub fn apply_i18n_translations(ui: &AppWindow, lang: i18n::Language) {
         specific => specific,
     };
 
-    let tr = match resolved {
-        i18n::Language::Portuguese => &i18n::PT_TRANSLATIONS,
-        i18n::Language::Spanish => &i18n::ES_TRANSLATIONS,
-        i18n::Language::German => &i18n::DE_TRANSLATIONS,
-        i18n::Language::French => &i18n::FR_TRANSLATIONS,
-        i18n::Language::Russian => &i18n::RU_TRANSLATIONS,
-        i18n::Language::Japanese => &i18n::JA_TRANSLATIONS,
-        _ => &i18n::EN_TRANSLATIONS,
-    };
 
     ui.set_current_language_code(lang.code().into());
     crate::utils::tray::set_tray_texts();
@@ -241,10 +232,12 @@ pub fn apply_i18n_translations(ui: &AppWindow, lang: i18n::Language) {
         }
     }).collect();
     ui.set_languages(std::rc::Rc::new(slint::VecModel::from(lang_items)).into());
-    // Rebuild the Video & Interface option lists for every language on every
-    // platform (not just Windows): switching the UI language from Settings
-    // keeps those lists in the selected language without a restart.
+    // Rebuild the Video & Interface and Network & Proxy option lists for
+    // every language on every platform (not just Windows): switching the UI
+    // language from Settings keeps those lists in the selected language
+    // without a restart.
     populate_video_interface_settings(ui);
+    populate_network_proxy_settings(ui);
 }
 
 pub fn populate_video_interface_settings(ui: &AppWindow) {
@@ -459,29 +452,30 @@ pub fn populate_network_proxy_settings(ui: &AppWindow) {
     }
     ui.set_proxy_route_media_enabled(settings.route_media);
 
+    let text = i18n_ui::ui_text();
     let mode_items = vec![
         SettingOptionItem {
             id: "off".into(),
-            name: "Desativado (Conexão Direta)".into(),
-            desc: "Conexão direta aos servidores do Discord (Padrão).".into(),
+            name: text.proxy_off_name.into(),
+            desc: text.proxy_off_desc.into(),
             is_selected: settings.proxy_mode == "off",
         },
         SettingOptionItem {
             id: "http".into(),
             name: "Proxy HTTP / HTTPS".into(),
-            desc: "Túnel HTTP CONNECT para redes restritas e proxies.".into(),
+            desc: text.proxy_http_desc.into(),
             is_selected: settings.proxy_mode == "http" || settings.proxy_mode == "https",
         },
         SettingOptionItem {
             id: "socks5".into(),
             name: "Proxy SOCKS5".into(),
-            desc: "Túnel SOCKS5 compatível com Tor, Shadowsocks e SSH.".into(),
+            desc: text.proxy_socks_desc.into(),
             is_selected: settings.proxy_mode == "socks5",
         },
         SettingOptionItem {
             id: "system".into(),
-            name: "Proxy do Sistema".into(),
-            desc: "Detecta automaticamente o proxy global do sistema.".into(),
+            name: text.proxy_system_name.into(),
+            desc: text.proxy_system_desc.into(),
             is_selected: settings.proxy_mode == "system",
         },
     ];
