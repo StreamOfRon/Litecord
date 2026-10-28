@@ -438,17 +438,19 @@ impl WinitWindowAdapter {
 
         #[cfg(all(unix, not(target_vendor = "apple")))]
         {
-            if let Some(xdg_app_id) = WindowInner::from_pub(self.window()).xdg_app_id() {
-                #[cfg(feature = "wayland")]
-                {
-                    use winit::platform::wayland::WindowAttributesExtWayland;
-                    window_attributes = window_attributes.with_name(xdg_app_id.clone(), "");
-                }
-                #[cfg(feature = "x11")]
-                {
-                    use winit::platform::x11::WindowAttributesExtX11;
-                    window_attributes = window_attributes.with_name(xdg_app_id.clone(), "");
-                }
+            let xdg_app_id = WindowInner::from_pub(self.window())
+                .xdg_app_id()
+                .map(|s| s.to_string())
+                .unwrap_or_else(|| "litecord".to_string());
+            #[cfg(feature = "wayland")]
+            {
+                use winit::platform::wayland::WindowAttributesExtWayland;
+                window_attributes = window_attributes.with_name(xdg_app_id.clone(), "");
+            }
+            #[cfg(feature = "x11")]
+            {
+                use winit::platform::x11::WindowAttributesExtX11;
+                window_attributes = window_attributes.with_name(xdg_app_id.clone(), xdg_app_id.clone());
             }
         }
 
@@ -954,7 +956,14 @@ impl WinitWindowAdapter {
         // that we only update the internal maximized state when the window is
         // not minimized. Otherwise, the window would be restored in a
         // non-maximized state even if it was maximized before being minimized.
+        #[cfg(not(target_os = "macos"))]
         let maximized = winit_window.is_maximized();
+        // On macOS `Window::is_maximized` is a mutating getter for borderless windows:
+        // winit temporarily re-applies the style mask to ask AppKit, which posts
+        // another window event and loops forever here. Borderless windows have no
+        // native maximize button, so keep tracking state set via `set_maximized`.
+        #[cfg(target_os = "macos")]
+        let maximized = self.maximized.get();
         if !self.window().is_minimized() {
             self.maximized.set(maximized);
             if maximized != self.window().is_maximized() {

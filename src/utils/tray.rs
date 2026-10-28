@@ -8,6 +8,10 @@ use log::{info, warn};
 thread_local! {
     // The icon must be touched only on the thread that created it (the UI thread).
     static TRAY_ICON: RefCell<Option<TrayIcon>> = RefCell::new(None);
+    // Menu items are kept here so their texts can be re-set on language
+    // changes. Updating texts in place (instead of rebuilding the menu) keeps
+    // the MenuEvent id mapping valid — see the plan's Review Focus.
+    static TRAY_ITEMS: RefCell<Option<(MenuItem, MenuItem)>> = RefCell::new(None);
 }
 
 /// Sets the tray tooltip from any thread. Runs on the UI thread only when called,
@@ -18,6 +22,30 @@ pub fn update_tray_tooltip(tooltip: &str) {
         TRAY_ICON.with(|icon| {
             if let Some(icon) = icon.borrow().as_ref() {
                 let _ = icon.set_tooltip(Some(tip));
+            }
+        });
+    });
+}
+
+/// Re-labels the tray menu and resets the startup tooltip to the selected
+/// language. Call from the UI thread device — `apply_i18n_translations` does
+/// it for every language application, so a switch without restart keeps the
+/// tray in sync (localization-consistency Goal 3).
+pub fn set_tray_texts() {
+    let texts = super::i18n_ui::ui_text();
+    let show = texts.tray_show.to_string();
+    let quit = texts.tray_quit.to_string();
+    let tooltip = texts.tray_tooltip.to_string();
+    let _ = slint::invoke_from_event_loop(move || {
+        TRAY_ITEMS.with(|cell| {
+            if let Some((show_item, quit_item)) = cell.borrow().as_ref() {
+                let _ = show_item.set_text(show.as_str());
+                let _ = quit_item.set_text(quit.as_str());
+            }
+        });
+        TRAY_ICON.with(|icon| {
+            if let Some(icon) = icon.borrow().as_ref() {
+                let _ = icon.set_tooltip(Some(tooltip.as_str()));
             }
         });
     });
@@ -66,11 +94,15 @@ impl SystemTrayManager {
         }
 
         let tray_menu = Menu::new();
-        let show_item = MenuItem::new("Exibir Litecord", true, None);
-        let quit_item = MenuItem::new("Sair", true, None);
+        let texts = super::i18n_ui::ui_text();
+        let show_item = MenuItem::new(texts.tray_show, true, None);
+        let quit_item = MenuItem::new(texts.tray_quit, true, None);
 
         let show_id = show_item.id().clone();
         let quit_id = quit_item.id().clone();
+        TRAY_ITEMS.with(|cell| {
+            *cell.borrow_mut() = Some((show_item.clone(), quit_item.clone()));
+        });
 
         let _ = tray_menu.append(&show_item);
         let _ = tray_menu.append(&quit_item);
@@ -81,7 +113,7 @@ impl SystemTrayManager {
             .with_icon(icon)
             .with_menu(Box::new(tray_menu))
             .with_menu_on_left_click(true)
-            .with_tooltip("Litecord - Discord Client Ultra-Leve")
+            .with_tooltip(texts.tray_tooltip)
             .build()
         {
             Ok(icon) => {

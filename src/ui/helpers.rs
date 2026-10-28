@@ -216,85 +216,19 @@ pub fn apply_i18n_translations(ui: &AppWindow, lang: i18n::Language) {
         specific => specific,
     };
 
-    let tr = match resolved {
-        i18n::Language::Portuguese => &i18n::PT_TRANSLATIONS,
-        i18n::Language::Spanish => &i18n::ES_TRANSLATIONS,
-        i18n::Language::German => &i18n::DE_TRANSLATIONS,
-        i18n::Language::French => &i18n::FR_TRANSLATIONS,
-        i18n::Language::Russian => &i18n::RU_TRANSLATIONS,
-        i18n::Language::Japanese => &i18n::JA_TRANSLATIONS,
-        _ => &i18n::EN_TRANSLATIONS,
-    };
 
     ui.set_current_language_code(lang.code().into());
     i18n_ui::set_current(resolved);
     i18n_ui::apply_to_window(ui, i18n_ui::table_for(resolved));
-    ui.set_tr_login_title(tr.login_title.into());
-    ui.set_tr_login_desc(tr.login_desc.into());
-    ui.set_tr_login_placeholder(tr.login_placeholder.into());
-    ui.set_tr_login_btn_connect(tr.login_btn_connect.into());
-    ui.set_tr_login_btn_detect(tr.login_btn_detect.into());
-    ui.set_tr_server_channels(tr.server_channels.into());
-    ui.set_tr_leave(tr.leave.into());
-    ui.set_tr_view_text_chat(tr.view_text_chat.into());
-    ui.set_tr_leave_call(tr.leave_call.into());
-    ui.set_tr_voice_participants_title(tr.voice_participants_title.into());
-    ui.set_tr_badge_you(tr.you.into());
-    ui.set_tr_view_voice_room(tr.view_voice_room.into());
-    ui.set_tr_replying_to(tr.replying_to.into());
-    ui.set_tr_chat_placeholder_prefix(tr.chat_placeholder_prefix.into());
-    ui.set_tr_send(tr.send.into());
-    ui.set_tr_settings_title(tr.settings_title.into());
-    ui.set_tr_settings_language_label(tr.settings_language_label.into());
-    ui.set_tr_settings_input_device(tr.settings_input_device.into());
-    ui.set_tr_settings_output_device(tr.settings_output_device.into());
-    ui.set_tr_settings_threshold(tr.settings_threshold.into());
-    ui.set_tr_settings_mic_level(tr.settings_mic_level.into());
-    ui.set_tr_settings_btn_test_start(match resolved {
-        i18n::Language::Portuguese => "Testar Microfone (\"Se Ouvir\")".into(),
-        i18n::Language::Spanish => "Probar Micrófono (\"Escucharse\")".into(),
-        i18n::Language::German => "Mikrofon testen (\"Sich hören\")".into(),
-        i18n::Language::French => "Tester le Micro (\"S'entendre\")".into(),
-        i18n::Language::Russian => "Проверить микрофон (\"Слышать себя\")".into(),
-        i18n::Language::Japanese => "マイクをテスト (自分の声を聞く)".into(),
-        _ => "Test Microphone (\"Hear Yourself\")".into(),
-    });
-    ui.set_tr_settings_btn_test_stop(match resolved {
-        i18n::Language::Portuguese => "Parar Teste (Ouvindo...)".into(),
-        i18n::Language::Spanish => "Detener Prueba (Escuchando...)".into(),
-        i18n::Language::German => "Test beenden (Hören...)".into(),
-        i18n::Language::French => "Arrêter le Test (Écoute...)".into(),
-        i18n::Language::Russian => "Остановить тест (Слушаем...)".into(),
-        i18n::Language::Japanese => "テスト停止 (聴取中...)".into(),
-        _ => "Stop Testing (Listening...)".into(),
-    });
-    ui.set_tr_settings_done(tr.settings_done.into());
-    ui.set_tr_logout_title(tr.logout_title.into());
-    ui.set_tr_logout_confirm_prefix(tr.logout_confirm_prefix.into());
-    ui.set_tr_cancel(tr.cancel.into());
-    ui.set_tr_confirm_logout(tr.confirm_logout.into());
-    ui.set_tr_voice_connecting(tr.voice_connecting.into());
-    ui.set_tr_voice_connecting_title(tr.voice_connecting_title.into());
-    ui.set_tr_voice_connecting_desc(tr.voice_connecting_desc.into());
-    ui.set_tr_voice_connected(tr.voice_connected.into());
-    ui.set_tr_qr_title(tr.qr_title.into());
-    ui.set_tr_qr_desc(tr.qr_desc.into());
-    ui.set_tr_qr_confirm(tr.qr_confirm.into());
-    ui.set_tr_settings_tab_voice(tr.settings_tab_voice.into());
-    ui.set_tr_settings_tab_language(tr.settings_tab_language.into());
-    ui.set_tr_settings_tab_keybinds(tr.settings_tab_keybinds.into());
-    ui.set_tr_settings_tab_security(tr.settings_tab_security.into());
-    ui.set_tr_settings_tab_network_proxy(tr.settings_tab_network_proxy.into());
-    ui.set_tr_settings_tab_updates(tr.settings_tab_updates.into());
-    ui.set_tr_keybind_mute_title(tr.keybind_mute_title.into());
-    ui.set_tr_keybind_mute_desc(tr.keybind_mute_desc.into());
-    ui.set_tr_keybind_deafen_title(tr.keybind_deafen_title.into());
-    ui.set_tr_keybind_deafen_desc(tr.keybind_deafen_desc.into());
-    ui.set_tr_keybind_recording_prompt(tr.keybind_recording_prompt.into());
-    ui.set_tr_keybind_btn_record(tr.keybind_btn_record.into());
-    ui.set_tr_keybind_btn_clear(tr.keybind_btn_clear.into());
-    ui.set_tr_keybind_guide_title(tr.keybind_guide_title.into());
-    ui.set_tr_keybind_guide_desc(tr.keybind_guide_desc.into());
+    crate::ui::message_grouping::relabel_day_separators(&ui.get_messages());
+        
+        
+    // Rebuild the Video & Interface and Network & Proxy option lists and
+    // relabel the tray for the selected language, after the table flip above
+    // (merged from localization-consistency).
+    populate_video_interface_settings(ui);
+    populate_network_proxy_settings(ui);
+    crate::utils::tray::set_tray_texts();
 
     let lang_items: Vec<LanguageItem> = i18n::Language::all_available().iter().map(|&l| {
         let (display, native) = l.display_info();
@@ -306,8 +240,12 @@ pub fn apply_i18n_translations(ui: &AppWindow, lang: i18n::Language) {
         }
     }).collect();
     ui.set_languages(std::rc::Rc::new(slint::VecModel::from(lang_items)).into());
-    #[cfg(windows)]
+    // Rebuild the Video & Interface and Network & Proxy option lists for
+    // every language on every platform (not just Windows): switching the UI
+    // language from Settings keeps those lists in the selected language
+    // without a restart.
     populate_video_interface_settings(ui);
+    populate_network_proxy_settings(ui);
 }
 
 pub fn populate_video_interface_settings(ui: &AppWindow) {
@@ -364,120 +302,135 @@ pub fn populate_video_interface_settings(ui: &AppWindow) {
     };
 
     #[cfg(not(target_os = "windows"))]
-    let enc_items = vec![
-        SettingOptionItem {
-            id: "auto".into(),
-            name: "Automático (Recomendado)".into(),
-            desc: "Prioriza aceleração por hardware GPU disponível com fallback para CPU.".into(),
-            is_selected: enc == "auto",
-        },
-        SettingOptionItem {
-            id: "nvenc".into(),
-            name: "NVIDIA NVENC".into(),
-            desc: "Codificação acelerada por hardware via GPU NVIDIA GeForce / RTX.".into(),
-            is_selected: enc == "nvenc",
-        },
-        SettingOptionItem {
-            id: "ffmpeg".into(),
-            name: "FFmpeg Hardware (VA-API / QSV)".into(),
-            desc: "Pipeline acelerado por GPU via FFmpeg (VA-API, QSV, NVENC).".into(),
-            is_selected: enc == "ffmpeg",
-        },
-        SettingOptionItem {
-            id: "openh264".into(),
-            name: "Cisco OpenH264 (CPU)".into(),
-            desc: "Codificação universal por software multithread com otimizações SIMD.".into(),
-            is_selected: enc == "openh264",
-        },
-    ];
+    let enc_items = {
+        let text = i18n_ui::ui_text();
+        vec![
+            SettingOptionItem {
+                id: "auto".into(),
+                name: text.gpu_auto.into(),
+                desc: text.enc_auto_desc.into(),
+                is_selected: enc == "auto",
+            },
+            SettingOptionItem {
+                id: "nvenc".into(),
+                name: "NVIDIA NVENC".into(),
+                desc: text.enc_nvenc_desc.into(),
+                is_selected: enc == "nvenc",
+            },
+            SettingOptionItem {
+                id: "ffmpeg".into(),
+                name: "FFmpeg Hardware (VA-API / QSV)".into(),
+                desc: text.enc_ffmpeg_desc.into(),
+                is_selected: enc == "ffmpeg",
+            },
+            SettingOptionItem {
+                id: "openh264".into(),
+                name: "Cisco OpenH264 (CPU)".into(),
+                desc: text.enc_openh264_desc.into(),
+                is_selected: enc == "openh264",
+            },
+        ]
+    };
 
     #[cfg(target_os = "windows")]
-    let vcap_items = vec![
-        SettingOptionItem {
-            id: "auto".into(),
-            name: "Automático (Recomendado)".into(),
-            desc: "Tenta PrintWindow para janelas DirectX e usa BitBlt GDI para desktop e fallback.".into(),
-            is_selected: vcap == "auto",
-        },
-        SettingOptionItem {
-            id: "printwindow".into(),
-            name: "PrintWindow (DirectX / DWM)".into(),
-            desc: "Captura direta de janelas em primeiro ou segundo plano via DWM.".into(),
-            is_selected: vcap == "printwindow",
-        },
-        SettingOptionItem {
-            id: "bitblt".into(),
-            name: "BitBlt GDI (Desktop Crop)".into(),
-            desc: "Captura clássica de alto desempenho diretamente do framebuffer do desktop.".into(),
-            is_selected: vcap == "bitblt",
-        },
-    ];
+    let vcap_items = {
+        let text = i18n_ui::ui_text();
+        vec![
+            SettingOptionItem {
+                id: "auto".into(),
+                name: text.gpu_auto.into(),
+                desc: text.vcap_gdi_auto_desc.into(),
+                is_selected: vcap == "auto",
+            },
+            SettingOptionItem {
+                id: "printwindow".into(),
+                name: "PrintWindow (DirectX / DWM)".into(),
+                desc: text.vcap_printwin_desc.into(),
+                is_selected: vcap == "printwindow",
+            },
+            SettingOptionItem {
+                id: "bitblt".into(),
+                name: "BitBlt GDI (Desktop Crop)".into(),
+                desc: text.vcap_bitblt_desc.into(),
+                is_selected: vcap == "bitblt",
+            },
+        ]
+    };
 
     #[cfg(not(target_os = "windows"))]
-    let vcap_items = vec![
-        SettingOptionItem {
-            id: "auto".into(),
-            name: "Automático (Recomendado)".into(),
-            desc: "Utiliza o seletor nativo do sistema via XDG Desktop Portal e PipeWire.".into(),
-            is_selected: vcap == "auto",
-        },
-        SettingOptionItem {
-            id: "portal".into(),
-            name: "XDG Desktop Portal + PipeWire".into(),
-            desc: "Captura de tela moderna de baixa latência compatível com Wayland e Flatpak.".into(),
-            is_selected: vcap == "portal",
-        },
-        SettingOptionItem {
-            id: "x11".into(),
-            name: "X11 Fallback".into(),
-            desc: "Captura legada direta de tela em sessões gráficas X11.".into(),
-            is_selected: vcap == "x11",
-        },
-    ];
+    let vcap_items = {
+        let text = i18n_ui::ui_text();
+        vec![
+            SettingOptionItem {
+                id: "auto".into(),
+                name: text.gpu_auto.into(),
+                desc: text.vcap_auto_desc.into(),
+                is_selected: vcap == "auto",
+            },
+            SettingOptionItem {
+                id: "portal".into(),
+                name: "XDG Desktop Portal + PipeWire".into(),
+                desc: text.vcap_portal_desc.into(),
+                is_selected: vcap == "portal",
+            },
+            SettingOptionItem {
+                id: "x11".into(),
+                name: "X11 Fallback".into(),
+                desc: text.vcap_x11_desc.into(),
+                is_selected: vcap == "x11",
+            },
+        ]
+    };
 
     #[cfg(target_os = "windows")]
-    let aloop_items = vec![
-        SettingOptionItem {
-            id: "auto".into(),
-            name: "Automático (Recomendado)".into(),
-            desc: "Captura com isolamento de processo WASAPI (exclui o Litecord do áudio da stream).".into(),
-            is_selected: aloop == "auto",
-        },
-        SettingOptionItem {
-            id: "wasapi_isolated".into(),
-            name: "WASAPI Process-Loopback Isolado".into(),
-            desc: "Captura nativa que remove vozes dos amigos e sons do Litecord da sua transmissão.".into(),
-            is_selected: aloop == "wasapi_isolated",
-        },
-        SettingOptionItem {
-            id: "cpal".into(),
-            name: "CPAL WASAPI Loopback".into(),
-            desc: "Captura direta do endpoint de saída padrão do sistema operacional.".into(),
-            is_selected: aloop == "cpal",
-        },
-    ];
+    let aloop_items = {
+        let text = i18n_ui::ui_text();
+        vec![
+            SettingOptionItem {
+                id: "auto".into(),
+                name: text.gpu_auto.into(),
+                desc: text.aloop_wasapi2_desc.into(),
+                is_selected: aloop == "auto",
+            },
+            SettingOptionItem {
+                id: "wasapi_isolated".into(),
+                name: "WASAPI Process-Loopback Isolated".into(),
+                desc: text.aloop_wasapi_desc.into(),
+                is_selected: aloop == "wasapi_isolated",
+            },
+            SettingOptionItem {
+                id: "cpal".into(),
+                name: "CPAL WASAPI Loopback".into(),
+                desc: text.aloop_cpal_win_desc.into(),
+                is_selected: aloop == "cpal",
+            },
+        ]
+    };
 
     #[cfg(not(target_os = "windows"))]
-    let aloop_items = vec![
-        SettingOptionItem {
-            id: "auto".into(),
-            name: "Automático (Recomendado)".into(),
-            desc: "Captura monitor do sink padrão PulseAudio/PipeWire via GStreamer pulsesrc.".into(),
-            is_selected: aloop == "auto",
-        },
-        SettingOptionItem {
-            id: "pulsesrc".into(),
-            name: "GStreamer pulsesrc (Monitor)".into(),
-            desc: "Pipeline GStreamer dedicado conectado ao sink monitor do PipeWire.".into(),
-            is_selected: aloop == "pulsesrc",
-        },
-        SettingOptionItem {
-            id: "cpal".into(),
-            name: "CPAL Audio Loopback".into(),
-            desc: "Captura padrão via interface de áudio CPAL.".into(),
-            is_selected: aloop == "cpal",
-        },
-    ];
+    let aloop_items = {
+        let text = i18n_ui::ui_text();
+        vec![
+            SettingOptionItem {
+                id: "auto".into(),
+                name: text.gpu_auto.into(),
+                desc: text.aloop_auto_desc.into(),
+                is_selected: aloop == "auto",
+            },
+            SettingOptionItem {
+                id: "pulsesrc".into(),
+                name: "GStreamer pulsesrc (Monitor)".into(),
+                desc: text.aloop_pulsesrc_desc.into(),
+                is_selected: aloop == "pulsesrc",
+            },
+            SettingOptionItem {
+                id: "cpal".into(),
+                name: "CPAL Audio Loopback".into(),
+                desc: text.aloop_cpal_desc.into(),
+                is_selected: aloop == "cpal",
+            },
+        ]
+    };
 
     ui.set_video_encoder_options(std::rc::Rc::new(slint::VecModel::from(enc_items)).into());
     ui.set_video_capture_options(std::rc::Rc::new(slint::VecModel::from(vcap_items)).into());
@@ -494,6 +447,66 @@ pub fn refresh_stream_capture_status(ui: &AppWindow) {
     ui.set_stream_capture_status(value.into());
 }
 
+pub fn populate_voice_processing_settings(ui: &AppWindow) {
+    let ns = video_settings::get_noise_suppression();
+    let aec = video_settings::get_echo_cancellation();
+    let agc = video_settings::get_automatic_gain_control();
+
+    ui.set_echo_cancellation(aec);
+    ui.set_automatic_gain_control(agc);
+
+    let lang = i18n::load_persisted_language_config();
+    let (adv_name, adv_desc, std_name, std_desc, off_name, off_desc) = match lang {
+        i18n::Language::English => (
+            "Advanced Suppression",
+            "Deep neural network background noise removal and transient filtering.",
+            "Standard (RNNoise)",
+            "Classic recurrent neural network noise reduction.",
+            "Disabled (Default)",
+            "No noise suppression applied to microphone."
+        ),
+        i18n::Language::Spanish => (
+            "Supresión avanzada",
+            "Supresión por red neuronal profunda y filtrado de transientes.",
+            "Estándar (RNNoise)",
+            "Reducción de ruido clásica basada en red neuronal recurrente.",
+            "Desactivado (Predeterminado)",
+            "Sin procesamiento de supresión de ruido en el micrófono."
+        ),
+        _ => (
+            "Supressão Avançada",
+            "Supressão por rede neural profunda e filtragem de transientes.",
+            "Padrão (RNNoise)",
+            "Redução de ruído clássica baseada em rede neural recorrente.",
+            "Desativado (Padrão)",
+            "Sem processamento de supressão de ruído no microfone."
+        ),
+    };
+
+    let ns_items = vec![
+        SettingOptionItem {
+            id: "advanced".into(),
+            name: adv_name.into(),
+            desc: adv_desc.into(),
+            is_selected: ns == "advanced" || ns == "krisp",
+        },
+        SettingOptionItem {
+            id: "standard".into(),
+            name: std_name.into(),
+            desc: std_desc.into(),
+            is_selected: ns == "standard",
+        },
+        SettingOptionItem {
+            id: "none".into(),
+            name: off_name.into(),
+            desc: off_desc.into(),
+            is_selected: ns == "none" || ns.is_empty(),
+        },
+    ];
+
+    ui.set_noise_suppression_options(std::rc::Rc::new(slint::VecModel::from(ns_items)).into());
+}
+
 pub fn populate_network_proxy_settings(ui: &AppWindow) {
     let settings = crate::utils::get_network_settings();
     ui.set_selected_proxy_mode(settings.proxy_mode.clone().into());
@@ -507,29 +520,30 @@ pub fn populate_network_proxy_settings(ui: &AppWindow) {
     }
     ui.set_proxy_route_media_enabled(settings.route_media);
 
+    let text = i18n_ui::ui_text();
     let mode_items = vec![
         SettingOptionItem {
             id: "off".into(),
-            name: "Desativado (Conexão Direta)".into(),
-            desc: "Conexão direta aos servidores do Discord (Padrão).".into(),
+            name: text.proxy_off_name.into(),
+            desc: text.proxy_off_desc.into(),
             is_selected: settings.proxy_mode == "off",
         },
         SettingOptionItem {
             id: "http".into(),
             name: "Proxy HTTP / HTTPS".into(),
-            desc: "Túnel HTTP CONNECT para redes restritas e proxies.".into(),
+            desc: text.proxy_http_desc.into(),
             is_selected: settings.proxy_mode == "http" || settings.proxy_mode == "https",
         },
         SettingOptionItem {
             id: "socks5".into(),
             name: "Proxy SOCKS5".into(),
-            desc: "Túnel SOCKS5 compatível com Tor, Shadowsocks e SSH.".into(),
+            desc: text.proxy_socks_desc.into(),
             is_selected: settings.proxy_mode == "socks5",
         },
         SettingOptionItem {
             id: "system".into(),
-            name: "Proxy do Sistema".into(),
-            desc: "Detecta automaticamente o proxy global do sistema.".into(),
+            name: text.proxy_system_name.into(),
+            desc: text.proxy_system_desc.into(),
             is_selected: settings.proxy_mode == "system",
         },
     ];
@@ -969,7 +983,7 @@ pub fn build_ui_channels(
             let has_separator = category_count > 1;
             ui_channels.push(ChannelItem {
                 id: ch.id.clone().into(),
-                name: ch.name.clone().into(),
+                name: crate::utils::styled_text::plain_display_name(&ch.name).as_ref().into(),
                 is_voice: false,
                 voice_count: 0,
                 is_voice_member: false,
@@ -982,6 +996,7 @@ pub fn build_ui_channels(
                 is_collapsed,
                 has_separator,
                 unread_count: 0,
+                ..crate::ui::helpers::channel_emoji_fields(&crate::utils::styled_text::plain_display_name(&ch.name))
             });
         } else {
             if let Some(ref pid) = ch.parent_id {
@@ -997,7 +1012,7 @@ pub fn build_ui_channels(
             let vcount = voice_participants.len() as i32;
             ui_channels.push(ChannelItem {
                 id: ch.id.clone().into(),
-                name: ch.name.clone().into(),
+                name: crate::utils::styled_text::plain_display_name(&ch.name).as_ref().into(),
                 is_voice: ch.is_voice,
                 voice_count: vcount,
                 is_voice_member: false,
@@ -1010,6 +1025,7 @@ pub fn build_ui_channels(
                 is_collapsed: false,
                 has_separator: false,
                 unread_count: 0,
+                ..crate::ui::helpers::channel_emoji_fields(&crate::utils::styled_text::plain_display_name(&ch.name))
             });
 
             for (user_id, name) in voice_participants {
@@ -1022,7 +1038,7 @@ pub fn build_ui_channels(
                     .collect();
                 ui_channels.push(ChannelItem {
                     id: format!("voice-member:{}:{}", ch.id, user_id).into(),
-                    name: name.into(),
+                    name: crate::utils::styled_text::plain_display_name(&name).as_ref().into(),
                     is_voice: false,
                     voice_count: 0,
                     is_voice_member: true,
@@ -1035,6 +1051,7 @@ pub fn build_ui_channels(
                     is_collapsed: false,
                     has_separator: false,
                     unread_count: 0,
+                    ..Default::default()
                 });
             }
         }
@@ -1170,5 +1187,83 @@ mod hidden_activity_tests {
             vec![("b".to_string(), 1), ("a".to_string(), 2), ("c".to_string(), 0)]
         );
         assert!(take_hidden_channel_activity().is_empty());
+    }
+}
+
+const CHANNEL_EMOJI_SLOTS: usize = 128;
+
+/// Window and image pool of the channel list's emoji. `ChannelItem` rows are built off
+/// the UI thread too, and an image cannot cross threads, so a row holds a slot number
+/// and the images live in `channel_emoji_pool`, filled on the UI thread.
+static CHANNEL_EMOJI_APP: std::sync::Mutex<Option<slint::Weak<AppWindow>>> = std::sync::Mutex::new(None);
+static CHANNEL_EMOJI_SLOT_OF: std::sync::OnceLock<std::sync::Mutex<std::collections::HashMap<String, i32>>> =
+    std::sync::OnceLock::new();
+
+/// Must run on the UI thread: installs the image pool.
+pub fn set_channel_emoji_app(app: slint::Weak<AppWindow>) {
+    if let Some(ui) = app.upgrade() {
+        let pool = std::rc::Rc::new(slint::VecModel::from(vec![slint::Image::default(); CHANNEL_EMOJI_SLOTS]));
+        ui.set_channel_emoji_pool(pool.into());
+    }
+    if let Ok(mut slot) = CHANNEL_EMOJI_APP.lock() {
+        *slot = Some(app);
+    }
+}
+
+/// Channel names often start with an emoji. No loaded font draws emoji in colour,
+/// so they showed as grey outlines; the chat already draws them as Twemoji images
+/// from the emoji cache, and the channel list now does the same. Returns the
+/// emoji fields of a `ChannelItem` (the rest default); a name without a leading
+/// emoji keeps them empty and is drawn as text.
+pub fn channel_emoji_fields(name: &str) -> ChannelItem {
+    let trimmed = name.trim_start();
+    let Some((0, len, _, emoji_id)) = gateway::formatting::find_next_unicode_emoji(trimmed) else {
+        return ChannelItem::default();
+    };
+    let (slot, is_new) = {
+        let mut slots = CHANNEL_EMOJI_SLOT_OF.get_or_init(Default::default).lock().unwrap();
+        match slots.get(&emoji_id) {
+            Some(slot) => (*slot, false),
+            None if slots.len() < CHANNEL_EMOJI_SLOTS => {
+                let slot = slots.len() as i32;
+                slots.insert(emoji_id.clone(), slot);
+                (slot, true)
+            }
+            // Pool full: this name keeps its emoji as text.
+            None => return ChannelItem::default(),
+        }
+    };
+    if is_new {
+        let app = CHANNEL_EMOJI_APP.lock().ok().and_then(|a| a.clone());
+        let id = emoji_id.clone();
+        let _ = slint::invoke_from_event_loop(move || {
+            let Some(app) = app else { return };
+            let emoji_mgr = emoji_cache::get_emoji_cache();
+            match emoji_mgr.get(&id) {
+                Some(img) => {
+                    if let Some(ui) = app.upgrade() {
+                        refresh_channel_emoji(&ui, &id, &img);
+                    }
+                }
+                None => emoji_mgr.fetch_priority_async(&id, "", app),
+            }
+        });
+    }
+    ChannelItem {
+        label: trimmed[len..].trim_start().into(),
+        emoji_id: emoji_id.into(),
+        emoji_slot: slot,
+        ..Default::default()
+    }
+}
+
+/// Puts `emoji_id`'s image in its pool slot once it is cached.
+pub fn refresh_channel_emoji(ui: &AppWindow, emoji_id: &str, img: &slint::Image) {
+    let slot = CHANNEL_EMOJI_SLOT_OF.get().and_then(|s| s.lock().ok()?.get(emoji_id).copied());
+    if let Some(slot) = slot {
+        let pool = ui.get_channel_emoji_pool();
+        if (slot as usize) < pool.row_count() {
+            pool.set_row_data(slot as usize, img.clone());
+        }
     }
 }

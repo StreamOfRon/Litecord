@@ -44,6 +44,30 @@ fn commit_heap_pages_on_demand() {
     const MI_OPTION_PAGE_COMMIT_ON_DEMAND: i32 = 40;
     unsafe { mi_option_set(MI_OPTION_PAGE_COMMIT_ON_DEMAND, 1) };
 }
+
+/// The command that hands a URL to the default browser on this platform
+/// (the spawn arm of `on_open_link`; Windows uses ShellExecuteW instead).
+/// macOS has no xdg-open — `open` is its default-browser handler.
+#[cfg(target_os = "macos")]
+fn browser_open_command() -> &'static str {
+    "open"
+}
+#[cfg(all(not(target_os = "windows"), not(target_os = "macos")))]
+fn browser_open_command() -> &'static str {
+    "xdg-open"
+}
+
+/// Whether the startup path may re-enable native window decorations on the
+/// freshly created winit window (the explicit `set_decorations(true)` call).
+///
+/// This exists solely for the WSLg workaround (commit d754dd3): on WSLg/X11
+/// the top-level desktop presentation needs the explicit decoration request.
+/// Windows and macOS keep Slint's `no-frame: true` self-drawn chrome — the
+/// override must not fire there, or the native titlebar draws on top of the
+/// app's own titlebar.
+pub(crate) fn startup_native_decorations_wanted() -> bool {
+    cfg!(target_os = "linux")
+}
 use tray_icon::{TrayIconEvent, menu::MenuEvent, MouseButton};
 #[cfg(target_os = "windows")]
 use windows_sys::Win32::UI::WindowsAndMessaging::{
@@ -57,6 +81,9 @@ slint::include_modules!();
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     commit_heap_pages_on_demand();
     let _tokio_guard = tokio::runtime::Handle::current().enter();
+
+    #[cfg(all(unix, not(target_vendor = "apple")))]
+    let _ = i_slint_backend_winit::set_xdg_app_id("litecord");
 
     let _ = rayon::ThreadPoolBuilder::new()
         .num_threads(4)
@@ -161,6 +188,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let keybind_mgr = Arc::new(keybinds::KeybindManager::new(initial_keybinds));
     sound_effects::init_sound_effects();
     populate_video_interface_settings(&app);
+    populate_voice_processing_settings(&app);
     populate_network_proxy_settings(&app);
 
     let app_weak = app.as_weak();
@@ -177,6 +205,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }));
     }
     avatar_cache::get_avatar_cache().set_app(app_weak.clone());
+    crate::ui::helpers::set_channel_emoji_app(app_weak.clone());
 
     let popout_window = PopoutStreamWindow::new()?;
     let popout_weak = popout_window.as_weak();
@@ -205,6 +234,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         };
         let refresh_main = refresh_gpu_video.clone();
         let main_had_area = std::cell::Cell::new(true);
+        let main_weak = app_weak.clone();
         app.window().on_winit_window_event(move |window, ev| {
             if let Some(has) = has_area(window, ev) {
                 if has && !main_had_area.replace(has) {
@@ -212,6 +242,21 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
                 screen_capture::set_main_window_has_area(has);
                 refresh_main();
+            }
+            if matches!(ev, winit::event::WindowEvent::Moved(_) | winit::event::WindowEvent::Resized(_)) {
+                crate::ui::window_place::observe(&main_weak);
+                // On macOS `is_maximized()` is a mutating getter for borderless windows (winit
+                // re-applies the style mask to ask AppKit), which posts another window event and
+                // loops forever. The app tracks maximize state itself there, so don't query it.
+                #[cfg(not(target_os = "macos"))]
+                window.with_winit_window(|w| {
+                    // Maximizing also happens outside the title bar button (Win+Up, snapping).
+                    if let Some(ui) = main_weak.upgrade() {
+                        if ui.get_is_maximized() != w.is_maximized() {
+                            ui.set_is_maximized(w.is_maximized());
+                        }
+                    }
+                });
             }
             EventResult::Propagate
         });
@@ -255,10 +300,19 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         if let Some(ui) = app_weak_init.upgrade() {
             ui.window().with_winit_window(|winit_win| {
                 info!("🖥️ [EVENT LOOP] Configurando janela Winit no evento inicial...");
-                let _ = winit_win.request_inner_size(winit::dpi::LogicalSize::new(980.0, 620.0));
-                winit_win.set_outer_position(winit::dpi::LogicalPosition::new(100.0, 100.0));
+                if crate::ui::window_place::restore(winit_win) {
+                    ui.set_is_maximized(true);
+                }
                 winit_win.set_visible(true);
                 winit_win.set_minimized(false);
+                // A frameless window gets no drop shadow, so over another light window its
+                // edges disappeared. The shadow is drawn by the Windows compositor (DWM),
+                // outside the app's own rendering, so it costs no CPU, GPU or memory here.
+                #[cfg(target_os = "windows")]
+                {
+                    use winit::platform::windows::WindowExtWindows;
+                    winit_win.set_undecorated_shadow(true);
+                }
                 winit_win.focus_window();
                 winit_win.request_redraw();
                 if let Some(pop_win) = popout_weak_init.upgrade() {
@@ -309,8 +363,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                         }
                     }
                 }
-                #[cfg(not(target_os = "windows"))]
-                {
+                // WSLg/X11 needs the explicit decoration request for instant
+                // desktop presentation (commit d754dd3); Windows and macOS
+                // keep Slint's `no-frame` self-drawn chrome.
+                if startup_native_decorations_wanted() {
                     winit_win.set_decorations(true);
                 }
             });
@@ -493,8 +549,20 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     });
 
+    let app_weak_open_link = app_weak.clone();
     app.on_open_link(move |url_str: SharedString| {
         let url = url_str.trim().to_string();
+        // A link to a channel of the server on screen opens that channel here instead
+        // of the browser (channel mentions are shown as such links).
+        if let Some((_, channel_id)) = gateway::channel_names::channel_link_target(&url) {
+            if let Some(ui) = app_weak_open_link.upgrade() {
+                let on_screen = ui.get_channels().iter().any(|c| c.id.as_str() == channel_id);
+                if on_screen {
+                    ui.invoke_select_channel(channel_id.into());
+                    return;
+                }
+            }
+        }
         // Strict URL protocol validation: only allow HTTP and HTTPS
         if !url.starts_with("http://") && !url.starts_with("https://") {
             log::warn!("Tentativa de abrir link não-HTTP rejeitada por segurança: {}", url);
@@ -510,7 +578,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
         #[cfg(not(target_os = "windows"))]
         {
-            let _ = std::process::Command::new("xdg-open").arg(&url).spawn();
+            let _ = std::process::Command::new(browser_open_command()).arg(&url).spawn();
         }
     });
 
@@ -1179,6 +1247,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                         Ok(url) if manager.is_active() && screen_capture::web_share::is_active() => {
                             ui.set_web_share_url(url.into());
                             ui.set_web_share_active(true);
+                            ui.set_show_web_share_modal(true);
                         },
                         Err(e) => ui.set_web_share_error(e.to_string().into()),
                         _ => {},
@@ -1951,6 +2020,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             }).collect();
             ui.set_languages(std::rc::Rc::new(slint::VecModel::from(lang_items)).into());
             populate_video_interface_settings(&ui);
+            populate_voice_processing_settings(&ui);
             populate_network_proxy_settings(&ui);
 
             // 2. Populate devices immediately from cache if available
@@ -2153,7 +2223,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let app_weak_rec = app_weak.clone();
     app.on_start_recording_keybind(move |target: i32| {
-        keybinds::RECORDING_TARGET.store(target as u8, Ordering::Relaxed);
+        keybinds::start_recording(target as u8);
         if let Some(ui) = app_weak_rec.upgrade() {
             ui.set_recording_keybind_for(target);
         }
@@ -2280,6 +2350,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     });
 
+    app.set_channel_sidebar_width(video_settings::get_channel_sidebar_width());
+    app.on_channel_sidebar_width_committed(|width| {
+        video_settings::set_channel_sidebar_width(width);
+    });
+
     let app_weak_gpu = app.as_weak();
     app.on_toggle_gpu_renderer(move || {
         let new_val = video_settings::toggle_use_gpu_renderer();
@@ -2293,6 +2368,31 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         let use_light_theme = video_settings::toggle_use_light_theme();
         if let Some(ui) = app_weak_theme.upgrade() {
             ui.set_use_light_theme(use_light_theme);
+        }
+    });
+
+    // Voice Processing Settings Callbacks
+    let app_weak_ns = app_weak.clone();
+    app.on_select_noise_suppression(move |id: SharedString| {
+        video_settings::set_noise_suppression(id.to_string());
+        if let Some(ui) = app_weak_ns.upgrade() {
+            populate_voice_processing_settings(&ui);
+        }
+    });
+
+    let app_weak_aec = app_weak.clone();
+    app.on_toggle_echo_cancellation(move || {
+        let new_val = video_settings::toggle_echo_cancellation();
+        if let Some(ui) = app_weak_aec.upgrade() {
+            ui.set_echo_cancellation(new_val);
+        }
+    });
+
+    let app_weak_agc = app_weak.clone();
+    app.on_toggle_automatic_gain_control(move || {
+        let new_val = video_settings::toggle_automatic_gain_control();
+        if let Some(ui) = app_weak_agc.upgrade() {
+            ui.set_automatic_gain_control(new_val);
         }
     });
 
@@ -2505,7 +2605,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
             if let Some(tch) = target_text_ch {
                 *active_channel_leave.lock().unwrap() = tch.id.clone();
-                let clean_name = tch.name.trim_start_matches('#').trim().to_string();
+                let clean_name = crate::utils::styled_text::plain_display_name(tch.name.trim_start_matches('#').trim()).into_owned();
                 let tch_id = tch.id.clone();
                 ui.set_active_channel_name(clean_name.into());
                 ui.set_active_channel_id(tch_id.clone().into());
@@ -2916,6 +3016,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                                 combined.extend(current_msgs);
                                 regroup_messages(&mut combined);
                                 avatar_cache::get_avatar_cache().hydrate(&mut combined, &app_w_inner);
+                                crate::ui::invite_cards::hydrate(&mut combined, &app_w_inner);
                                 let model = std::rc::Rc::new(slint::VecModel::from(combined));
                                 ui.set_messages(model.into());
                             }
@@ -3855,8 +3956,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let model = std::rc::Rc::new(slint::VecModel::from(current_msgs));
                 ui.set_messages(model.into());
             } else {
-                let clean_name = ch_name.trim_start_matches('#').trim();
-                ui.set_active_channel_name(clean_name.into());
+                let clean_name = crate::utils::styled_text::plain_display_name(ch_name.trim_start_matches('#').trim());
+                ui.set_active_channel_name(clean_name.as_ref().into());
                 ui.set_active_channel_id(ch_id.clone().into());
                 ui.set_is_voice_focused(false);
                 request_chat_scroll_to_bottom(app_weak_chan_select.clone());
@@ -4231,6 +4332,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let hwnd_store_minimize = Arc::clone(&hwnd_store);
     app.on_minimize_to_tray(move || {
         info!("Minimizando janela para a bandeja do sistema via Win32 SW_HIDE...");
+        crate::ui::window_place::save_now();
+        crate::ui::invite_cards::clear();
         APP_IS_VISIBLE.store(false, Ordering::Relaxed);
         PENDING_MESSAGES.store(0, Ordering::Relaxed);
         info!("[DeepSleep] UI loops suspensos. Apenas áudio permanece ativo.");
@@ -4355,8 +4458,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let app_weak_max = app_weak.clone();
     app.on_maximize_window(move || {
         if let Some(app_instance) = app_weak_max.upgrade() {
-            let is_max = app_instance.window().is_maximized();
-            let next = !is_max;
+            // The UI property is the source of truth: on macOS querying winit's state is a
+            // mutating getter for borderless windows (see the window event handler above).
+            let next = !app_instance.get_is_maximized();
             app_instance.window().set_maximized(next);
             app_instance.set_is_maximized(next);
         }
@@ -4365,6 +4469,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let sm_for_close = Arc::clone(&screen_manager);
     app.on_close_window(move || {
         info!("Fechar clicado na barra superior: saindo do aplicativo...");
+        crate::ui::window_place::save_now();
         sm_for_close.stop();
         #[cfg(target_os = "linux")]
         screen_capture::kill_portal_child();
@@ -4557,6 +4662,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                                 // existing model so a new message does not rebuild the chat UI.
                                 let mut appended = current_msgs.pop().expect("message was appended");
                                 avatar_cache::get_avatar_cache().hydrate(std::slice::from_mut(&mut appended), &app_weak_inner);
+                                crate::ui::invite_cards::hydrate(std::slice::from_mut(&mut appended), &app_weak_inner);
                                 let messages = ui.get_messages();
                                 if let Some(model) = messages.as_any().downcast_ref::<slint::VecModel<ChatMessage>>() {
                                     model.push(appended);
@@ -4660,6 +4766,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                             let mut current_msgs: Vec<ChatMessage> = ui.get_messages().iter().filter(|m| m.id != id.as_str()).collect();
                             regroup_messages(&mut current_msgs);
                             avatar_cache::get_avatar_cache().hydrate(&mut current_msgs, &app_weak_inner);
+                            crate::ui::invite_cards::hydrate(&mut current_msgs, &app_weak_inner);
                             let model = std::rc::Rc::new(slint::VecModel::from(current_msgs));
                             ui.set_messages(model.into());
                         }
@@ -4757,6 +4864,40 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     });
 
     app.run()?;
+    crate::ui::window_place::save_now();
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    /// Chat links must hand off to the platform's default-browser handler:
+    /// `open` on macOS (there is no xdg-open — links would silently fail),
+    /// xdg-open on the other non-Windows platforms. Windows uses
+    /// ShellExecuteW directly in `on_open_link`, so it has no command.
+    #[cfg(target_os = "macos")]
+    #[test]
+    fn browser_open_command_is_open_on_macos() {
+        assert_eq!(crate::browser_open_command(), "open");
+    }
+
+    #[cfg(all(not(target_os = "windows"), not(target_os = "macos")))]
+    #[test]
+    fn browser_open_command_is_xdg_open_off_macos() {
+        assert_eq!(crate::browser_open_command(), "xdg-open");
+    }
+
+    /// Slint's `no-frame: true` chrome is authoritative on Windows and macOS;
+    /// only Linux keeps the WSLg override that re-enables native decorations
+    /// at startup (commit d754dd3). On macOS the override must be off, or the
+    /// native titlebar doubles the app's own titlebar.
+    #[cfg(any(target_os = "macos", target_os = "linux"))]
+    #[test]
+    fn startup_native_decorations_are_linux_only() {
+        assert_eq!(
+            crate::startup_native_decorations_wanted(),
+            cfg!(target_os = "linux"),
+            "the explicit native-decoration startup override (WSLg workaround) must apply to Linux only; Windows and macOS keep Slint's no-frame chrome",
+        );
+    }
 }
 

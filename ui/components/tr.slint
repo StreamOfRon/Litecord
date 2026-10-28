@@ -1,11 +1,104 @@
 // Generated UI strings (English defaults). Rust overrides them for the active language.
 export global Tr {
+
+    // Migrated from hand-wired tr_* props (localization-consistency Task 2).
+    in-out property <string> settings_title: "Voice & Audio Settings";
+    in-out property <string> settings_tab_voice: "Voice & Audio";
+    in-out property <string> settings_tab_language: "Language";
+    in-out property <string> settings_tab_keybinds: "Keybinds";
+    in-out property <string> settings_tab_security: "Security & E2EE";
+    in-out property <string> settings_tab_updates: "Updates & About";
+    in-out property <string> settings_tab_network_proxy: "Network & Proxy";
+    in-out property <string> settings_input_device: "INPUT DEVICE (MICROPHONE)";
+    in-out property <string> settings_output_device: "OUTPUT DEVICE (SPEAKERS / HEADPHONES)";
+    in-out property <string> settings_threshold: "VOICE DETECTION SENSITIVITY (THRESHOLD)";
+    in-out property <string> settings_mic_level: "REAL-TIME MICROPHONE LEVEL";
+    // Proxy test/alert strings (Network & Proxy tab + login alert).
+    in-out property <string> tray_show: "Open Litecord";
+    in-out property <string> tray_quit: "Quit";
+    in-out property <string> tray_tooltip: "Litecord — Ultra-Lightweight Discord Client";
+    // Video & Interface option rows.
+    in-out property <string> enc_auto_desc: "Prefers available hardware GPU acceleration, falling back to CPU.";
+    in-out property <string> enc_nvenc_desc: "Hardware accelerated encoding via NVIDIA GeForce / RTX GPUs.";
+    in-out property <string> enc_ffmpeg_desc: "GPU-accelerated pipeline via FFmpeg (VA-API, QSV, NVENC).";
+    in-out property <string> enc_openh264_desc: "Universal multithreaded software encoding with SIMD optimizations.";
+    in-out property <string> vcap_auto_desc: "Uses the system's native selector via XDG Desktop Portal and PipeWire.";
+    in-out property <string> vcap_portal_desc: "Modern low-latency screen capture compatible with Wayland and Flatpak.";
+    in-out property <string> vcap_x11_desc: "Legacy direct screen capture on X11 sessions.";
+    in-out property <string> vcap_printwin_desc: "Direct window capture (foreground or background) via DWM.";
+    in-out property <string> vcap_bitblt_desc: "Classic high-performance capture straight from the desktop framebuffer.";
+    in-out property <string> aloop_auto_desc: "Captures the default PulseAudio/PipeWire sink monitor via GStreamer pulsesrc.";
+    in-out property <string> aloop_pulsesrc_desc: "Dedicated GStreamer pipeline connected to the PipeWire monitor sink.";
+    in-out property <string> aloop_cpal_desc: "Standard capture via the CPAL audio interface.";
+    in-out property <string> aloop_wasapi_desc: "Native capture that removes friends' voices and Litecord sounds from your stream.";
+    in-out property <string> aloop_wasapi2_desc: "Process-isolated WASAPI capture (excludes Litecord audio from the stream).";
+    in-out property <string> proxy_off_name: "Disabled (direct connection)";
+    in-out property <string> proxy_off_desc: "Direct connection to Discord's servers (default).";
+    in-out property <string> proxy_http_desc: "HTTP CONNECT tunnel for restricted networks and proxies.";
+    in-out property <string> proxy_socks_desc: "SOCKS5 tunnel compatible with Tor, Shadowsocks and SSH.";
+    in-out property <string> proxy_system_name: "System proxy";
+    in-out property <string> proxy_system_desc: "Detects the system's global proxy automatically.";
+    in-out property <string> vcap_gdi_auto_desc: "Tries PrintWindow for DirectX windows, using BitBlt GDI for the desktop and as fallback.";
+    in-out property <string> aloop_cpal_win_desc: "Direct capture from the operating system's default output endpoint.";
+    in-out property <string> device_default_input: "System Default Microphone";
+    in-out property <string> device_default_output: "System Default Speakers";
+    in-out property <string> proxy_test_success: "Proxy test successful! Latency: {}ms (Status: {})";
+    in-out property <string> proxy_test_http_status: "Proxy responded in {}ms, but with HTTP status {}";
+    in-out property <string> proxy_test_failed: "Failed to connect via proxy: {}";
+    in-out property <string> proxy_alert_system: "System proxy connection failed! Click here or the gear at the top to open Settings and disable it.";
+    in-out property <string> proxy_alert_manual: "The proxy ({}: {}:{}) is unreachable or refusing connections! Click here or the gear at the top to open Settings and disable it.";
+
+    // Migrated from hand-wired tr_* props (Task 4).
+    in-out property <string> login_title: "Sign in to Litecord";
+    in-out property <string> login_desc: "Enter your Discord User Token for direct connection to Gateway v9.\n(Estimated RAM usage ~15MB)";
+    in-out property <string> login_placeholder: "Paste your Discord User Token here...";
+    in-out property <string> login_btn_connect: "Connect to Gateway";
+    in-out property <string> login_btn_detect: "Detect Discord Token";
+    in-out property <string> server_channels: "SERVER CHANNELS";
+    in-out property <string> leave: "Leave";
+    in-out property <string> view_text_chat: "View Text Chat";
+    in-out property <string> leave_call: "Disconnect Call";
+    in-out property <string> voice_participants_title: "VOICE ROOM PARTICIPANTS";
+    in-out property <string> badge_you: "YOU";
+    in-out property <string> view_voice_room: "View Voice Room";
+    in-out property <string> replying_to: "Replying to @";
+    in-out property <string> chat_placeholder_prefix: "Message ";
+    in-out property <string> send: "Send";
+    in-out property <string> settings_language_label: "LANGUAGE / IDIOMA";
+    in-out property <string> logout_title: "Sign Out";
+    in-out property <string> logout_confirm_prefix: "Do you want to log out from ";
+    in-out property <string> cancel: "Cancel";
+    in-out property <string> confirm_logout: "Sign Out";
+    in-out property <string> voice_connecting: "Connecting...";
+    in-out property <string> voice_connecting_title: "Connecting to Voice Channel...";
+    in-out property <string> voice_connecting_desc: "Authenticating with Voice Gateway v9 and negotiating DAVE E2EE encryption...";
+    in-out property <string> voice_connected: "Voice Connected";
+    in-out property <string> qr_title: "Log in with QR Code";
+    in-out property <string> qr_desc: "Scan this with the Discord mobile app to log in instantly.";
+    in-out property <string> qr_confirm: "Approve login on your phone!";
+    in-out property <string> settings_btn_test_start: "Test Microphone (\"Hear Yourself\")";
+    in-out property <string> settings_btn_test_stop: "Stop Testing (Listening...)";
+    in-out property <string> settings_done: "Done";
+    in-out property <string> keybind_mute_title: "Toggle Mute";
+    in-out property <string> keybind_mute_desc: "Global shortcut to mute or unmute your microphone during voice calls.";
+    in-out property <string> keybind_recording_prompt: "Press desired key combination...";
+    in-out property <string> keybind_btn_record: "Record Keybind";
+    in-out property <string> keybind_btn_clear: "Disable";
+    in-out property <string> keybind_guide_title: "Global Shortcuts";
+    in-out property <string> keybind_guide_desc: "Keybinds work seamlessly across all applications and games, even when Litecord is in background.";
+    in-out property <string> keybind_deafen_title: "Toggle Deafen";
+    in-out property <string> keybind_deafen_desc: "Global shortcut to deafen or undeafen all voice audio and microphone.";
+
     in-out property <string> web_share_start: "Share on web";
     in-out property <string> watch_stream: "Watch";
     in-out property <string> web_share_stop: "Stop web";
     in-out property <string> web_share_connecting: "Connecting…";
     in-out property <string> web_share_copy: "Copy link";
     in-out property <string> web_share_copied: "Link copied";
+    in-out property <string> web_share_title: "Watch on the web";
+    in-out property <string> web_share_hint: "Anyone with this link can watch in a browser, up to 3 at a time.";
+    in-out property <string> web_share_watching: "watching";
+    in-out property <string> close: "Close";
     in-out property <string> qr_generate: "Generate QR";
     in-out property <string> qr_regenerate: "Re-generate QR Code";
     in-out property <string> preview_reduced: "Reduced preview to save resources";
@@ -42,7 +135,6 @@ export global Tr {
     in-out property <string> open: "Open";
     in-out property <string> direct_camera: "Direct Camera Stream";
     in-out property <string> direct_camera_desc: "Webcam video only (no system audio capture)";
-    in-out property <string> cancel: "Cancel";
     in-out property <string> start_stream: "Stream";
     in-out property <string> incoming_call: "Incoming voice call";
     in-out property <string> answer: "Answer";
@@ -65,6 +157,13 @@ export global Tr {
     in-out property <string> ducking_desc: "The Opus PLC audio engine automatically lowers other members' sound by 12 dB when priority tactical leaders speak.";
     in-out property <string> competitive_edge: "Competitive Edge";
     in-out property <string> competitive_edge_desc: "Eliminates the cacophony in decisive FPS/MOBA moments, making sure critical callouts stand out instantly.";
+    in-out property <string> voice_processing: "VOICE PROCESSING";
+    in-out property <string> noise_suppression: "Noise Suppression";
+    in-out property <string> noise_suppression_desc: "Filter background noise from your microphone using advanced deep learning or standard filtering.";
+    in-out property <string> echo_cancellation: "Echo Cancellation";
+    in-out property <string> echo_cancellation_desc: "Prevents audio from your speakers from leaking back into your microphone (AEC).";
+    in-out property <string> auto_gain_control: "Automatic Gain Control (AGC)";
+    in-out property <string> auto_gain_control_desc: "Automatically normalizes and boosts your microphone volume to prevent sudden clipping or inaudible whispering.";
     in-out property <string> select_language: "SELECT THE CLIENT LANGUAGE";
     in-out property <string> instant_switch: "Instant Switch";
     in-out property <string> instant_switch_desc: "Language changes are applied in real time across all windows without restarting Litecord.";
@@ -123,8 +222,8 @@ export global Tr {
     in-out property <string> stealer_immunity_desc: "Unauthorized scripts and malware cannot steal your session because the cryptographic key lives in the Windows kernel.";
     in-out property <string> dave_title: "Official Discord Voice (DAVE Protocol)";
     in-out property <string> dave_desc: "End-to-end encrypted voice communication with Discord's official voice servers, with no intermediaries.";
-    in-out property <string> zero_intermediaries: "Zero Intermediaries";
-    in-out property <string> zero_intermediaries_desc: "Connections are 100% direct to the Discord API. There are no third-party servers or built-in telemetry.";
+    in-out property <string> zero_intermediaries: "No telemetry";
+    in-out property <string> zero_intermediaries_desc: "Chat and calls go straight to Discord. Litecord's own server only puts screen-share participants in touch (the video goes directly between them, encrypted), and GitHub is checked for updates. No usage data is sent anywhere.";
     in-out property <string> proxy_mode: "Proxy Connection Mode";
     in-out property <string> proxy_address: "Proxy Address and Authentication";
     in-out property <string> proxy_host: "Server / Host IP:";
@@ -225,4 +324,18 @@ export global Tr {
     in-out property <string> time_ago: "{} ago";
     in-out property <string> time_soon: "in a moment";
     in-out property <string> time_just_now: "just now";
+    in-out property <string> settings_group_calls: "CALLS";
+    in-out property <string> settings_group_app: "APP";
+    in-out property <string> settings_tab_appearance: "Appearance and language";
+    in-out property <string> settings_tab_about: "Privacy and about";
+    in-out property <string> settings_advanced: "Advanced";
+    in-out property <string> settings_advanced_desc: "Change these only if the stream freezes or goes black. Automatic tries each option and falls back to the next one.";
+    in-out property <string> settings_privacy_title: "How your data is protected";
+    in-out property <string> invite_join: "Join";
+    in-out property <string> invite_loading: "Loading invite…";
+    in-out property <string> invite_online: "{} online";
+    in-out property <string> invite_members: "{} members";
+    in-out property <string> event_view: "View event";
+    in-out property <string> event_live: "Happening now";
+    in-out property <string> event_interested: "{} interested";
 }

@@ -1,4 +1,4 @@
-//! UI strings that are not part of the older `i18n::Translations` table.
+//! All UI strings (single translation pipeline).
 //!
 //! One row per string: English, Portuguese, Spanish, German, French, Russian, Japanese.
 //! The values are pushed into the Slint `Tr` global when the language changes.
@@ -57,6 +57,10 @@ ui_strings! {
     (web_share_connecting, set_web_share_connecting, "Connecting…", "Conectando…", "Conectando…", "Verbinden…", "Connexion…", "Подключение…", "接続中…"),
     (web_share_copy, set_web_share_copy, "Copy link", "Copiar link", "Copiar enlace", "Link kopieren", "Copier le lien", "Копировать ссылку", "リンクをコピー"),
     (web_share_copied, set_web_share_copied, "Link copied", "Link copiado", "Enlace copiado", "Link kopiert", "Lien copié", "Ссылка скопирована", "コピーしました"),
+    (web_share_title, set_web_share_title, "Watch on the web", "Assistir pela web", "Ver en la web", "Im Browser ansehen", "Regarder sur le web", "Смотреть в браузере", "ウェブで視聴"),
+    (web_share_hint, set_web_share_hint, "Anyone with this link can watch in a browser, up to 3 at a time.", "Quem tiver este link pode assistir pelo navegador, até 3 pessoas ao mesmo tempo.", "Cualquiera con este enlace puede verlo en el navegador, hasta 3 a la vez.", "Wer diesen Link hat, kann im Browser zusehen, bis zu 3 gleichzeitig.", "Toute personne ayant ce lien peut regarder dans un navigateur, 3 à la fois maximum.", "Любой, у кого есть эта ссылка, может смотреть в браузере, до 3 человек одновременно.", "このリンクを知っている人はブラウザで視聴できます（同時に3人まで）。"),
+    (web_share_watching, set_web_share_watching, "watching", "assistindo", "viendo", "sehen zu", "regardent", "смотрят", "人が視聴中"),
+    (close, set_close, "Close", "Fechar", "Cerrar", "Schließen", "Fermer", "Закрыть", "閉じる"),
     (qr_generate, set_qr_generate, "Generate QR", "Gerar QR", "Generar QR", "QR generieren", "Générer le QR", "Создать QR", "QRを生成"),
     (qr_regenerate, set_qr_regenerate, "Re-generate QR Code", "Re-gerar QR Code", "Volver a generar código QR", "QR-Code neu generieren", "Régénérer le QR Code", "Создать QR-код заново", "QRコードを再生成"),
     (preview_reduced, set_preview_reduced, "Reduced preview to save resources", "Prévia reduzida para poupar recursos", "Vista previa reducida para ahorrar recursos", "Reduzierte Vorschau zur Ressourcenschonung", "Aperçu réduit pour économiser des ressources", "Уменьшенный предпросмотр для экономии ресурсов", "リソース節約のため簡易プレビュー"),
@@ -93,6 +97,7 @@ ui_strings! {
     (open, set_open, "Open", "Abrir", "Abrir", "Öffnen", "Ouvrir", "Открыть", "開く"),
     (direct_camera, set_direct_camera, "Direct Camera Stream", "Transmissão Direta de Câmera", "Transmisión directa de cámara", "Direkte Kameraübertragung", "Diffusion directe de la caméra", "Прямая трансляция с камеры", "カメラを直接配信"),
     (direct_camera_desc, set_direct_camera_desc, "Webcam video only (no system audio capture)", "Apenas vídeo da webcam (sem captura de áudio do sistema)", "Solo vídeo de la webcam (sin captura de audio del sistema)", "Nur Webcam-Video (ohne Systemaudio-Aufnahme)", "Vidéo de la webcam uniquement (sans capture de l'audio système)", "Только видео с веб-камеры (без захвата системного звука)", "ウェブカメラの映像のみ (システム音声はキャプチャしません)"),
+    // dedupe: legacy Translations PT said "Voltar"; keeping the existing table row.
     (cancel, set_cancel, "Cancel", "Cancelar", "Cancelar", "Abbrechen", "Annuler", "Отмена", "キャンセル"),
     (start_stream, set_start_stream, "Stream", "Transmitir", "Transmitir", "Übertragen", "Diffuser", "Транслировать", "配信"),
     (incoming_call, set_incoming_call, "Incoming voice call", "Chamada de voz recebida", "Llamada de voz entrante", "Eingehender Sprachanruf", "Appel vocal entrant", "Входящий голосовой звонок", "音声通話の着信"),
@@ -116,6 +121,13 @@ ui_strings! {
     (ducking_desc, set_ducking_desc, "The Opus PLC audio engine automatically lowers other members' sound by 12 dB when priority tactical leaders speak.", "O motor de áudio Opus PLC reduz automaticamente em 12dB o som dos outros membros quando líderes táticos com prioridade falam.", "El motor de audio Opus PLC reduce automáticamente 12 dB el sonido de los demás miembros cuando hablan líderes tácticos con prioridad.", "Die Opus-PLC-Audio-Engine senkt die Lautstärke der anderen Mitglieder automatisch um 12 dB, wenn taktische Anführer mit Priorität sprechen.", "Le moteur audio Opus PLC réduit automatiquement de 12 dB le son des autres membres lorsque des leaders tactiques prioritaires parlent.", "Аудиодвижок Opus PLC автоматически снижает громкость остальных участников на 12 дБ, когда говорят приоритетные тактические лидеры.", "Opus PLCオーディオエンジンは、優先度の高いリーダーが話すと、他のメンバーの音を自動的に12dB下げます。"),
     (competitive_edge, set_competitive_edge, "Competitive Edge", "Vantagem Competitiva", "Ventaja competitiva", "Wettbewerbsvorteil", "Avantage compétitif", "Соревновательное преимущество", "競技での優位性"),
     (competitive_edge_desc, set_competitive_edge_desc, "Eliminates the cacophony in decisive FPS/MOBA moments, making sure critical callouts stand out instantly.", "Elimina a cacofonia em momentos decisivos de jogos FPS/MOBA, garantindo que callouts críticos se sobressaiam instantaneamente.", "Elimina la cacofonía en los momentos decisivos de los juegos FPS/MOBA y hace que los avisos críticos destaquen al instante.", "Beseitigt das Stimmengewirr in entscheidenden Momenten von FPS/MOBA-Spielen, damit kritische Ansagen sofort hervorstechen.", "Élimine la cacophonie lors des moments décisifs des jeux FPS/MOBA et fait ressortir instantanément les annonces critiques.", "Устраняет какофонию в решающие моменты FPS/MOBA-игр, так что важные подсказки сразу выделяются.", "FPS/MOBAの決定的な場面での騒がしさを抑え、重要なコールがすぐに聞き取れるようにします。"),
+    (voice_processing, set_voice_processing, "VOICE PROCESSING", "PROCESSAMENTO DE VOZ", "PROCESAMIENTO DE VOZ", "SPRACHVERARBEITUNG", "TRAITEMENT DE LA VOIX", "ОБРАБОТКА ГОЛОСА", "音声処理"),
+    (noise_suppression, set_noise_suppression, "Noise Suppression", "Supressão de Ruído", "Supresión de ruido", "Rauschunterdrückung", "Suppression du bruit", "Шумоподавление", "ノイズ抑制"),
+    (noise_suppression_desc, set_noise_suppression_desc, "Filter background noise from your microphone using advanced deep learning or standard filtering.", "Filtra ruídos de fundo do microfone usando aprendizado de máquina inteligente ou filtragem padrão.", "Filtra el ruido de fondo de tu micrófono mediante aprendizaje automático o filtrado estándar.", "Filtert Hintergrundgeräusche mit maschinellem Lernen oder Standardfiltern aus dem Mikrofon.", "Filtre les bruits de fond du microphone grâce à l'apprentissage automatique ou au filtrage standard.", "Фильтрует фоновый шум микрофона с помощью машинного обучения или стандартной фильтрации.", "深層学習や標準フィルタでマイクの背景ノイズを除去します。"),
+    (echo_cancellation, set_echo_cancellation, "Echo Cancellation", "Cancelamento de Eco", "Cancelación de eco", "Echounterdrückung", "Annulation de l'écho", "Эхоподавление", "エコーキャンセラー"),
+    (echo_cancellation_desc, set_echo_cancellation_desc, "Prevents audio from your speakers from leaking back into your microphone (AEC).", "Evita que o áudio dos alto-falantes retorne para o microfone (AEC).", "Evita que el audio de los altavoces vuelva a entrar por el micrófono (AEC).", "Verhindert, dass der Ton der Lautsprecher wieder in das Mikrofon gelangt (AEC).", "Empêche le son de vos haut-parleurs de repasser dans votre microphone (AEC).", "Предотвращает попадание звука из динамиков обратно в микрофон (AEC).", "スピーカーの音声がマイクに回り込むのを防ぎます (AEC)。"),
+    (auto_gain_control, set_auto_gain_control, "Automatic Gain Control (AGC)", "Controle Automático de Ganho (AGC)", "Control automático de ganancia (AGC)", "Automatische Lautstärkeregelung (AGC)", "Contrôle automatique du gain (AGC)", "Автоматическая регулировка усиления (АРУ)", "自動ゲイン制御 (AGC)"),
+    (auto_gain_control_desc, set_auto_gain_control_desc, "Automatically normalizes and boosts your microphone volume to prevent sudden clipping or inaudible whispering.", "Normaliza e amplifica a voz automaticamente, evitando clipping ou sussurros inaudíveis.", "Normaliza y amplifica la voz automáticamente, evitando distorsiones o susurros inaudibles.", "Normalisiert und verstärkt die Stimme automatisch, um Übersteuern oder unhörbares Flüstern zu verhindern.", "Normalise et amplifie automatiquement la voix pour éviter la saturation ou les chuchotements inaudibles.", "Автоматически выравнивает и усиливает громкость микрофона, предотвращая клиппинг или неслышный шепот.", "マイク音量を自動で均一化・増幅し、音割れや聞き取れないささやき声を防ぎます。"),
     (select_language, set_select_language, "SELECT THE CLIENT LANGUAGE", "SELECIONE O IDIOMA DO CLIENTE", "SELECCIONA EL IDIOMA DEL CLIENTE", "SPRACHE DES CLIENTS AUSWÄHLEN", "SÉLECTIONNEZ LA LANGUE DU CLIENT", "ВЫБЕРИТЕ ЯЗЫК КЛИЕНТА", "クライアントの言語を選択"),
     (instant_switch, set_instant_switch, "Instant Switch", "Troca Instantânea", "Cambio instantáneo", "Sofortiger Wechsel", "Changement instantané", "Мгновенное переключение", "即時切り替え"),
     (instant_switch_desc, set_instant_switch_desc, "Language changes are applied in real time across all windows without restarting Litecord.", "A alteração de idioma é aplicada em tempo real em todas as janelas sem necessidade de reiniciar o Litecord.", "El cambio de idioma se aplica en tiempo real en todas las ventanas sin reiniciar Litecord.", "Sprachänderungen werden in Echtzeit in allen Fenstern übernommen, ohne Litecord neu zu starten.", "Le changement de langue s'applique en temps réel à toutes les fenêtres, sans redémarrer Litecord.", "Смена языка применяется в реальном времени во всех окнах без перезапуска Litecord.", "言語の変更は、Litecordを再起動せずにすべてのウィンドウへ即時に反映されます。"),
@@ -162,8 +174,8 @@ ui_strings! {
     (stealer_immunity_desc, set_stealer_immunity_desc, "Unauthorized scripts and malware cannot steal your session because the cryptographic key lives in the Windows kernel.", "Scripts e malwares não autorizados não conseguem roubar sua sessão porque a chave criptográfica reside no kernel do Windows.", "Los scripts y el malware no autorizados no pueden robar tu sesión porque la clave criptográfica reside en el kernel de Windows.", "Nicht autorisierte Skripte und Malware können deine Sitzung nicht stehlen, da der kryptografische Schlüssel im Windows-Kernel liegt.", "Les scripts et logiciels malveillants non autorisés ne peuvent pas voler votre session, car la clé cryptographique réside dans le noyau Windows.", "Неавторизованные скрипты и вредоносные программы не могут украсть вашу сессию, так как криптографический ключ находится в ядре Windows.", "暗号鍵はWindowsカーネル内にあるため、不正なスクリプトやマルウェアがセッションを盗むことはできません。"),
     (dave_title, set_dave_title, "Official Discord Voice (DAVE Protocol)", "Voz Discord Oficial (Protocolo DAVE)", "Voz oficial de Discord (protocolo DAVE)", "Offizielle Discord-Sprache (DAVE-Protokoll)", "Voix officielle Discord (protocole DAVE)", "Официальный голос Discord (протокол DAVE)", "Discord公式音声 (DAVEプロトコル)"),
     (dave_desc, set_dave_desc, "End-to-end encrypted voice communication with Discord's official voice servers, with no intermediaries.", "Comunicação de voz criptografada ponta a ponta com os servidores de voz oficiais do Discord sem intermediários.", "Comunicación de voz cifrada de extremo a extremo con los servidores de voz oficiales de Discord, sin intermediarios.", "Ende-zu-Ende-verschlüsselte Sprachkommunikation mit den offiziellen Discord-Sprachservern, ohne Zwischenstellen.", "Communication vocale chiffrée de bout en bout avec les serveurs vocaux officiels de Discord, sans intermédiaires.", "Голосовая связь со сквозным шифрованием с официальными голосовыми серверами Discord, без посредников.", "Discord公式の音声サーバーとのエンドツーエンド暗号化音声通信です。仲介はありません。"),
-    (zero_intermediaries, set_zero_intermediaries, "Zero Intermediaries", "Zero Intermediários", "Cero intermediarios", "Keine Zwischenstellen", "Zéro intermédiaire", "Никаких посредников", "仲介なし"),
-    (zero_intermediaries_desc, set_zero_intermediaries_desc, "Connections are 100% direct to the Discord API. There are no third-party servers or built-in telemetry.", "Conexões 100% diretas com a API do Discord. Não existem servidores de terceiros ou telemetria embutida.", "Las conexiones son 100 % directas con la API de Discord. No hay servidores de terceros ni telemetría integrada.", "Die Verbindungen gehen zu 100 % direkt zur Discord-API. Es gibt keine Drittserver und keine integrierte Telemetrie.", "Les connexions sont 100 % directes avec l'API de Discord. Il n'y a ni serveurs tiers ni télémétrie intégrée.", "Подключения на 100 % идут напрямую к API Discord. Сторонних серверов и встроенной телеметрии нет.", "接続はDiscord APIへの100%直接接続です。サードパーティのサーバーや組み込みのテレメトリはありません。"),
+    (zero_intermediaries, set_zero_intermediaries, "No telemetry", "Sem telemetria", "Sin telemetría", "Keine Telemetrie", "Aucune télémétrie", "Без телеметрии", "テレメトリなし"),
+    (zero_intermediaries_desc, set_zero_intermediaries_desc, "Chat and calls go straight to Discord. Litecord's own server only puts screen-share participants in touch (the video goes directly between them, encrypted), and GitHub is checked for updates. No usage data is sent anywhere.", "Chat e chamadas vão direto para o Discord. O servidor do Litecord só põe em contato quem participa de uma transmissão (o vídeo vai direto entre vocês, criptografado), e o GitHub é consultado para atualizações. Nenhum dado de uso é enviado.", "El chat y las llamadas van directo a Discord. El servidor de Litecord solo pone en contacto a quienes participan en una transmisión (el video va directo entre ellos, cifrado), y se consulta GitHub para buscar actualizaciones. No se envían datos de uso.", "Chat und Anrufe gehen direkt zu Discord. Der Litecord-Server bringt nur die Teilnehmer einer Bildschirmübertragung zusammen (das Video läuft direkt und verschlüsselt zwischen ihnen), und GitHub wird nach Updates gefragt. Es werden keine Nutzungsdaten gesendet.", "Le chat et les appels vont directement à Discord. Le serveur de Litecord ne fait que mettre en relation les participants d'un partage d'écran (la vidéo passe directement entre eux, chiffrée), et GitHub est consulté pour les mises à jour. Aucune donnée d'utilisation n'est envoyée.", "Чат и звонки идут напрямую в Discord. Сервер Litecord только связывает участников трансляции экрана (видео идёт напрямую между ними, в зашифрованном виде), а GitHub проверяется на наличие обновлений. Данные об использовании никуда не отправляются.", "チャットと通話はDiscordに直接接続します。Litecordのサーバーは画面共有の参加者同士をつなぐだけで（映像は暗号化されて参加者間で直接やり取りされます）、更新の確認にはGitHubを使います。利用データはどこにも送信されません。"),
     (proxy_mode, set_proxy_mode, "Proxy Connection Mode", "Modo de Conexão Proxy", "Modo de conexión proxy", "Proxy-Verbindungsmodus", "Mode de connexion proxy", "Режим подключения через прокси", "プロキシ接続モード"),
     (proxy_address, set_proxy_address, "Proxy Address and Authentication", "Endereço e Autenticação do Proxy", "Dirección y autenticación del proxy", "Proxy-Adresse und Authentifizierung", "Adresse et authentification du proxy", "Адрес и аутентификация прокси", "プロキシのアドレスと認証"),
     (proxy_host, set_proxy_host, "Server / Host IP:", "Servidor / IP Host:", "Servidor / IP del host:", "Server / Host-IP:", "Serveur / IP de l'hôte :", "Сервер / IP хоста:", "サーバー / ホストIP:"),
@@ -265,7 +277,115 @@ ui_strings! {
     (time_ago, set_time_ago, "{} ago", "há {}", "hace {}", "vor {}", "il y a {}", "{} назад", "{}前"),
     (time_soon, set_time_soon, "in a moment", "em instantes", "en un momento", "gleich", "dans un instant", "сейчас", "まもなく"),
     (time_just_now, set_time_just_now, "just now", "há instantes", "hace un momento", "gerade eben", "à l'instant", "только что", "たった今"),
-}
+// Settings window (redesign).
+    (settings_group_calls, set_settings_group_calls, "CALLS", "CHAMADAS", "LLAMADAS", "ANRUFE", "APPELS", "ЗВОНКИ", "通話"),
+    (settings_group_app, set_settings_group_app, "APP", "APLICATIVO", "APLICACIÓN", "APP", "APPLICATION", "ПРИЛОЖЕНИЕ", "アプリ"),
+    (settings_tab_appearance, set_settings_tab_appearance, "Appearance and language", "Aparência e idioma", "Apariencia e idioma", "Darstellung und Sprache", "Apparence et langue", "Внешний вид и язык", "外観と言語"),
+    (settings_tab_about, set_settings_tab_about, "Privacy and about", "Privacidade e Sobre", "Privacidad y acerca de", "Datenschutz und Info", "Confidentialité et à propos", "Конфиденциальность и о программе", "プライバシーと情報"),
+    (settings_advanced, set_settings_advanced, "Advanced", "Avançado", "Avanzado", "Erweitert", "Avancé", "Дополнительно", "詳細設定"),
+    (settings_advanced_desc, set_settings_advanced_desc, "Change these only if the stream freezes or goes black. Automatic tries each option and falls back to the next one.", "Só mude se a transmissão travar ou ficar preta. O automático testa cada opção e passa para a seguinte se uma falhar.", "Cámbialo solo si la transmisión se congela o se queda en negro. Automático prueba cada opción y pasa a la siguiente si una falla.", "Nur ändern, wenn die Übertragung hängt oder schwarz bleibt. Automatisch probiert jede Option und wechselt bei einem Fehler zur nächsten.", "À changer seulement si le partage se fige ou reste noir. Automatique essaie chaque option et passe à la suivante en cas d’échec.", "Меняйте, только если трансляция зависает или остаётся чёрной. Автоматический режим пробует каждый вариант и переходит к следующему при ошибке.", "配信が止まる・真っ黒になる場合のみ変更してください。自動では各方式を試し、失敗すると次に切り替えます。"),
+    (settings_privacy_title, set_settings_privacy_title, "How your data is protected", "Como seus dados são protegidos", "Cómo se protegen tus datos", "Wie deine Daten geschützt werden", "Comment vos données sont protégées", "Как защищены ваши данные", "データの保護について"),
+    // Server invite cards; {} is a number already grouped for the language.
+    (invite_join, set_invite_join, "Join", "Entrar", "Unirse", "Beitreten", "Rejoindre", "Вступить", "参加"),
+    (invite_loading, set_invite_loading, "Loading invite…", "Carregando convite…", "Cargando invitación…", "Einladung wird geladen…", "Chargement de l’invitation…", "Загрузка приглашения…", "招待を読み込み中…"),
+    (invite_online, set_invite_online, "{} online", "{} online", "{} en línea", "{} online", "{} en ligne", "{} в сети", "{}人がオンライン"),
+    (invite_members, set_invite_members, "{} members", "{} membros", "{} miembros", "{} Mitglieder", "{} membres", "{} участников", "{}人のメンバー"),
+    (event_view, set_event_view, "View event", "Ver evento", "Ver evento", "Event ansehen", "Voir l’événement", "Открыть событие", "イベントを見る"),
+    (event_live, set_event_live, "Happening now", "Acontecendo agora", "En curso", "Läuft gerade", "En cours", "Идёт сейчас", "開催中"),
+    (event_interested, set_event_interested, "{} interested", "{} interessados", "{} interesados", "{} interessiert", "{} intéressés", "{} заинтересованы", "{}人が興味あり"),
+    (login_title, set_login_title, "Sign in to Litecord", "Entrar no Litecord", "Iniciar sesión en Litecord", "Bei Litecord anmelden", "Connexion à Litecord", "Вход в Litecord", "Litecord にログイン"),
+    (login_desc, set_login_desc, "Enter your Discord User Token for direct connection to Gateway v9.\n(Estimated RAM usage ~15MB)", "Insira seu Discord User Token para conexão direta à Gateway v9.\n(Consumo de RAM estimado em ~15MB)", "Introduce tu Discord User Token para conexión directa a Gateway v9.\n(Consumo de RAM estimado en ~15MB)", "Gib deinen Discord User Token für direkte Gateway v9 Verbindung ein.\n(Geschätzter RAM-Verbrauch ~15MB)", "Entrez votre Discord User Token pour connexion directe à Gateway v9.\n(RAM estimée ~15Mo)", "Введите Discord User Token для подключения к Gateway v9.\n(Потребление ОЗУ ~15МБ)", "Gateway v9 に接続するために Discord ユーザートークンを入力してください。\n(推定RAM使用量: 約15MB)"),
+    (login_placeholder, set_login_placeholder, "Paste your Discord User Token here...", "Cole seu Discord User Token aqui...", "Pega tu Discord User Token aquí...", "Discord User Token hier einfügen...", "Collez votre token Discord ici...", "Вставьте токен Discord сюда...", "Discord トークンをここに貼り付け..."),
+    (login_btn_connect, set_login_btn_connect, "Connect to Gateway", "Conectar à Gateway", "Conectar a la Gateway", "Mit Gateway verbinden", "Se connecter à la Gateway", "Подключиться к Gateway", "Gateway に接続"),
+    (login_btn_detect, set_login_btn_detect, "Detect Discord Token", "Detectar Token do Discord", "Detectar Token de Discord", "Discord Token erkennen", "Détecter le Token Discord", "Найти токен Discord", "Discord トークンを自動検出"),
+    (server_channels, set_server_channels, "SERVER CHANNELS", "CANAIS DO SERVIDOR", "CANALES DEL SERVIDOR", "SERVERKANÄLE", "SALONS DU SERVEUR", "КАНАЛЫ СЕРВЕРА", "サーバーチャンネル"),
+    (leave, set_leave, "Leave", "Sair", "Salir", "Verlassen", "Quitter", "Выйти", "退出"),
+    (view_text_chat, set_view_text_chat, "View Text Chat", "Ver Chat de Texto", "Ver Chat de Texto", "Textchat anzeigen", "Voir le Salon Textuel", "Текстовый чат", "テキストチャットを表示"),
+    (leave_call, set_leave_call, "Disconnect Call", "Sair da Call", "Desconectar Llamada", "Anruf beenden", "Déconnecter l'Appel", "Покинуть звонок", "通話を終了"),
+    (voice_participants_title, set_voice_participants_title, "VOICE ROOM PARTICIPANTS", "PARTICIPANTES NA SALA DE ÁUDIO", "PARTICIPANTES EN LA SALA DE VOZ", "TEILNEHMER IM SPRACHRAUM", "PARTICIPANTS DANS LE SALON VOCAL", "УЧАСТНИКИ В ГОЛОСОВОМ КАНАЛЕ", "ボイスルームの参加者"),
+    (badge_you, set_badge_you, "YOU", "VOCÊ", "TÚ", "DU", "VOUS", "ВЫ", "あなた"),
+    (view_voice_room, set_view_voice_room, "View Voice Room", "Ver Sala de Voz", "Ver Sala de Voz", "Sprachraum anzeigen", "Voir le Salon Vocal", "Голосовой канал", "ボイスルームを表示"),
+    (replying_to, set_replying_to, "Replying to @", "Respondendo a @", "Respondiendo a @", "Antwort auf @", "En réponse à @", "В ответ @", "返信先: @"),
+    (chat_placeholder_prefix, set_chat_placeholder_prefix, "Message ", "Conversar em ", "Enviar mensaje a ", "Nachricht an ", "Envoyer un message dans ", "Написать в ", "メッセージを送信: "),
+    (send, set_send, "Send", "Enviar", "Enviar", "Senden", "Envoyer", "Отправить", "送信"),
+    (settings_language_label, set_settings_language_label, "LANGUAGE / IDIOMA", "IDIOMA / LANGUAGE", "IDIOMA / LANGUAGE", "SPRACHE / LANGUAGE", "LANGUE / LANGUAGE", "ЯЗЫК / LANGUAGE", "言語 / LANGUAGE"),
+    (logout_title, set_logout_title, "Sign Out", "Sair da Conta", "Cerrar Sesión", "Abmelden", "Se Déconnecter", "Выйти из аккаунта", "ログアウト"),
+    (logout_confirm_prefix, set_logout_confirm_prefix, "Do you want to log out from ", "Deseja desconectar de ", "¿Deseas desconectarte de ", "Möchtest du dich abmelden von ", "Voulez-vous vous déconnecter de ", "Вы действительно хотите выйти из ", "本当にログアウトしますか: "),
+    (confirm_logout, set_confirm_logout, "Sign Out", "Sair", "Cerrar Sesión", "Abmelden", "Déconnexion", "Выйти", "ログアウト"),
+    (voice_connecting, set_voice_connecting, "Connecting...", "Conectando...", "Conectando...", "Verbinden...", "Connexion...", "Подключение...", "接続中..."),
+    (voice_connecting_title, set_voice_connecting_title, "Connecting to Voice Channel...", "Conectando à Sala de Voz...", "Conectando a la Sala de Voz...", "Verbindung zum Sprachkanal...", "Connexion au Salon Vocal...", "Подключение к голосовому каналу...", "ボイスチャンネルに接続中..."),
+    (voice_connecting_desc, set_voice_connecting_desc, "Authenticating with Voice Gateway v9 and negotiating DAVE E2EE encryption...", "Autenticando na Voice Gateway v9 e negociando criptografia ponta-a-ponta (DAVE)...", "Autenticando en Voice Gateway v9 y negociando cifrado E2EE (DAVE)...", "Authentifizierung mit Voice Gateway v9 und Aushandlung der DAVE E2EE-Verschlüsselung...", "Authentification auprès de la Voice Gateway v9 et négociation du chiffrement DAVE E2EE...", "Аутентификация в Voice Gateway v9 и согласование E2EE шифрования (Дэйв)...", "Voice Gateway v9 に認証し、DAVE E2EE 暗号化を確立しています..."),
+    (voice_connected, set_voice_connected, "Voice Connected", "Voz Conectada", "Voz Conectada", "Sprache verbunden", "Vocal Connecté", "Голос подключен", "音声接続完了"),
+    (qr_title, set_qr_title, "Log in with QR Code", "Entrar com QR Code", "Iniciar sesión con código QR", "Mit QR-Code anmelden", "Se connecter avec un code QR", "Вход с помощью QR-кода", "QR コードでログイン"),
+    (qr_desc, set_qr_desc, "Scan this with the Discord mobile app to log in instantly.", "Escaneie pelo aplicativo móvel do Discord para entrar instantaneamente.", "Escanéalo con la app móvil de Discord para entrar al instante.", "Mit der mobilen Discord-App scannen, um dich sofort anzumelden.", "Scannez avec l'application mobile Discord pour vous connecter instantanément.", "Сканируйте в мобильном приложении Discord для мгновенного входа.", "Discord モバイルアプリでスキャンしてすぐにログインできます。"),
+    (qr_confirm, set_qr_confirm, "Approve login on your phone!", "Confirme o login no seu celular!", "¡Confirma el acceso en tu móvil!", "Bestätige die Anmeldung auf deinem Handy!", "Confirmez la connexion sur votre téléphone !", "Подтвердите вход на телефоне!", "スマホでログインを承認してください！"),
+    (settings_title, set_settings_title, "Voice & Audio Settings", "Configurações de Voz e Áudio", "Ajustes de Voz y Audio", "Sprach- und Audioeinstellungen", "Paramètres Vocaux et Audio", "Настройки звука и голоса", "音声とオーディオ設定"),
+    (settings_tab_voice, set_settings_tab_voice, "Voice & Audio", "Voz & Áudio", "Voz y Audio", "Sprach & Audio", "Vocal & Audio", "Голос и Звук", "音声 & オーディオ"),
+    (settings_tab_language, set_settings_tab_language, "Language", "Idioma", "Idioma", "Sprache", "Langue", "Язык", "言語"),
+    (settings_tab_keybinds, set_settings_tab_keybinds, "Keybinds", "Atalhos", "Atajos", "Tastenbelegung", "Raccourcis", "Горячие клавиши", "キー割り当て"),
+    (settings_tab_security, set_settings_tab_security, "Security & E2EE", "Segurança & E2EE", "Seguridad y E2EE", "Sicherheit & E2EE", "Sécurité & E2EE", "Безопасность и E2EE", "セキュリティ & E2EE"),
+    (settings_tab_updates, set_settings_tab_updates, "Updates & About", "Atualizações & Sobre", "Actualizaciones y Sobre", "Updates & Über", "Mises à jour & À propos", "Обновления и О программе", "アップデート & 詳細"),
+    (settings_tab_network_proxy, set_settings_tab_network_proxy, "Network & Proxy", "Rede & Proxy", "Red y Proxy", "Netzwerk & Proxy", "Réseau & Proxy", "Сеть и Прокси", "ネットワーク＆プロキシ"),
+    (settings_input_device, set_settings_input_device, "INPUT DEVICE (MICROPHONE)", "DISPOSITIVO DE ENTRADA (MICROFONE)", "DISPOSITIVO DE ENTRADA (MICRÓFONO)", "EINGABEGERÄT (MIKROFON)", "PÉRIPHÉRIQUE D'ENTRÉE (MICROPHONE)", "УСТРОЙСТВО ВВОДА (МИКРОФОН)", "入力デバイス (マイク)"),
+    (settings_output_device, set_settings_output_device, "OUTPUT DEVICE (SPEAKERS / HEADPHONES)", "DISPOSITIVO DE SAÍDA (ALTO-FALANTES / FONE DE OUVIDO)", "DISPOSITIVO DE SALIDA (ALTAVOCES / AURICULARES)", "AUSGABEGERÄT (LAUTSPRECHER / KOPFHÖRER)", "PÉRIPHÉRIQUE DE SORTIE (CASQUE / ENCEINTES)", "УСТРОЙСТВО ВЫВОДА (ДИНАМИКИ / НАУШНИКИ)", "出力デバイス (スピーカー / ヘッドホン)"),
+    (settings_threshold, set_settings_threshold, "VOICE DETECTION SENSITIVITY (THRESHOLD)", "SENSIBILIDADE DE DETECÇÃO DE VOZ (THRESHOLD)", "SENSIBILIDAD DE DETECCIÓN DE VOZ (THRESHOLD)", "SPRACHAKTIVIERUNG-EMPFINDLICHKEIT (THRESHOLD)", "SENSIBILITÉ DE DÉTECTION VOCALE (THRESHOLD)", "ЧУВСТВИТЕЛЬНОСТЬ ГОЛОСА (THRESHOLD)", "音声検出感度 (THRESHOLD)"),
+    (settings_mic_level, set_settings_mic_level, "REAL-TIME MICROPHONE LEVEL", "NÍVEL DO MICROFONE EM TEMPO REAL", "NIVEL DE MICRÓFONO EN TIEMPO REAL", "ECHTZEIT-MIKROFONPEGEL", "NIVEAU DU MICROPHONE EN TEMPS RÉEL", "УРОВЕНЬ МИКРОФОНА В РЕАЛЬНОМ ВРЕМЕНИ", "リアルタイムマイク音量"),
+    // Proxy test/alert strings (Network & Proxy tab + login alert). Machine
+    // translations (es/de/fr/ru/ja) are placeholders pending native review.
+    // System tray menu + tooltip. PT values keep the current wording; the
+    // es/de/fr/ru/ja cells are machine translations pending native review.
+    (tray_show, set_tray_show, "Open Litecord", "Exibir Litecord", "Abrir Litecord", "Litecord öffnen", "Ouvrir Litecord", "Открыть Litecord", "Litecord を開く"), // machine TODO
+    (tray_quit, set_tray_quit, "Quit", "Sair", "Salir", "Beenden", "Quitter", "Выход", "終了"), // machine TODO
+    (tray_tooltip, set_tray_tooltip, "Litecord — Ultra-Lightweight Discord Client", "Litecord - Discord Client Ultra-Leve", "Litecord: cliente de Discord ultraligero", "Litecord – ultraleichter Discord-Client", "Litecord — client Discord ultra-léger", "Litecord — сверхлёгкий клиент Discord", "Litecord — 超軽量 Discord クライアント"), // machine TODO
+    // Option lists for the Video & Interface tab (built in Rust in
+    // src/ui/helpers.rs set Video settings modal). BR values keep the current
+    // wording; es/de/fr/ru/ja are machine translations pending review.
+    (enc_auto_desc, set_enc_auto_desc, "Prefers available hardware GPU acceleration, falling back to CPU.", "Prioriza aceleração por hardware GPU disponível com fallback para CPU.", "Prioriza la aceleración de GPU disponible, con reserva a CPU.", "Bevorzugt verfügbare GPU-Beschleunigung, mit CPU-Fallback.", "Privilégie l'accélération GPU disponible, avec repli sur le CPU.", "Предпочитает доступное аппаратное ускорение GPU, при сбое — CPU.", "利用可能なGPUアクセラレーションを優先し、CPUへフォールバックします。"),
+    (enc_nvenc_desc, set_enc_nvenc_desc, "Hardware accelerated encoding via NVIDIA GeForce / RTX GPUs.", "Codificação acelerada por hardware via GPU NVIDIA GeForce / RTX.", "Codificación acelerada por hardware en GPU NVIDIA GeForce/RTX.", "Hardware-beschleunigte Kodierung über NVIDIA GeForce/RTX-GPUs.", "Encodage accéléré par matériel sur GPU NVIDIA GeForce / RTX.", "Аппаратное кодирование на GPU NVIDIA GeForce / RTX.", "NVIDIA GeForce / RTX GPUによるハードウェアエンコード。"),
+    (enc_ffmpeg_desc, set_enc_ffmpeg_desc, "GPU-accelerated pipeline via FFmpeg (VA-API, QSV, NVENC).", "Pipeline acelerado por GPU via FFmpeg (VA-API, QSV, NVENC).", "Pipeline acelerado por GPU vía FFmpeg (VA-API, QSV, NVENC).", "GPU-beschleunigte Pipeline über FFmpeg (VA-API, QSV, NVENC).", "Pipeline accéléré par GPU via FFmpeg (VA-API, QSV, NVENC).", "GPU-ускоренный конвейер через FFmpeg (VA-API, QSV, NVENC).", "FFmpeg (VA-API、QSV、NVENC) によるGPUアクセラレーションパイプライン。"),
+    (enc_openh264_desc, set_enc_openh264_desc, "Universal multithreaded software encoding with SIMD optimizations.", "Codificação universal por software multithread com otimizações SIMD.", "Codificación por software universal multihilo con optimizaciones SIMD.", "Universelle multithreaded Software-Kodierung mit SIMD-Optimierung.", "Encodage logiciel universel multithread avec optimisations SIMD.", "Универсальное многопоточное программное кодирование с оптимизацией SIMD.", "マルチスレッドのソフトウェアエンコード（SIMD最適化）。"),
+    (vcap_auto_desc, set_vcap_auto_desc, "Uses the system's native selector via XDG Desktop Portal and PipeWire.", "Utiliza o seletor nativo do sistema via XDG Desktop Portal e PipeWire.", "Usa el selector nativo del sistema vía XDG Desktop Portal y PipeWire.", "Nutzt den nativen Systemselektor über XDG Desktop Portal und PipeWire.", "Utilise le sélecteur natif du système via XDG Desktop Portal et PipeWire.", "Использует нативный селектор системы через XDG Desktop Portal и PipeWire.", "XDG Desktop PortalとPipeWireによるネイティブセレクターを使用。"),
+    (vcap_portal_desc, set_vcap_portal_desc, "Modern low-latency screen capture compatible with Wayland and Flatpak.", "Captura de tela moderna de baixa latência compatível com Wayland e Flatpak.", "Captura de pantalla moderna de baja latencia compatible con Wayland y Flatpak.", "Moderne Latenz-arme Bildschirmaufnahme, kompatibel mit Wayland und Flatpak.", "Capture d'écran moderne à faible latence compatible Wayland et Flatpak.", "Современный захват экрана с низкой задержкой, совместим с Wayland и Flatpak.", "Wayland・Flatpak対応の低遅延スクリーンキャプチャ。"),
+    (vcap_x11_desc, set_vcap_x11_desc, "Legacy direct screen capture on X11 sessions.", "Captura legada direta de tela em sessões gráficas X11.", "Captura de pantalla directa heredada en sesiones gráficas X11.", "Legacy direkte Bildschirmaufnahme in X11-Sitzungen.", "Capture d'écran directe héritée dans les sessions X11.", "Устаревший прямой захват экрана в X11-сессиях.", "X11セッション向けのレガシー直接キャプチャ。"),
+    (vcap_printwin_desc, set_vcap_printwin_desc, "Direct window capture (foreground or background) via DWM.", "Captura direta de janelas em primeiro ou segundo plano via DWM.", "Captura directa de ventanas en primer o segundo plano vía DWM.", "Direkte Fensteraufnahme (Vorder-/Hintergrund) über DWM.", "Capture directe des fenêtres (avant ou arrière-plan) via DWM.", "Прямой захват окон (передний/задний план) через DWM.", "DWMによるウィンドウの直接キャプチャ（前面/背面）。"),
+    (vcap_bitblt_desc, set_vcap_bitblt_desc, "Classic high-performance capture straight from the desktop framebuffer.", "Captura clássica de alto desempenho diretamente do framebuffer do desktop.", "Captura clásica de alto rendimiento directamente del framebuffer del escritorio.", "Klassische leistungsstarke Aufnahme direkt aus dem Desktop-Framebuffer.", "Capture classique performante depuis le framebuffer du bureau.", "Классический высокопроизводительный захват из фреймбуфера рабочего стола.", "デスクトップのフレームバッファから直接行う従来型高性能キャプチャ。"),
+    (aloop_auto_desc, set_aloop_auto_desc, "Captures the default PulseAudio/PipeWire sink monitor via GStreamer pulsesrc.", "Captura monitor do sink padrão PulseAudio/PipeWire via GStreamer pulsesrc.", "Captura el monitor del sink PulseAudio/PipeWire vía GStreamer pulsesrc.", "Erfasst den PulseAudio/PipeWire-Sink-Monitor über GStreamer pulsesrc.", "Capture le moniteur du sink PulseAudio/PipeWire via GStreamer pulsesrc.", "Захватывает монитор PulseAudio/PipeWire через GStreamer pulsesrc.", "GStreamer pulsesrcによるPulseAudio/PipeWireシンクモニターのキャプチャ。"),
+    (aloop_pulsesrc_desc, set_aloop_pulsesrc_desc, "Dedicated GStreamer pipeline connected to the PipeWire monitor sink.", "Pipeline GStreamer dedicado conectado ao sink monitor do PipeWire.", "Pipeline GStreamer dedicado conectado al sink monitor de PipeWire.", "Dedizierte GStreamer-Pipeline, verbunden mit dem PipeWire-Monitor-Sink.", "Pipeline GStreamer dédiée connectée au sink monitor de PipeWire.", "Отдельный конвейер GStreamer, подключённый к монитору PipeWire.", "PipeWireモニターシンクに接続する専用GStreamerパイプライン。"),
+    (aloop_cpal_desc, set_aloop_cpal_desc, "Standard capture via the CPAL audio interface.", "Captura padrão via interface de áudio CPAL.", "Captura estándar vía la interfaz de audio CPAL.", "Standard-Aufnahme über die CPAL-Audioschnittstelle.", "Capture standard via l'interface audio CPAL.", "Стандартный захват через аудиоинтерфейс CPAL.", "CPALオーディオインターフェース経由の標準キャプチャ。"),
+    (aloop_wasapi_desc, set_aloop_wasapi_desc, "Native capture that removes friends' voices and Litecord sounds from your stream.", "Captura nativa que remove vozes dos amigos e sons do Litecord da sua transmissão.", "Captura nativa que elimina las voces de amigos y sonidos de Litecord de tu direct en local.", "Nativaufnahme, das Stimmen von Freunden und Litecord-Sounds aus dem Stream entfernt.", "Capture native qui supprime les voix des amis et les sons de Litecord du direct.", "Нативный захват убирает голоса друзей и звуки Litecord из вашей трансляции.", "ネイティブキャプチャは、通話相手の声とLitecordのサウンドを配信に混ぜません。"),
+    (aloop_wasapi2_desc, set_aloop_wasapi2_desc, "Process-isolated WASAPI capture (excludes Litecord audio from the stream).", "Captura com isolamento de processo WASAPI (exclui o Litecord do áudio da stream).", "Captura WASAPI con aislamiento de proceso (excluye el audio de Litecord del local en directo).", "Prozessisolierter WASAPI-Capture (Litecord-Audio bleibt draußen).", "Capture WASAPI isolée par processus (exclut l'audio de Litecord du direct).", "WASAPI с изоляцией процесса (Litecord не попадает в трансляцию).", "プロセス分離WASAPIキャプチャ（Litecordの音声は配信に含まれません）。"),
+    // Proxy connection-mode option rows (Network & Proxy tab). Machine
+    // translations pending native review.
+    (proxy_off_name, set_proxy_off_name, "Disabled (direct connection)", "Desativado (Conexão Direta)", "Desactivado (conexión directa)", "Aus (direkte Verbindung)", "Désactivé (connexion directe)", "Отключено (прямое подключение)", "無効（直接接続）"), // machine TODO
+    (proxy_off_desc, set_proxy_off_desc, "Direct connection to Discord's servers (default).", "Conexão direta aos servidores do Discord (Padrão).", "Conexión directa a los servidores de Discord (predeterminado).", "Direkte Verbindung zu den Discord-Servern (Standard).", "Connexion directe aux serveurs de Discord (par défaut).", "Прямое подключение к серверам Discord (по умолчанию).", "Discordサーバーへの直接接続（デフォルト）。"), // machine TODO
+    (proxy_http_desc, set_proxy_http_desc, "HTTP CONNECT tunnel for restricted networks and proxies.", "Túnel HTTP CONNECT para redes restritas e proxies.", "Túnel HTTP CONNECT para redes restringidas y servidores proxy.", "HTTP-CONNECT-Tunnel für eingeschränkte Netze und Proxies.", "Tunnel HTTP CONNECT pour les réseaux restreints et les proxys.", "Туннель HTTP CONNECT для ограниченных сетей и прокси.", "制限ネットワークとプロキシ向けのHTTP CONNECTトンネル。"), // machine TODO
+    (proxy_socks_desc, set_proxy_socks_desc, "SOCKS5 tunnel compatible with Tor, Shadowsocks and SSH.", "Túnel SOCKS5 compatível com Tor, Shadowsocks e SSH.", "Túnel SOCKS5 compatible con Tor, Shadowsocks y SSH.", "SOCKS5-Tunnel, kompatibel mit Tor, Shadowsocks und SSH.", "Tunnel SOCKS5 compatible Tor, Shadowsocks et SSH.", "Туннель SOCKS5 совместим с Tor, Shadowsocks и SSH.", "Tor・Shadowsocks・SSH対応のSOCKS5トンネル。"), // machine TODO
+    (proxy_system_name, set_proxy_system_name, "System proxy", "Proxy do Sistema", "Proxy del sistema", "Systemproxy", "Proxy système", "Системный прокси", "システムプロキシ"), // machine TODO
+    (proxy_system_desc, set_proxy_system_desc, "Detects the system's global proxy automatically.", "Detecta automaticamente o proxy global do sistema.", "Detecta automáticamente el proxy global del sistema.", "Erkennt den globalen Systemproxy automatisch.", "Détecte automatiquement le proxy global du système.", "Автоматически определяет системный прокси.", "システムのグローバルプロキシを自動検出します。"), // machine TODO
+    // Windows-only capture/loopback wording (distinct from the unix arms) and
+    // device-picker placeholders for empty enumerations.
+    (vcap_gdi_auto_desc, set_vcap_gdi_auto_desc, "Tries PrintWindow for DirectX windows, using BitBlt GDI for the desktop and as fallback.", "Tenta PrintWindow para janelas DirectX e usa BitBlt GDI para desktop e fallback.", "Intenta PrintWindow para ventanas DirectX y usa BitBlt GDI para escritorio y reserva.", "Versucht PrintWindow für DirectX-Fenster und nutzt BitBlt GDI für den Desktop und als Fallback.", "Essaie PrintWindow pour les fenêtres DirectX et utilise BitBlt GDI pour le bureau en repli.", "Пробует PrintWindow для окон DirectX и использует BitBlt GDI для рабочего стола, как резерв.", "DirectXウィンドウにPrintWindowを試し、デスクトップにはBitBlt GDIをフォールバックとして使用します。"),
+    (aloop_cpal_win_desc, set_aloop_cpal_win_desc, "Direct capture from the operating system's default output endpoint.", "Captura direta do endpoint de saída padrão do sistema operacional.", "Captura directa del endpoint de salida predeterminado del sistema operativo.", "Direkte Aufnahme vom Standard-Ausgabe-Endpoint des Betriebssystems.", "Capture directe de l'endpoint de sortie par défaut du système.", "Прямой захват с выходного endpoint системы по умолчанию.", "OSのデフォルト出力endpointからの直接キャプチャ。"),
+    (device_default_input, set_device_default_input, "System Default Microphone", "Microfone Padrão do Sistema", "Micrófono predeterminado del sistema", "Systemstandardmikrofon", "Micro par défaut du système", "Микрофон по умолчанию", "システムの既定マイク"), // machine TODO
+    (device_default_output, set_device_default_output, "System Default Speakers", "Alto-falantes Padrão do Sistema", "Altavoces predeterminados del sistema", "Systemstandardlautsprecher", "Haut-parleurs par défaut du système", "Динамики по умолчанию", "システムの既定スピーカー"), // machine TODO
+    (proxy_test_success, set_proxy_test_success, "Proxy test successful! Latency: {}ms (Status: {})", "Conexão bem-sucedida! Latência: {}ms (Status: {})", "¡Conexión correcta! Latencia: {}ms (Estado: {})", "Verbindung erfolgreich! Latenz: {}ms (Status: {})", "Connexion réussie ! Latence : {}ms (Statut : {})", "Соединение успешно! Задержка: {} мс (Статус: {})", "接続成功！レイテンシ: {}ms (ステータス: {})"), // machine TODO
+    (proxy_test_http_status, set_proxy_test_http_status, "Proxy responded in {}ms, but with HTTP status {}", "Proxy respondeu em {}ms, mas com status HTTP {}", "El proxy respondió en {}ms, pero con estado HTTP {}", "Proxy antwortete in {}ms, aber mit HTTP-Status {}", "Le proxy a répondu en {}ms, mais avec le statut HTTP {}", "Прокси ответил за {} мс, но со статусом HTTP {}", "プロキシは {}ms で応答しましたが、HTTPステータスは {} です"), // machine TODO
+    (proxy_test_failed, set_proxy_test_failed, "Failed to connect via proxy: {}", "Falha ao conectar via Proxy: {}", "Fallo al conectar vía proxy: {}", "Verbindung über Proxy fehlgeschlagen: {}", "Échec de connexion via le proxy : {}", "Не удалось подключиться через прокси: {}", "プロキシ経由で接続できませんでした: {}"), // machine TODO
+    (proxy_alert_system, set_proxy_alert_system, "System proxy connection failed! Click here or the gear at the top to open Settings and disable it.", "Falha de conexão via Proxy do Sistema! Clique aqui ou na engrenagem no topo para abrir as Configurações e desativá-lo.", "¡Fallo de conexión del proxy del sistema! Haz clic aquí o en el engranaje superior para abrir Ajustes y desactivarlo.", "Systemproxy-Verbindung fehlgeschlagen! Klicke hier oder auf das Zahnrad oben, um die Einstellungen zu öffnen und ihn zu deaktivieren.", "Échec de connexion du proxy système ! Clique ici ou sur la roue dentée en haut pour ouvrir les réglages et le désactiver.", "Ошибка подключения через системный прокси! Нажмите здесь или на шестерёнку сверху, чтобы открыть настройки и отключить его.", "システムプロキシの接続に失敗しました！ここまたは上部の歯車をクリックして設定を開き、無効にしてください。"), // machine TODO
+    (proxy_alert_manual, set_proxy_alert_manual, "The proxy ({}: {}:{}) is unreachable or refusing connections! Click here or the gear at the top to open Settings and disable it.", "O Proxy ({}: {}:{}) está inacessível ou recusando conexão! Clique aqui ou na engrenagem no topo para abrir as Configurações e desativá-lo.", "El proxy ({}: {}:{}) es inalcanzable o rechaza conexiones! Haz clic aquí o en el engranaje superior para abrir Ajustes y desactivarlo.", "Der Proxy ({}: {}:{}) ist nicht erreichbar oder lehnt Verbindungen ab! Klicke hier oder auf das Zahnrad oben, um die Einstellungen zu öffnen und ihn zu deaktivieren.", "Le proxy ({} : {} : {}) est injoignable ou refuse les connexions ! Clique ici ou sur la roue dentée en haut pour ouvrir les réglages et le désactiver.", "Прокси ({}: {}:{}) недоступен или отклоняет подключения! Нажмите здесь или на шестерёнку сверху, чтобы открыть настройки и отключить его.", "プロキシ ({}: {}:{}) に到達できないか接続を拒否されています！ここまたは上部の歯車をクリックして設定を開き、無効にしてください。"), // machine TODO
+    (settings_btn_test_start, set_settings_btn_test_start, "Test Microphone (\"Hear Yourself\")", "Testar Microfone (\"Se Ouvir\")", "Probar Micrófono (\"Escucharse\")", "Mikrofon testen (\"Sich hören\")", "Tester le Micro (\"S'entendre\")", "Проверить микрофон (\"Слышать себя\")", "マイクをテスト (自分の声を聞く)"),
+    (settings_btn_test_stop, set_settings_btn_test_stop, "Stop Testing (Listening...)", "Parar Teste (Ouvindo...)", "Detener Prueba (Escuchando...)", "Test beenden (Hören...)", "Arrêter le Test (Écoute...)", "Остановить тест (Слушаем...)", "テスト停止 (聴取中...)"),
+    (settings_done, set_settings_done, "Done", "Concluído", "Hecho", "Fertig", "Terminé", "Готово", "完了"),
+    (keybind_mute_title, set_keybind_mute_title, "Toggle Mute", "Mutar / Desmutar Microfone", "Silenciar / Desilenciar Micrófono", "Stummschaltung umschalten", "Couper / Réactiver le micro", "Вкл/Выкл микрофон", "マイクミュート切替"),
+    (keybind_mute_desc, set_keybind_mute_desc, "Global shortcut to mute or unmute your microphone during voice calls.", "Atalho global para mutar ou desmutar seu microfone durante chamadas.", "Atajo global para activar o desactivar tu micrófono en llamadas de voz.", "Globaler Shortcut zum Stummschalten oder Aktivieren des Mikrofons.", "Raccourci global pour couper ou réactiver votre micro en vocal.", "Глобальная клавиша для включения или выключения микрофона.", "通話中にマイクのミュート/ミュート解除を切り替えるグローバルショートカット。"),
+    (keybind_recording_prompt, set_keybind_recording_prompt, "Press desired key combination...", "Pressione a combinação de teclas...", "Presiona la combinación de teclas...", "Tastenkombination drücken...", "Appuyez sur la combinaison de touches...", "Нажмите комбинацию клавиш...", "キーの組み合わせを押してください..."),
+    (keybind_btn_record, set_keybind_btn_record, "Record Keybind", "Gravar Atalho", "Grabar Atajo", "Aufnehmen", "Enregistrer", "Записать клавишу", "キーを記録"),
+    (keybind_btn_clear, set_keybind_btn_clear, "Disable", "Desativar", "Desactivar", "Deaktivieren", "Désactiver", "Отключить", "無効化"),
+    (keybind_guide_title, set_keybind_guide_title, "Global Shortcuts", "Atalhos Globais", "Atajos Globales", "Globale Tastenkombinationen", "Raccourcis Globaux", "Глобальные клавиши", "グローバルショートカット"),
+    (keybind_guide_desc, set_keybind_guide_desc, "Keybinds work seamlessly across all applications and games, even when Litecord is in background.", "Os atalhos funcionam em qualquer janela ou jogo em tela cheia, mesmo com o Litecord minimizado.", "Los atajos funcionan en cualquier ventana o juego a pantalla completa, incluso con Litecord minimizado.", "Shortcuts funktionieren auch in Vollbildspielen und im Hintergrund.", "Les raccourcis fonctionnent dans n'importe quel jeu ou application, même en arrière-plan.", "Горячие клавиши работают во всех играх и приложениях, даже когда окно свернуто.", "ゲーム中や最小化時でもバックグラウンドで動作します。"),
+    (keybind_deafen_title, set_keybind_deafen_title, "Toggle Deafen", "Ensurdecer / Desensurdecer", "Ensordecer / Desensordecer", "Taubstellen umschalten", "Assourdir / Désassourdir", "Заглушить / Включить звук", "スピーカーミュート切替"),
+    (keybind_deafen_desc, set_keybind_deafen_desc, "Global shortcut to deafen or undeafen all voice audio and microphone.", "Atalho global para ensurdecer ou desensurdecer todo áudio e microfone.", "Atajo global para ensordecer o reactivar todo el sonido y micrófono.", "Globaler Shortcut zum Deaktivieren von Audio und Mikrofon.", "Raccourci global pour couper tout le son entrant et votre micro.", "Глобальная клавиша для отключения всех звуков и микрофона.", "すべての音声とマイクを遮断するグローバルショートカット。"),
+ }
 
 #[cfg(test)]
 const LANGUAGES: [&str; 7] = ["en", "pt", "es", "de", "fr", "ru", "ja"];
@@ -332,10 +452,155 @@ mod tests {
     use super::*;
 
     #[test]
+    fn all_tr_props_are_served_by_ui_table() {
+        let mut remaining: Vec<String> = Vec::new();
+        let ui_root = std::path::Path::new(concat!(env!("CARGO_MANIFEST_DIR"), "/ui"));
+        let mut stack = vec![ui_root.to_path_buf()];
+        while let Some(dir) = stack.pop() {
+            for entry in std::fs::read_dir(&dir).unwrap() {
+                let p = entry.unwrap().path();
+                if p.is_dir() {
+                    stack.push(p);
+                } else if p.extension().map(|e| e == "slint").unwrap_or(false) {
+                    let text = std::fs::read_to_string(&p).unwrap();
+                    for (i, l) in text.lines().enumerate() {
+                        let t = l.trim();
+                        if t.starts_with("in property <string> tr_")
+                            || t.starts_with("in-out property <string> tr_")
+                        {
+                            let name = t
+                                .trim_start_matches("in-out property <string> ")
+                                .trim_start_matches("in property <string> ")
+                                .split(&[':', ' '][..])
+                                .next()
+                                .unwrap()
+                                .to_string();
+                            // tr_stream_quality is a dynamic runtime value
+                            // (resolution + fps), set from src/main.rs and not
+                            // a translated string — exempt (plan Task 4).
+                            if name != "tr_stream_quality" {
+                                remaining.push(format!("{}:{}: {}", p.display(), i + 1, name));
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        assert!(
+            remaining.is_empty(),
+            "hand-wired tr_ props left: {remaining:?}"
+        );
+    }
+
+    #[test]
     fn every_string_exists_in_every_language() {
         for (key, texts) in entries() {
             for (i, text) in texts.iter().enumerate() {
                 assert!(!text.trim().is_empty(), "{key}: empty text for {}", LANGUAGES[i]);
+            }
+        }
+    }
+
+
+
+    #[test]
+    fn no_duplicate_ui_keys() {
+        // The Task-4 sweep introduced duplicate row keys once (cancel) — this
+        // contract keeps the table single-keyed (branched Whitespace struct).
+        let mut seen: Vec<&str> = Vec::new();
+        for (key, _) in entries() {
+            assert!(!seen.contains(&key), "duplicate ui_strings key: {key}");
+            seen.push(key);
+        }
+    }
+
+
+
+    #[test]
+    fn device_default_rows_en_no_pt() {
+        let keys = ["device_default_input", "device_default_output"];
+        let entries = entries();
+        for key in keys {
+            let row = entries.iter().find(|(k, _)| *k == key)
+                .unwrap_or_else(|| panic!("missing device row: {key}"));
+            for (i, text) in row.1.iter().enumerate() {
+                assert!(!text.trim().is_empty(), "{key}: empty text for {}", LANGUAGES[i]);
+            }
+            for ch in ['ã', 'õ', 'ç'] {
+                assert!(!row.1[0].contains(ch), "{key}: PT-only char in EN fallback: {:?}", row.1[0]);
+            }
+        }
+    }
+
+    #[test]
+    fn proxy_mode_option_rows_en_no_pt() {
+        let keys = [
+            "proxy_off_name", "proxy_off_desc", "proxy_http_desc",
+            "proxy_socks_desc", "proxy_system_name", "proxy_system_desc",
+        ];
+        let entries = entries();
+        for key in keys {
+            let row = entries.iter().find(|(k, _)| *k == key)
+                .unwrap_or_else(|| panic!("missing proxy-mode row: {key}"));
+            for (i, text) in row.1.iter().enumerate() {
+                assert!(!text.trim().is_empty(), "{key}: empty text for {}", LANGUAGES[i]);
+            }
+            for ch in ['ã', 'õ', 'ç'] {
+                assert!(!row.1[0].contains(ch), "{key}: PT-only char in EN fallback: {:?}", row.1[0]);
+            }
+        }
+    }
+
+    #[test]
+    fn video_interface_option_rows_en_no_pt() {
+        // The encoder / capture / loopback option lists are built in Rust from
+        // these rows (Video & Interface tab). EN is the fallback; PT is legacy.
+        let keys = [
+            "enc_auto_desc", "enc_nvenc_desc", "enc_ffmpeg_desc", "enc_openh264_desc",
+            "vcap_auto_desc", "vcap_portal_desc", "vcap_x11_desc",
+            "vcap_printwin_desc", "vcap_bitblt_desc", "vcap_gdi_auto_desc",
+            "aloop_auto_desc", "aloop_pulsesrc_desc", "aloop_cpal_desc",
+            "aloop_wasapi_desc", "aloop_wasapi2_desc", "aloop_cpal_win_desc",
+        ];
+        let entries = entries();
+        for key in keys {
+            let row = entries.iter().find(|(k, _)| *k == key)
+                .unwrap_or_else(|| panic!("missing option row: {key}"));
+            for (i, text) in row.1.iter().enumerate() {
+                assert!(!text.trim().is_empty(), "{key}: empty text for {}", LANGUAGES[i]);
+            }
+            for ch in ['ã', 'õ', 'ç'] {
+                assert!(!row.1[0].contains(ch), "{key}: PT-only char in EN fallback: {:?}", row.1[0]);
+            }
+        }
+    }
+
+    #[test]
+    fn proxy_alert_strings_exist_for_every_language() {
+        let keys = [
+            "proxy_test_success",
+            "proxy_test_http_status",
+            "proxy_test_failed",
+            "proxy_alert_system",
+            "proxy_alert_manual",
+        ];
+        let entries = entries();
+        for key in keys {
+            assert!(
+                entries.iter().any(|(k, _)| *k == key),
+                "missing proxy row: {key}"
+            );
+        }
+        for (key, texts) in entries.iter() {
+            if !keys.contains(key) {
+                continue;
+            }
+            for (i, text) in texts.iter().enumerate() {
+                assert!(!text.trim().is_empty(), "{key}: empty text for {}", LANGUAGES[i]);
+            }
+            // English is the universal fallback: no Portuguese-only chars.
+            for ch in ['ã', 'õ', 'ç'] {
+                assert!(!texts[0].contains(ch), "{key}: PT-only char in EN fallback: {:?}", texts[0]);
             }
         }
     }
